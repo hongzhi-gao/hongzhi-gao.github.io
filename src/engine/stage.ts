@@ -12,6 +12,7 @@ export function createStage(
   labels: HTMLButtonElement[],
   tint: string,
   renderSoon: () => void,
+  immersive = false,
 ) {
   const context = canvas.getContext("webgl2", {
     antialias: true,
@@ -20,14 +21,47 @@ export function createStage(
   });
   if (!context) throw new Error("WebGL 2 unavailable");
   const renderer = new T.WebGLRenderer({ canvas, context, antialias: true });
-  renderer.setClearColor(0x0c1922);
+  const navy = immersive ? 0x091523 : 0x0c1922;
+  renderer.setClearColor(navy);
   renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
   const scene = new T.Scene();
-  scene.fog = new T.FogExp2(0x0c1922, 0.018);
+  scene.fog = new T.FogExp2(navy, immersive ? 0.032 : 0.018);
   installLights(scene);
-  const grid = new T.GridHelper(80, 80, 0x2b505c, 0x1b3543);
+  const grid = new T.GridHelper(
+    80,
+    80,
+    0x2b505c,
+    immersive ? 0x284659 : 0x1b3543,
+  );
   grid.position.y = -0.08;
   scene.add(grid);
+  if (immersive) {
+    const studio = new T.Mesh(
+      new T.PlaneGeometry(80, 80),
+      new T.ShaderMaterial({
+        uniforms: { accent: { value: new T.Color(tint) } },
+        vertexShader: `
+          varying vec2 coordinates;
+          void main(){coordinates=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}
+        `,
+        fragmentShader: `
+          uniform vec3 accent;
+          varying vec2 coordinates;
+          void main(){
+            vec2 center = (coordinates-.5) * vec2(1.,1.6);
+            float intensity=exp(-24.*length(center));
+            gl_FragColor=vec4(vec3(.036,.080,.132)+accent*intensity*.13,1.);
+          }
+        `,
+      }),
+    );
+    studio.rotation.x = -Math.PI / 2;
+    studio.position.y = -0.13;
+    scene.add(studio);
+    const softbox = new T.PointLight(tint, 23, 17, 2);
+    softbox.position.set(-3.7, 4.4, -4.8);
+    scene.add(softbox);
+  }
   const camera = new T.PerspectiveCamera(42, 1, 0.1, 170);
   const controls = new OrbitControls(camera, canvas);
   const viewOrigin = new T.Vector3(0, 0.3, -0.1);
@@ -49,6 +83,7 @@ export function createStage(
       visual.group.position.fromArray(
         component.initialPosition ?? component.position,
       );
+      if (immersive) visual.group.scale.setScalar(1.08);
       scene.add(visual.group);
       return [component.id, visual] as const;
     }),
@@ -66,26 +101,65 @@ export function createStage(
     (component) => component.initialPosition,
   );
   const paths = new Map(
-    scenario.relationships.map(({ from, to }) => {
+    scenario.relationships.map(({ from, to, label }) => {
       const route = points(from, to);
+      const control =
+        immersive && ["rpc", "state", "lock", "retry"].includes(label);
       const line = new T.Line(
         new T.BufferGeometry().setFromPoints(route.getPoints(32)),
-        new T.LineBasicMaterial({
-          color: tint,
-          transparent: true,
-          opacity: 0.24,
-        }),
+        control
+          ? new T.LineDashedMaterial({
+              color: 0xa6b5e2,
+              transparent: true,
+              opacity: 0.24,
+              dashSize: 0.27,
+              gapSize: 0.18,
+            })
+          : new T.LineBasicMaterial({
+              color: tint,
+              transparent: true,
+              opacity: 0.24,
+            }),
       );
+      if (control) line.computeLineDistances();
       scene.add(line);
       const path = { route, line, from, to };
       return [`${from}:${to}`, path] as const;
     }),
   );
   const packet = new T.Mesh(
-    new T.IcosahedronGeometry(0.115),
+    new T.IcosahedronGeometry(immersive ? 0.145 : 0.115),
     new T.MeshBasicMaterial({ color: 0xdcfff5 }),
   );
   scene.add(packet);
+  const wake = immersive
+    ? [0.4, 0.56].map((scale, index) => {
+        const tail = new T.Mesh(
+          new T.IcosahedronGeometry(0.145),
+          new T.MeshBasicMaterial({
+            color: new T.Color(tint),
+            transparent: true,
+            opacity: 0.42 + index * 0.18,
+          }),
+        );
+        tail.scale.setScalar(scale);
+        scene.add(tail);
+        return tail;
+      })
+    : [];
+  const badgeLayer = stage.querySelector<SVGGElement>("[data-stage-leaders]");
+  const leaders =
+    badgeLayer &&
+    new Map(
+      scenario.components.map((component) => {
+        const line = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "line",
+        );
+        badgeLayer.append(line);
+        return [component.id, line] as const;
+      }),
+    );
   const target = new T.Vector3();
   const desired = new T.Vector3();
   const projected = new T.Vector3();
@@ -97,6 +171,10 @@ export function createStage(
     if (!width || !height) return;
     renderer.setSize(width, height, false);
     camera.aspect = width / height;
+    if (immersive) {
+      if (camera.aspect > 1.6) initial.set(3.45, 6.05, 8.9);
+      else initial.set(3.35, 7.3, 11.8);
+    }
     camera.updateProjectionMatrix();
     renderSoon();
   };
@@ -147,7 +225,7 @@ export function createStage(
         ? `${state.active.from}:${state.active.target}`
         : "";
       for (const [key, { line }] of paths)
-        line.material.opacity = key === route ? 0.82 : 0.22;
+        line.material.opacity = key === route ? 0.94 : immersive ? 0.32 : 0.22;
       const activePath = route ? paths.get(route) : undefined;
       packet.visible = !!activePath && motion;
       const placed: {
@@ -204,7 +282,11 @@ export function createStage(
             ? 1.55
             : 1.18;
         projected.project(camera);
-        if (!componentState.visible) continue;
+        const leader = leaders?.get(component.id);
+        if (!componentState.visible) {
+          leader?.setAttribute("visibility", "hidden");
+          continue;
+        }
         const width = label.offsetWidth;
         const height = label.offsetHeight;
         const desiredX = ((projected.x + 1) * bounds.width) / 2;
@@ -233,15 +315,44 @@ export function createStage(
         placed.push({ left, top, width, height });
         label.style.left = `${left + width / 2}px`;
         label.style.top = `${top + height}px`;
+        if (leader) {
+          leader.removeAttribute("visibility");
+          leader.classList.toggle("active", active);
+          const bottom = top + height;
+          const coordinates = {
+            x1: left + width / 2,
+            y1: bottom,
+            x2: desiredX,
+            y2: desiredY + height + 13,
+          };
+          for (const [label, value] of Object.entries(coordinates))
+            leader.setAttribute(label, String(value));
+        }
       }
       if (moving) {
         for (const path of paths.values()) {
           path.route = points(path.from, path.to);
-          path.line.geometry.setFromPoints(path.route.getPoints(32));
+          const vertices = path.route.getPoints(32);
+          path.line.geometry.setFromPoints(vertices);
+          const distances = path.line.geometry.getAttribute("lineDistance");
+          if (distances) {
+            let distance = 0;
+            for (let index = 1; index < vertices.length; index++) {
+              distance += vertices[index].distanceTo(vertices[index - 1]);
+              distances.setX(index, distance);
+            }
+            distances.needsUpdate = true;
+          }
         }
       }
       if (activePath && motion)
         activePath.route.getPoint(state.fraction, packet.position);
+      wake.forEach((tail, index) => {
+        const offset = (wake.length - index) * 0.034;
+        tail.visible = !!activePath && motion && state.fraction > offset;
+        if (activePath && tail.visible)
+          activePath.route.getPoint(state.fraction - offset, tail.position);
+      });
       renderer.render(scene, camera);
       return settling;
     },
@@ -255,6 +366,7 @@ export function createStage(
         }
       });
       renderer.dispose();
+      renderer.forceContextLoss();
     },
   };
 }

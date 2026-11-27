@@ -18,8 +18,15 @@ customElements.define(
         scenario,
         links,
         accent,
-      }: { scenario: Scenario; links: Record<string, Link>; accent: string } =
-        JSON.parse(get("[data-ir]").textContent!);
+        inline,
+        immersive,
+      }: {
+        scenario: Scenario;
+        links: Record<string, Link>;
+        accent: string;
+        inline?: Record<string, string>;
+        immersive?: boolean;
+      } = JSON.parse(get("[data-ir]").textContent!);
       const nodes = Array.from(
         this.querySelectorAll<HTMLButtonElement>("[data-node]"),
       );
@@ -175,7 +182,8 @@ customElements.define(
             addLinks(get("[data-node-sources]"), selected.evidence);
             const jump = get<HTMLAnchorElement>("[data-node-jump]");
             jump.hidden = !selected.jump;
-            if (selected.jump) jump.href = `/lab/${selected.jump}/`;
+            if (selected.jump)
+              jump.href = inline?.[selected.jump] ?? `/lab/${selected.jump}/`;
           }
         }
         nodes.forEach((button) =>
@@ -252,6 +260,7 @@ customElements.define(
               nodes,
               accent,
               request,
+              immersive,
             );
           } catch {
             get("[data-mode]").textContent = "2D overview · WebGL unavailable";

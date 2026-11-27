@@ -1,42 +1,36 @@
 ---
 import type { Project, Scenario } from '../architecture-ir/schema';
 import { sourceUrl } from '../architecture-ir/data';
-import { stepDuration } from '../engine/replay';
-const {project, scenario, delta, transition} = Astro.props as {project:Project,scenario:Scenario,delta?:Record<string,'added'|'removed'>,transition?:boolean};
+import PlaybackControls from './PlaybackControls.astro';
+const {project, scenario, delta, transition, inline, immersive} = Astro.props as {project:Project,scenario:Scenario,delta?:Record<string,'added'|'removed'>,transition?:boolean,inline?:Record<string,string>,immersive?:boolean};
 const version = project.versions.find(v=>v.id===scenario.version)!;
 const comparison = version.compareWith ?? project.versions.find(v=>v.compareWith===version.id)?.id;
 const links = Object.fromEntries(project.evidence.map(source => [source.id,{label:source.label,href:sourceUrl(source)}]));
 const entry = scenario.contribution && project.contributions.find(item=>item.id===scenario.contribution);
 const labels = {source:'Source-based walkthrough',teaching:'Teaching scenario',trace:'Runtime trace'};
+const used = new Set([...scenario.components.flatMap(item=>item.evidence), ...scenario.timeline.flatMap(item=>item.evidence)]);
 const states = {upstream:'Upstream / merged',proposal:'Open proposal',historical:'Historical baseline'};
 ---
-<architecture-explorer class="explorer" style={`--exhibit:${project.accent}`} data-exhibit={scenario.id}>
-<script type="application/json" data-ir set:html={JSON.stringify({scenario, links, accent:project.accent}).replaceAll('<','\\u003c')}></script>
+<architecture-explorer class:list={['explorer',immersive&&'explorer-immersive']} style={`--exhibit:${project.accent}`} data-exhibit={scenario.id}>
+<script type="application/json" data-ir set:html={JSON.stringify({scenario, links:Object.fromEntries(Object.entries(links).filter(([id])=>used.has(id))), accent:project.accent, inline, immersive}).replaceAll('<','\\u003c')}></script>
 <div class="exhibit-bar">
   <div><span class="signal"></span> {labels[scenario.category]} <span class:list={['status',scenario.status==='upstream'&&'merged']}>{states[scenario.status]}</span></div>
-  <div><a class="mono" href={`https://github.com/${version.repo}/commit/${version.sha}`} title={version.sha}>{version.repo} · {version.sha.slice(0,9)}</a>{comparison && <a class="compare" href={`/lab/${comparison}/`}>Compare {scenario.status==='historical' ? 'after' : 'before'}</a>}</div>
+  <div><a class="mono" href={`https://github.com/${version.repo}/commit/${version.sha}`} title={version.sha}>{version.repo} · {version.sha.slice(0,9)}</a>{comparison && <a class="compare" href={inline?.[comparison] ?? `/lab/${comparison}/`}>Compare {scenario.status==='historical' ? 'after' : 'before'}</a>}</div>
 </div>
 <div class="explorer-grid">
   <div class="scene-side">
+    {immersive && <PlaybackControls stepCount={scenario.timeline.length} />}
     <div class="scene-stage" data-stage style={transition ? `--atlas-transition:atlas-${project.id}` : undefined}>
       <canvas aria-hidden="true"></canvas>
       <div class="scene-floor"></div>
       <svg class="fallback-paths" aria-hidden="true"><g data-links></g><circle data-packet r="4" visibility="hidden" /></svg>
+      {immersive && <svg class="stage-leaders" aria-hidden="true"><g data-stage-leaders></g></svg>}
       <div class="stage-status"><span class="signal"></span><span data-mode>2D overview</span></div>
       <div class="node-layer" data-nodes>
         {scenario.components.map(component=><button type="button" data-node={component.id} data-kind={component.kind} data-delta={delta?.[component.id]} aria-pressed="false"><span class="node-symbol"></span><span>{component.label}</span><small data-node-state>Ready</small></button>)}
       </div>
     </div>
-    <div class="controls" role="group" aria-label="Playback">
-      <button type="button" data-previous aria-label="Previous step">−1</button>
-      <button class="play-control" type="button" data-play>Play</button>
-      <button type="button" data-next aria-label="Next step">+1</button>
-      <input type="range" data-scrub min="0" max={scenario.timeline.length*stepDuration} step="1" value="0" aria-label="Timeline position" />
-      <label><span class="sr-only">Playback speed</span><select data-speed aria-label="Playback speed"><option value=".5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option></select></label>
-      <label><input type="checkbox" data-loop /> Loop</label>
-      <label><input type="checkbox" data-focus checked /> Focus</label>
-      <button type="button" data-view aria-pressed="false">3D</button>
-    </div>
+    {!immersive && <PlaybackControls stepCount={scenario.timeline.length} />}
   </div>
   <aside class="inspector">
     <div class="inspector-heading"><span class="eyebrow">RUN SEQUENCE</span><span data-count>01 / {String(scenario.timeline.length).padStart(2,'0')}</span></div>

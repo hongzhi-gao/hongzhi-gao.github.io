@@ -1,0 +1,14 @@
+---
+import { stepDuration } from '../engine/replay';
+const {stepCount} = Astro.props as {stepCount:number};
+---
+<div class="controls" role="group" aria-label="Playback">
+  <button type="button" data-previous aria-label="Previous step">−1</button>
+  <button class="play-control" type="button" data-play>Play</button>
+  <button type="button" data-next aria-label="Next step">+1</button>
+  <input type="range" data-scrub min="0" max={stepCount*stepDuration} step="1" value="0" aria-label="Timeline position" />
+  <label><span class="sr-only">Playback speed</span><select data-speed aria-label="Playback speed"><option value=".5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option></select></label>
+  <label><input type="checkbox" data-loop /> Loop</label>
+  <label><input type="checkbox" data-focus checked /> Focus</label>
+  <button type="button" data-view aria-pressed="false">3D</button>
+</div>

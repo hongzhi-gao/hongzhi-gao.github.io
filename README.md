@@ -2,6 +2,8 @@
 
 An interactive site for exploring Apache IoTDB, Apache TsFile and Mooncake Store from project architecture down to public source and tests. Exhibits distinguish upstream behavior, teaching examples, historical snapshots and open proposals. The Mooncake replica integration in PR #5494 is an open proposal in its pinned snapshot. Its object I/O and durable recovery prerequisites each have a separate merged exhibit.
 
+The homepage is the workbench. Pick one of the three IoTDB modules or switch the Mooncake replica scenario in place. Each project has a direct GitHub PR list. Individual exhibits and notes keep their own permalinks.
+
 ## Local development
 
 Use Node.js 24 and npm.

@@ -8,3 +8,4 @@
 - Chromium visual review found a mobile heading cutoff and overlapping TsFile labels. The heading now fits 320px and label placement avoids overlaps in the tested keyframe. The time machine switches versions inline.
 - Added the merged DiskFull tier-directory recovery contribution and a source-pinned baseline, with direct drill-down from the storage-engine exhibit.
 - Verified shared project and exhibit transitions, low-motion fallback, and actual Mermaid and math output in the blog.
+- Replaced the landing page with compact identity details and a single-page technical workbench. The three IoTDB modules and Mooncake object replica snapshots switch in place. Each project lists direct GitHub PR links.
