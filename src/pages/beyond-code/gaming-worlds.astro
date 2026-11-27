@@ -1,0 +1,70 @@
+---
+import Base from '../../layouts/Base.astro';
+import GamingImage from '../../components/GamingImage.astro';
+import { gameGroups, heroScene } from '../../gaming/data';
+import '../../gaming/gallery.css';
+---
+<Base title="Gaming Worlds" description="A gallery of landscapes from Hyrule, the Lands Between, and Horizon Japan.">
+  <div class="gaming-gallery" data-gaming-gallery>
+    <header class="gaming-hero">
+      <GamingImage scene={heroScene} eager />
+      <div class="gaming-hero-copy shell">
+        <p class="gaming-section-name">Beyond Code</p>
+        <h1>Gaming Worlds</h1>
+        <p class="gaming-tagline">Some worlds are worth getting lost in.</p>
+        <p class="gaming-tagline-zh" lang="zh-Hans">有些世界，值得花时间去探索。</p>
+        <div class="gaming-hero-actions">
+          <a class="gaming-browse" href="#worlds">Explore the gallery <span aria-hidden="true">↓</span></a>
+          <a class="gaming-hero-scene" href={heroScene.source_url} data-open-scene={heroScene.id} aria-label={`View ${heroScene.title}, ${heroScene.game}`}>
+            {heroScene.title} <span aria-hidden="true">↗</span><small>{heroScene.game}</small>
+          </a>
+        </div>
+      </div>
+    </header>
+    <div class="gaming-collection shell" id="worlds">
+      <div class="gaming-filters" data-gaming-filters aria-label="Filter by game" role="group" hidden>
+        <button type="button" data-game-filter="" aria-pressed="true">All worlds</button>
+        {[...gameGroups.keys()].map(game => <button type="button" data-game-filter={game} aria-pressed="false">{game}</button>)}
+      </div>
+      {[...gameGroups].map(([game, scenes], index) => (
+        <section class="gaming-game" data-game={game} aria-labelledby={`world-${index}`}>
+          <h2 id={`world-${index}`}>{game}</h2>
+          <div class="gaming-grid">
+            {scenes.map(scene => (
+              <figure class="gaming-frame" data-scene={scene.id} data-full-image={scene.image} data-description={scene.description} data-copyright={scene.copyright}>
+                <a class="gaming-frame-image" href={scene.source_url} data-open-scene={scene.id} aria-label={`View ${scene.title}`}>
+                  <GamingImage scene={scene} />
+                </a>
+                <figcaption><span>{scene.title}</span><a href={scene.source_url}>Source <span aria-hidden="true">↗</span></a></figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+    <dialog class="gaming-lightbox" aria-labelledby="gaming-slide-title">
+      <div class="gaming-lightbox-content">
+        <div class="gaming-lightbox-tools">
+          <span data-slide-count aria-hidden="true"></span>
+          <button type="button" data-slide-close aria-label="Close image" autofocus>×</button>
+        </div>
+        <div class="gaming-lightbox-view">
+          <button type="button" data-slide-step="-1" aria-label="Previous image">←</button>
+          <div class="gaming-lightbox-media">
+            <img class="gaming-image" data-gaming-image="" data-slide-image alt="" referrerpolicy="no-referrer" />
+            <span class="gaming-loading" aria-hidden="true">Loading image…</span>
+          </div>
+          <button type="button" data-slide-step="1" aria-label="Next image">→</button>
+        </div>
+        <div class="gaming-lightbox-caption" aria-live="polite" aria-atomic="true">
+          <div><p data-slide-game></p><h2 id="gaming-slide-title"></h2></div>
+          <div><a data-slide-source>View source <span aria-hidden="true">↗</span></a><small data-slide-copyright></small></div>
+        </div>
+      </div>
+    </dialog>
+  </div>
+</Base>
+
+<script>
+  import '../../gaming/lightbox';
+</script>

@@ -41,3 +41,9 @@ The deterministic sync stores per-repository checkpoints and public records in `
 - If a scan or validation fails, the verified branch retains its previous checkpoint. Rerun the failed workflow. If Pages fails after the update commit, rerun the Pages deployment or dispatch the Pages workflow on `main`. To roll back, revert the relevant verified commit using normal Git history and run the Pages workflow on `main`.
 
 See [verification records](VERIFICATION.md) for executed checks and scope.
+
+## Gaming Worlds
+
+The order of `data/gaming/gallery.json` sets the gallery order and the first scene supplies the hero. Add each scene with a unique ID, game, title, short visual description, image URL or path, official source page, copyright credit and the image's intrinsic width-to-height ratio. An optional `preview` URL or path supplies a smaller grid image while the lightbox uses the full resolution.
+
+For images cleared for local hosting, place the files in `public/images/gaming/` and use a path such as `/images/gaming/scene.webp`. The initial collection embeds official publisher-hosted screenshots and links to the original pages. The build uses the catalog without fetching images. An unavailable image falls back to a local placeholder, keeps its source link and logs the scene ID and failing URL in the browser console.

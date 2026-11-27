@@ -1,0 +1,21 @@
+---
+import type { Scene } from '../gaming/data';
+const { scene, eager = false } = Astro.props as { scene: Scene; eager?: boolean };
+const [width, height] = scene.aspect_ratio.split(':').map(Number);
+---
+<img
+  class="gaming-image"
+  src={eager ? scene.image : scene.preview ?? scene.image}
+  alt={scene.description}
+  width={width}
+  height={height}
+  style={`--gaming-image-ratio: ${width} / ${height}`}
+  loading={eager ? 'eager' : 'lazy'}
+  fetchpriority={eager ? 'high' : undefined}
+  decoding="async"
+  referrerpolicy="no-referrer"
+  data-gaming-image={scene.id}
+/>
+<script>
+  import '../gaming/image-fallback';
+</script>
