@@ -1,10 +1,10 @@
 ---
 import Base from '../layouts/Base.astro';
 import profile from '../../config/profile.json';
-import { contributionEntries } from '../architecture-ir/contributions';
+import { featuredContributions } from '../architecture-ir/contributions';
 import { projects } from '../architecture-ir/data';
 import { getCollection } from 'astro:content';
-const featured = projects.flatMap(project => contributionEntries(project).slice(0,2).map(entry => ({...entry, project: project.name})));
+const featured = projects.flatMap(project => featuredContributions(project).map(entry => ({...entry, project: project.name})));
 const recent = (await getCollection('posts', ({data}) => !data.draft)).sort((a,b) => +b.data.date - +a.data.date).slice(0,3);
 ---
 <Base title="Architecture in motion">
@@ -24,7 +24,7 @@ const recent = (await getCollection('posts', ({data}) => !data.draft)).sort((a,b
 <section class="shell section" id="projects">
   <div class="section-heading"><div><p class="eyebrow">PROJECT INDEX</p><h2>Explore the systems</h2></div><p>Two open-source project tracks, from cluster topology to file layout and individual code paths.</p></div>
   <div class="project-index">
-  {projects.map(project => <a class="project-panel" href={`/projects/${project.id}/`} style={`--project-accent:${project.accent}`}>
+  {projects.map(project => <a class="project-panel" href={`/projects/${project.id}/`} style={`--project-accent:${project.accent};--atlas-transition:atlas-${project.id}`}>
     <div class:list={['project-art',project.id]} aria-hidden="true"><div></div><div></div><div></div><div></div><div></div></div>
     <div class="project-caption"><p class="eyebrow">{project.domain}</p><h3>{project.name}</h3><p>{project.description}</p><strong>Explore project <span aria-hidden="true">+</span></strong></div>
   </a>)}

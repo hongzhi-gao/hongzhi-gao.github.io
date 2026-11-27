@@ -263,6 +263,34 @@
         408,
         425
       ]
+    },
+    {
+      "id": "tier-legacy",
+      "repo": "apache/iotdb",
+      "sha": "9a386abdc0ef905219a43839f7ce58e5d748f28b",
+      "path": "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/rescon/disk/TierManager.java",
+      "label": "TierManager.java · baseline"
+    },
+    {
+      "id": "tier-recovery",
+      "repo": "apache/iotdb",
+      "sha": "d10b69ee10ff393928af2dad9725df41b2c28dfc",
+      "path": "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/rescon/disk/TierManager.java",
+      "label": "TierManager.java · recovery"
+    },
+    {
+      "id": "tier-checks",
+      "repo": "apache/iotdb",
+      "sha": "d10b69ee10ff393928af2dad9725df41b2c28dfc",
+      "path": "iotdb-core/node-commons/src/main/java/org/apache/iotdb/commons/conf/CommonConfig.java",
+      "label": "Disk-full recovery checks"
+    },
+    {
+      "id": "tier-recovery-it",
+      "repo": "apache/iotdb",
+      "sha": "d10b69ee10ff393928af2dad9725df41b2c28dfc",
+      "path": "integration-test/src/test/java/org/apache/iotdb/db/it/IoTDBDiskFullFolderRecoveryIT.java",
+      "label": "DataNode recovery integration test"
     }
   ],
   "versions": [
@@ -300,7 +328,7 @@
     },
     {
       "id": "wal-rebuild-before",
-      "label": "Before \u00b7 WAL retention",
+      "label": "Before · WAL retention",
       "repo": "apache/iotdb",
       "sha": "e78f7366134e7f3cbedb463c3f5e9ebb26ba021c",
       "note": "An already-published single-replica boundary can race new channel registration.",
@@ -308,7 +336,7 @@
     },
     {
       "id": "wal-rebuild-after",
-      "label": "After \u00b7 WAL retention",
+      "label": "After · WAL retention",
       "repo": "apache/iotdb",
       "sha": "3f841b00f3b9bc41e92c0445596c44075b6598b5",
       "note": "Reconstruction preserves newly required WAL and prevents dispatch from skipping an index gap.",
@@ -317,7 +345,7 @@
     },
     {
       "id": "tsfile-recovery-before",
-      "label": "Before \u00b7 repeated recovery",
+      "label": "Before · repeated recovery",
       "repo": "apache/tsfile",
       "sha": "34833e7a59d4aea406adc2cb4809246a28e53fd9",
       "note": "C++ metadata indexing when the same logical device appears in multiple recovery passes.",
@@ -325,12 +353,29 @@
     },
     {
       "id": "tsfile-recovery-after",
-      "label": "After \u00b7 repeated recovery",
+      "label": "After · repeated recovery",
       "repo": "apache/tsfile",
       "sha": "3de49f7fc0348964a962173cbdcd37cac598f071",
       "note": "C++ metadata indexing when the same logical device appears in multiple recovery passes.",
       "scenario": "tsfile-recovery-after",
       "compareWith": "tsfile-recovery-before"
+    },
+    {
+      "id": "tier-recovery-before",
+      "label": "Before · DiskFull and tier reload",
+      "repo": "apache/iotdb",
+      "sha": "9a386abdc0ef905219a43839f7ce58e5d748f28b",
+      "note": "A full folder can lose its tier position in the previous representation.",
+      "scenario": "tier-recovery-before"
+    },
+    {
+      "id": "tier-recovery-after",
+      "label": "After · DiskFull and tier reload",
+      "repo": "apache/iotdb",
+      "sha": "d10b69ee10ff393928af2dad9725df41b2c28dfc",
+      "note": "Tier identity survives failed folder initialization, and DataNode recovery waits for the registered disk checks.",
+      "scenario": "tier-recovery-after",
+      "compareWith": "tier-recovery-before"
     }
   ],
   "modules": [
@@ -345,9 +390,11 @@
     {
       "id": "storage-engine",
       "title": "Storage engine",
-      "description": "Region writes, WAL and MemTable flushing, sealed files, compaction and reads.",
+      "description": "Region writes, WAL, MemTable flushing, compaction and tier directory recovery.",
       "scenarios": [
-        "storage-engine"
+        "storage-engine",
+        "tier-recovery-before",
+        "tier-recovery-after"
       ]
     },
     {
@@ -687,6 +734,23 @@
           "evidence": [
             "compaction"
           ]
+        },
+        {
+          "id": "tier",
+          "kind": "StorageTier",
+          "label": "Tier directories",
+          "description": "The TierManager maintains configured file directories and checks whether full tiers can recover.",
+          "position": [
+            3.7,
+            0,
+            -4.1
+          ],
+          "level": 3,
+          "parent": "region",
+          "evidence": [
+            "tier"
+          ],
+          "jump": "tier-recovery-after"
         }
       ],
       "relationships": [
@@ -998,7 +1062,7 @@
           "target": "peer-b",
           "state": "synced",
           "label": "Apply on DataNode B",
-          "detail": "The remote RPC handler decodes the batch and invokes the target group\u2019s replication path.",
+          "detail": "The remote RPC handler decodes the batch and invokes the target group’s replication path.",
           "evidence": [
             "rpc"
           ],
@@ -1010,7 +1074,7 @@
           "target": "peer-c",
           "state": "lagging",
           "label": "One destination is unavailable",
-          "detail": "This illustrative peer outage stalls C\u2019s progress independently of B. Local success is not a quorum acknowledgment.",
+          "detail": "This illustrative peer outage stalls C’s progress independently of B. Local success is not a quorum acknowledgment.",
           "evidence": [
             "dispatcher"
           ],
@@ -1351,7 +1415,7 @@
     },
     {
       "id": "wal-rebuild-before",
-      "title": "Before \u00b7 WAL retention",
+      "title": "Before · WAL retention",
       "summary": "An already-published single-replica boundary can race new channel registration.",
       "category": "teaching",
       "status": "historical",
@@ -1389,7 +1453,7 @@
         {
           "id": "snapshot",
           "kind": "File",
-          "label": "Snapshot \u00b7 100",
+          "label": "Snapshot · 100",
           "description": "Teaching example fixed at index 100.",
           "position": [
             4,
@@ -1508,7 +1572,7 @@
     },
     {
       "id": "wal-rebuild-after",
-      "title": "After \u00b7 WAL retention",
+      "title": "After · WAL retention",
       "summary": "Reconstruction preserves newly required WAL and prevents dispatch from skipping an index gap.",
       "category": "teaching",
       "status": "upstream",
@@ -1546,7 +1610,7 @@
         {
           "id": "snapshot",
           "kind": "File",
-          "label": "Snapshot \u00b7 100",
+          "label": "Snapshot · 100",
           "description": "Teaching example fixed at index 100.",
           "position": [
             4,
@@ -1635,7 +1699,7 @@
           "target": "peer",
           "state": "replayed",
           "label": "Replay contiguous WAL",
-          "detail": "Catch-up waits for the coordinator\u2019s fixed outbound frontier. An unexpected gap halts that dispatch channel.",
+          "detail": "Catch-up waits for the coordinator’s fixed outbound frontier. An unexpected gap halts that dispatch channel.",
           "evidence": [
             "rebuild-test"
           ],
@@ -1666,7 +1730,7 @@
     },
     {
       "id": "tsfile-recovery-before",
-      "title": "Before \u00b7 repeated recovery",
+      "title": "Before · repeated recovery",
       "summary": "C++ metadata indexing when the same logical device appears in multiple recovery passes.",
       "category": "source",
       "status": "historical",
@@ -1788,7 +1852,7 @@
     },
     {
       "id": "tsfile-recovery-after",
-      "title": "After \u00b7 repeated recovery",
+      "title": "After · repeated recovery",
       "summary": "C++ metadata indexing when the same logical device appears in multiple recovery passes.",
       "category": "source",
       "status": "upstream",
@@ -1907,6 +1971,405 @@
       ],
       "version": "tsfile-recovery-after",
       "contribution": "multi-recovery"
+    },
+    {
+      "id": "tier-recovery-before",
+      "title": "Before · DiskFull and tier reload",
+      "summary": "A full folder can lose its tier position in the previous representation.",
+      "status": "historical",
+      "category": "teaching",
+      "components": [
+        {
+          "id": "config",
+          "kind": "Metadata",
+          "label": "Tier directories",
+          "description": "Configured directory tiers and their sequence/unsequence roles.",
+          "position": [
+            -4,
+            0,
+            1.2
+          ],
+          "level": 3,
+          "evidence": [
+            "tier-legacy"
+          ]
+        },
+        {
+          "id": "tier",
+          "kind": "StorageTier",
+          "label": "TierManager",
+          "description": "Routes file allocation to configured directories.",
+          "position": [
+            0,
+            0,
+            1.2
+          ],
+          "level": 3,
+          "evidence": [
+            "tier-legacy"
+          ]
+        },
+        {
+          "id": "disk",
+          "kind": "SSD",
+          "label": "Full directory",
+          "description": "The allocator rejects the configured directories when available space violates the limit.",
+          "position": [
+            4,
+            0,
+            1.2
+          ],
+          "level": 3,
+          "evidence": [
+            "tier-legacy"
+          ]
+        },
+        {
+          "id": "node",
+          "kind": "ServerNode",
+          "label": "DataNode",
+          "description": "Reports the DiskFull read-only reason until recovery conditions are met.",
+          "position": [
+            -2,
+            0,
+            -2.5
+          ],
+          "level": 3,
+          "evidence": [
+            "tier-legacy"
+          ]
+        },
+        {
+          "id": "file",
+          "kind": "File",
+          "label": "New TsFile",
+          "description": "Uses an allocation from the configured tier when the next write needs a file.",
+          "position": [
+            2,
+            0,
+            -2.5
+          ],
+          "level": 3,
+          "evidence": [
+            "tier-legacy"
+          ]
+        }
+      ],
+      "relationships": [
+        {
+          "from": "config",
+          "to": "tier",
+          "label": "rpc"
+        },
+        {
+          "from": "disk",
+          "to": "tier",
+          "label": "failure"
+        },
+        {
+          "from": "disk",
+          "to": "node",
+          "label": "recovery"
+        },
+        {
+          "from": "tier",
+          "to": "file",
+          "label": "failure"
+        }
+      ],
+      "timeline": [
+        {
+          "type": "rpc",
+          "target": "tier",
+          "state": "reloading",
+          "label": "Reload the tier directories",
+          "detail": "Initialization attempts to construct folder managers for the configured tiers.",
+          "evidence": [
+            "tier-legacy"
+          ],
+          "from": "config"
+        },
+        {
+          "type": "failure",
+          "target": "tier",
+          "state": "missing",
+          "label": "Omit a failed manager",
+          "detail": "A tier can be skipped when all of its configured directories are full, shifting the positional manager list.",
+          "evidence": [
+            "tier-legacy"
+          ],
+          "from": "disk"
+        },
+        {
+          "type": "recovery",
+          "target": "node",
+          "state": "recovered",
+          "label": "Make space available",
+          "detail": "Space may recover while the shortened list still exists.",
+          "evidence": [
+            "tier-legacy"
+          ],
+          "from": "disk"
+        },
+        {
+          "type": "failure",
+          "target": "file",
+          "state": "misrouted",
+          "label": "Try to allocate in the configured tier",
+          "detail": "A positional lookup can now fail or address a different manager.",
+          "evidence": [
+            "tier-legacy"
+          ],
+          "from": "tier"
+        }
+      ],
+      "cameraTrack": [
+        {
+          "step": 0,
+          "target": "tier"
+        },
+        {
+          "step": 1,
+          "target": "tier"
+        },
+        {
+          "step": 2,
+          "target": "node"
+        },
+        {
+          "step": 3,
+          "target": "file"
+        }
+      ],
+      "version": "tier-recovery-before",
+      "contribution": "tier-full-recovery"
+    },
+    {
+      "id": "tier-recovery-after",
+      "title": "After · DiskFull and tier reload",
+      "summary": "Tier identity survives failed folder initialization, and DataNode recovery waits for the registered disk checks.",
+      "status": "upstream",
+      "category": "teaching",
+      "components": [
+        {
+          "id": "config",
+          "kind": "Metadata",
+          "label": "Tier directories",
+          "description": "Configured directory tiers and their sequence/unsequence roles.",
+          "position": [
+            -4,
+            0,
+            1.2
+          ],
+          "level": 3,
+          "evidence": [
+            "tier-recovery"
+          ]
+        },
+        {
+          "id": "tier",
+          "kind": "StorageTier",
+          "label": "TierManager",
+          "description": "Routes file allocation to configured directories.",
+          "position": [
+            0,
+            0,
+            1.2
+          ],
+          "level": 3,
+          "evidence": [
+            "tier-recovery"
+          ]
+        },
+        {
+          "id": "disk",
+          "kind": "SSD",
+          "label": "Full directory",
+          "description": "The allocator rejects the configured directories when available space violates the limit.",
+          "position": [
+            4,
+            0,
+            1.2
+          ],
+          "level": 3,
+          "evidence": [
+            "tier-recovery"
+          ]
+        },
+        {
+          "id": "node",
+          "kind": "ServerNode",
+          "label": "DataNode",
+          "description": "Reports the DiskFull read-only reason until recovery conditions are met.",
+          "position": [
+            -2,
+            0,
+            -2.5
+          ],
+          "level": 3,
+          "evidence": [
+            "tier-checks"
+          ]
+        },
+        {
+          "id": "file",
+          "kind": "File",
+          "label": "New TsFile",
+          "description": "Uses an allocation from the configured tier when the next write needs a file.",
+          "position": [
+            2,
+            0,
+            -2.5
+          ],
+          "level": 3,
+          "evidence": [
+            "tier-recovery-it"
+          ]
+        },
+        {
+          "id": "checks",
+          "kind": "StateMachine",
+          "label": "Recovery checks",
+          "description": "Checks the current registered sources before leaving the disk-full state.",
+          "position": [
+            4,
+            0,
+            -2.5
+          ],
+          "level": 3,
+          "evidence": [
+            "tier-checks"
+          ]
+        }
+      ],
+      "relationships": [
+        {
+          "from": "config",
+          "to": "tier",
+          "label": "rpc"
+        },
+        {
+          "from": "disk",
+          "to": "tier",
+          "label": "failure"
+        },
+        {
+          "from": "tier",
+          "to": "node",
+          "label": "state"
+        },
+        {
+          "from": "disk",
+          "to": "checks",
+          "label": "recovery"
+        },
+        {
+          "from": "checks",
+          "to": "node",
+          "label": "state"
+        },
+        {
+          "from": "tier",
+          "to": "file",
+          "label": "create"
+        }
+      ],
+      "timeline": [
+        {
+          "type": "rpc",
+          "target": "tier",
+          "state": "reloading",
+          "label": "Reload the tier directories",
+          "detail": "Directory roles remain keyed by configured tier even if construction fails.",
+          "evidence": [
+            "tier-recovery"
+          ],
+          "from": "config"
+        },
+        {
+          "type": "failure",
+          "target": "tier",
+          "state": "retained",
+          "label": "Keep the full tier slot",
+          "detail": "The entry and current directories remain registered. A subsequent access can retry construction.",
+          "evidence": [
+            "tier-recovery"
+          ],
+          "from": "disk"
+        },
+        {
+          "type": "state",
+          "target": "node",
+          "state": "read-only",
+          "label": "Keep the DiskFull reason",
+          "detail": "An unchanged reload leaves the applicable recovery checks outstanding.",
+          "evidence": [
+            "tier-recovery-it"
+          ],
+          "from": "tier"
+        },
+        {
+          "type": "recovery",
+          "target": "checks",
+          "state": "passing",
+          "label": "Recheck all current sources",
+          "detail": "The aggregate space condition and registered checks must pass, including checks outside TierManager.",
+          "evidence": [
+            "tier-checks"
+          ],
+          "from": "disk"
+        },
+        {
+          "type": "state",
+          "target": "node",
+          "state": "running",
+          "label": "Restore the running state",
+          "detail": "Recovery uses the current configuration and invalidates stale check results after relevant changes.",
+          "evidence": [
+            "tier-checks"
+          ],
+          "from": "checks"
+        },
+        {
+          "type": "create",
+          "target": "file",
+          "state": "created",
+          "label": "Allocate and query a TsFile",
+          "detail": "The integration test covers a full reload, a repeated unchanged reload, recovery and subsequent writes and reads.",
+          "evidence": [
+            "tier-recovery-it"
+          ],
+          "from": "tier"
+        }
+      ],
+      "cameraTrack": [
+        {
+          "step": 0,
+          "target": "tier"
+        },
+        {
+          "step": 1,
+          "target": "tier"
+        },
+        {
+          "step": 2,
+          "target": "node"
+        },
+        {
+          "step": 3,
+          "target": "checks"
+        },
+        {
+          "step": 4,
+          "target": "node"
+        },
+        {
+          "step": 5,
+          "target": "file"
+        }
+      ],
+      "version": "tier-recovery-after",
+      "contribution": "tier-full-recovery"
     }
   ],
   "contributions": [
@@ -1926,7 +2389,8 @@
         "rebuild",
         "wal-rebuild",
         "rebuild-test"
-      ]
+      ],
+      "impact": "architecture"
     },
     {
       "id": "multi-recovery",
@@ -1959,6 +2423,24 @@
       "design": "Coordinate the WAL and flush lifecycle on the 2.0.12 release branch.",
       "evidence": [
         "delete-fix"
+      ]
+    },
+    {
+      "id": "tier-full-recovery",
+      "title": "Fix tier folder recovery and DiskFull status after configuration reload",
+      "repository": "apache/iotdb",
+      "number": 19161,
+      "role": "author",
+      "status": "merged",
+      "date": "2026-11-06",
+      "problem": "A full tier directory could drop a manager and strand later file allocation.",
+      "design": "Keep tier entries stable and gate recovery on the current directory and independent disk checks.",
+      "module": "storage-engine",
+      "scenario": "tier-recovery-after",
+      "evidence": [
+        "tier-recovery",
+        "tier-checks",
+        "tier-recovery-it"
       ]
     }
   ]

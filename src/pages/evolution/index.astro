@@ -29,8 +29,8 @@ import {projects} from '../../architecture-ir/data';
     <button class="button primary" type="button" data-history-choice="after" aria-pressed="true">After · {version.sha.slice(0,9)}</button>
     <a href={`/lab/${before.scenario}/`}>Before permalink</a><a href={`/lab/${version.scenario}/`}>After permalink</a>
   </div>
-  <div data-history-version="before" hidden><Explorer project={project} scenario={old}/></div>
-  <div data-history-version="after"><Explorer project={project} scenario={revised}/></div>
+  <div data-history-version="before" hidden><Explorer project={project} scenario={old} delta={Object.fromEntries(removed.map(item=>[item.id,'removed']))}/></div>
+  <div data-history-version="after"><Explorer project={project} scenario={revised} delta={Object.fromEntries(added.map(item=>[item.id,'added']))}/></div>
   </details>
 })}</section>)}</div>
 </Base>

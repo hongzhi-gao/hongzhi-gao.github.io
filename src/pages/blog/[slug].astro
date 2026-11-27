@@ -18,7 +18,7 @@ const date=post.data.date.toISOString().slice(0,10);
 {headings.length>0 && <aside class="article-toc" aria-label="Article contents"><p class="eyebrow">ON THIS PAGE</p>{headings.map(heading=><a href={`#${heading.slug}`} style={`padding-left:${Math.max(0,heading.depth-2)*.7}rem`}>{heading.text}</a>)}</aside>}</div>
 </Base>
 <script>
-const graphs=[...document.querySelectorAll<HTMLElement>('code.language-mermaid')];
+const graphs=[...document.querySelectorAll<HTMLElement>('code.language-mermaid, pre[data-language=mermaid] > code')];
 if(graphs.length)void import('mermaid').then(async({default:mermaid})=>{
   mermaid.initialize({startOnLoad:false,securityLevel:'strict',theme:'dark'});
   const nodes=graphs.map(graph=>{

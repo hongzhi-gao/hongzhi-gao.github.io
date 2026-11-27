@@ -2,7 +2,7 @@
 import type { Project, Scenario } from '../architecture-ir/schema';
 import { sourceUrl } from '../architecture-ir/data';
 import { stepDuration } from '../engine/replay';
-const {project, scenario} = Astro.props as {project:Project,scenario:Scenario};
+const {project, scenario, delta, transition} = Astro.props as {project:Project,scenario:Scenario,delta?:Record<string,'added'|'removed'>,transition?:boolean};
 const version = project.versions.find(v=>v.id===scenario.version)!;
 const comparison = version.compareWith ?? project.versions.find(v=>v.compareWith===version.id)?.id;
 const links = Object.fromEntries(project.evidence.map(source => [source.id,{label:source.label,href:sourceUrl(source)}]));
@@ -18,13 +18,13 @@ const states = {upstream:'Upstream / merged',proposal:'Open proposal',historical
 </div>
 <div class="explorer-grid">
   <div class="scene-side">
-    <div class="scene-stage" data-stage>
+    <div class="scene-stage" data-stage style={transition ? `--atlas-transition:atlas-${project.id}` : undefined}>
       <canvas aria-hidden="true"></canvas>
       <div class="scene-floor"></div>
       <svg class="fallback-paths" aria-hidden="true"><g data-links></g><circle data-packet r="4" visibility="hidden" /></svg>
       <div class="stage-status"><span class="signal"></span><span data-mode>2D overview</span></div>
       <div class="node-layer" data-nodes>
-        {scenario.components.map(component=><button type="button" data-node={component.id} data-kind={component.kind} aria-pressed="false"><span class="node-symbol"></span><span>{component.label}</span><small data-node-state>Ready</small></button>)}
+        {scenario.components.map(component=><button type="button" data-node={component.id} data-kind={component.kind} data-delta={delta?.[component.id]} aria-pressed="false"><span class="node-symbol"></span><span>{component.label}</span><small data-node-state>Ready</small></button>)}
       </div>
     </div>
     <div class="controls" role="group" aria-label="Playback">
@@ -43,7 +43,7 @@ const states = {upstream:'Upstream / merged',proposal:'Open proposal',historical
     <h3 data-event-title>{scenario.timeline[0].label}</h3><p data-event-detail>{scenario.timeline[0].detail}</p>
     <div class="inspector-sources" data-event-sources>{scenario.timeline[0].evidence.map(id=><a href={links[id].href}>{links[id].label}</a>)}</div>
     <div class="node-inspector">
-      <p class="eyebrow" data-node-level>COMPONENTS</p><h4 data-node-title>Pick a component</h4><p data-node-detail>Inspect its state, data structures and source.</p>
+      <p class="eyebrow" data-node-level>COMPONENTS</p><h4 data-node-title>Pick a component</h4><p class="node-path" data-node-path hidden></p><p data-node-detail>Inspect its replay state, data structures and source.</p>
       <div class="inspector-sources" data-node-sources></div><a class="compare" data-node-jump hidden>Open module</a>
       {entry && <p class="attribution">Contribution · {entry.role} · <a href={`https://github.com/${entry.repository}/pull/${entry.number}`}>PR #{entry.number}</a></p>}
     </div>

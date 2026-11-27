@@ -6,9 +6,9 @@
 | --- | --- |
 | `npm run check` | Zero errors, warnings and hints on Node 24. |
 | `npm test` | Three tests passed for intact IR, broken references, deterministic seeking and incremental merge deduplication. |
-| `npm run evidence` | All 54 public raw files and cited line ranges resolved at their pinned revisions. |
+| `npm run evidence` | All 58 public raw files and cited line ranges resolved at their pinned revisions. |
 | `npm run build` | Astro static build and Pagefind index succeeded, including four published technical articles. |
-| `CHROMIUM_PATH=… npm run test:e2e` | All six Chromium checks passed, covering core routes, replay controls, drill-down, browser back, distinct WebGL frames, collision-free TsFile labels, history switching, 320px layout, RSS, full-text body search and the WebGL-unavailable fallback. |
+| `CHROMIUM_PATH=… npm run test:e2e` | All seven Chromium checks passed, covering core routes, replay controls, drill-down, browser back, distinct WebGL frames, collision-free TsFile labels, history switching, 320px layout, RSS, full-text body search, Mermaid, math, shared transitions and the WebGL-unavailable fallback. |
 | `GH_TOKEN="$(gh auth token)" npm run sync -- --dry-run` | Real public GitHub bootstrap discovered 182 records and 13 queued candidates on this run. No tracked data was written. |
 | `npm audit --omit=dev --audit-level=high` | No high or critical production advisories after upgrading Astro and Zod. Four low advisories were reported in the transitive math renderer. |
 

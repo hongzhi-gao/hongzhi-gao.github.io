@@ -93,3 +93,16 @@ test('an unavailable WebGL context retains selectable components and active path
   await page.locator('[data-node="object"]').click();
   await expect(page.locator('[data-node-title]')).toHaveText('Object storage');
 });
+test('shared project transition respects reduced motion and technical notes render diagrams',async({page})=>{
+  await page.goto('/');
+  const project=page.locator('.project-panel').first();
+  await expect(project).toHaveCSS('view-transition-name','atlas-iotdb-tsfile');
+  await project.click();
+  await expect(page).toHaveURL(/projects\/iotdb-tsfile/);
+  await expect(page.locator('[data-stage]')).toHaveCSS('view-transition-name','atlas-iotdb-tsfile');
+  await page.emulateMedia({reducedMotion:'reduce'});
+  await expect(page.locator('[data-stage]')).toHaveCSS('view-transition-name','none');
+  await page.goto('/blog/consensus-wal/');
+  await expect(page.locator('.katex')).toHaveCount(2);
+  await expect(page.locator('.mermaid svg')).toBeVisible({timeout:12000});
+});
