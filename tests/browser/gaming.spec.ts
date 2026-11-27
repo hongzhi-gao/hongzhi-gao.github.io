@@ -11,9 +11,12 @@ test.beforeEach(async ({ page }) => {
   await page.route('https://**/*', route => route.fulfill({ contentType: 'image/svg+xml', body: picture }));
 });
 
-test('the home teaser opens the gallery and the lightbox follows the active game', async ({ page }) => {
+test('the header opens the gallery and the lightbox follows the active game', async ({ page }) => {
   await page.goto('/');
-  await page.locator('.gaming-home a').click();
+  await expect(page.locator('main').getByRole('heading', { name: 'Gaming Worlds' })).toHaveCount(0);
+  const galleryLink = page.getByRole('navigation', { name: 'Main navigation' }).getByRole('link', { name: 'Gaming Worlds' });
+  await galleryLink.click();
+  await expect(galleryLink).toHaveAttribute('aria-current', 'page');
   await expect(page).toHaveURL(new RegExp(path + '$'));
   await expect(page.getByRole('heading', { name: 'Gaming Worlds' })).toBeVisible();
 
@@ -49,14 +52,18 @@ test('a missing image is logged and keeps its source on a 390px screen', async (
   });
   await page.route(broken.image, route => route.abort());
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto(path);
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('/');
+  const galleryLink = page.getByRole('navigation', { name: 'Main navigation' }).getByRole('link', { name: 'Gaming Worlds' });
+  await expect(galleryLink).toBeInViewport({ ratio: 1 });
+  await galleryLink.click();
   const hero = page.locator('.gaming-hero img');
   await expect(hero).toHaveAttribute('src', '/images/gaming/unavailable.svg');
   expect(faults.some(message => message.includes(broken.id) && message.includes(broken.image))).toBe(true);
   await expect(page.locator('.gaming-hero-scene')).toHaveAttribute('href', broken.source_url);
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(390);
-  const heroBounds = (await hero.boundingBox())!;
-  await page.mouse.click(heroBounds.x + heroBounds.width / 2, heroBounds.y + 40);
+  await expect(page.getByRole('button', { name: 'All worlds' })).toBeVisible();
+  await page.locator('.gaming-hero-scene').click();
   const dialog = page.getByRole('dialog');
   await expect(dialog.locator('[data-slide-image]')).toHaveAttribute('src', '/images/gaming/unavailable.svg');
   await dialog.getByRole('button', { name: 'Next image' }).click();

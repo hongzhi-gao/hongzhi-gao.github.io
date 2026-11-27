@@ -5,6 +5,7 @@ import '../style.css';
 import '../visual/theme.css';
 import HolographicEnvironment from '../components/HolographicEnvironment.astro';
 import profile from '../../config/profile.json';
+import { galleryPath } from '../gaming/data';
 const {title, home = false, description = 'An interactive field guide to distributed storage systems and open-source engineering by Hongzhi Gao.'} = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
@@ -32,13 +33,14 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   <a href={home?'#projects':'/#projects'} aria-current={home?'page':undefined}>Projects</a>
   <a href="/projects/iotdb-tsfile/" aria-current={Astro.url.pathname.startsWith('/projects/iotdb-tsfile/')?'page':undefined}>IoTDB &amp; TsFile</a>
   <a href="/projects/mooncake-store/" aria-current={Astro.url.pathname.startsWith('/projects/mooncake-store/')?'page':undefined}>Mooncake Store</a>
+  <a href={galleryPath} aria-current={Astro.url.pathname===galleryPath?'page':undefined}>Gaming Worlds</a>
 </nav>
 {profile.verified&&<a class="holo-button holo-button-quiet atlas-github" data-magnetic href={`https://github.com/${profile.github}`}>GitHub</a>}
 </div></header>
 <main id="main"><slot /></main>
 <footer class="site-footer"><div class="shell footer-inner">
 <div><a class="wordmark" href="/"><span class="holo-mark" aria-hidden="true"><span></span><span></span><span></span></span><span>Hongzhi Gao</span></a></div>
-<div><a href="/beyond-code/gaming-worlds/">Gaming Worlds</a><a href="/blog/">Technical notes</a><a href={`mailto:${profile.email}`}>Apache email</a><a href="/rss.xml">RSS</a><a href={`https://github.com/${profile.github}/${profile.github}.github.io`}>Site source</a></div>
+<div><a href="/blog/">Technical notes</a><a href={`mailto:${profile.email}`}>Apache email</a><a href="/rss.xml">RSS</a><a href={`https://github.com/${profile.github}/${profile.github}.github.io`}>Site source</a></div>
 </div></footer>
 </body>
 </html>

@@ -6,9 +6,6 @@ import profile from '../../config/profile.json';
 import { featuredContributions } from '../architecture-ir/contributions';
 import { projects } from '../architecture-ir/data';
 import '../visual/landing.css';
-import '../gaming/gallery.css';
-import GamingImage from '../components/GamingImage.astro';
-import { galleryPath, heroScene } from '../gaming/data';
 
 const descriptions: Record<string,string>={
   'iotdb-tsfile':'Time-series ingestion, consensus replication and the file format that stores it.',
@@ -55,16 +52,6 @@ const descriptions: Record<string,string>={
         </article>;
       })}
     </div>
-  </section>
-  <section class="gaming-home shell" aria-labelledby="gaming-home-title">
-    <a href={galleryPath}>
-      <div>
-        <p class="gaming-section-name">Beyond Code</p>
-        <h2 id="gaming-home-title">Gaming Worlds <span aria-hidden="true">↗</span></h2>
-        <p>Some worlds are worth getting lost in.</p>
-      </div>
-      <GamingImage scene={heroScene} />
-    </a>
   </section>
 </Base>
 

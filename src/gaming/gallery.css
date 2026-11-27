@@ -1,10 +1,9 @@
-.gaming-gallery,
-.gaming-home {
+.gaming-gallery {
   --gaming-text: #edf0f5;
   --gaming-muted: #adb8c8;
   --gaming-highlight: #cbdcf4;
+  color: var(--gaming-text);
 }
-.gaming-gallery { color: var(--gaming-text); }
 .gaming-image { display: block; width: 100%; height: auto; }
 .gaming-hero {
   position: relative;
@@ -105,7 +104,7 @@
 }
 .gaming-frame figcaption a { font-size: .75rem; white-space: nowrap; }
 .gaming-frame figcaption a, .gaming-lightbox-caption a { color: var(--gaming-highlight); }
-.gaming-gallery :is(a, button):focus-visible, .gaming-home a:focus-visible {
+.gaming-gallery :is(a, button):focus-visible {
   outline: 2px solid var(--gaming-highlight);
   outline-offset: 3px;
 }
@@ -175,25 +174,12 @@ body:has(.gaming-lightbox[open]) { overflow: hidden; }
 .gaming-lightbox-caption small { display: block; }
 .gaming-lightbox-caption > div:last-child { text-align: end; }
 .gaming-lightbox-caption a { font-size: .86rem; }
-.gaming-home { padding-block: 2rem clamp(3rem, 7vw, 5.75rem); }
-.gaming-home a {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
-  align-items: center;
-  gap: 1.25rem;
-  color: var(--gaming-text);
-}
-.gaming-home a:hover h2 { color: var(--gaming-highlight); }
-.gaming-home h2 { font-size: clamp(1.6rem, 4vw, 3.1rem); margin: 0 0 .4rem; letter-spacing: -.055em; }
-.gaming-home p:last-child { color: var(--gaming-muted); margin: 0; }
-.gaming-home img { aspect-ratio: 2.3; object-fit: cover; border-radius: 5px; background: #131923; }
-
 @media (max-width: 650px) {
   .gaming-hero { min-height: max(430px, 67svh); }
   .gaming-hero-copy { padding-bottom: 1.7rem; }
   .gaming-hero-actions { flex-wrap: wrap; align-items: start; }
   .gaming-hero-scene { text-align: start; }
-  .gaming-grid, .gaming-home a { grid-template-columns: 1fr; }
+  .gaming-grid { grid-template-columns: 1fr; }
   .gaming-filters { margin-bottom: 2rem; }
   .gaming-lightbox-view { grid-template-columns: 1fr 1fr; grid-template-rows: minmax(0, 1fr) auto; }
   .gaming-lightbox-media { grid-row: 1; grid-column: 1 / -1; }
