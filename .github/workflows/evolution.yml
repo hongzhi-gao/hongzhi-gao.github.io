@@ -46,8 +46,12 @@ jobs:
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           ARCHITECTURE_MODEL: ${{ vars.ARCHITECTURE_MODEL }}
+          DRY_RUN: ${{ inputs.dry_run }}
         run: |
-          if [[ -n "$OPENAI_API_KEY" && "$(node -p "require('./config/automation.json').autoPublishArchitecture")" == true ]]; then
+          if [[ -z "$OPENAI_API_KEY" || "$(node -p "require('./config/automation.json').enabled")" != true ]]; then exit 0; fi
+          if [[ "$DRY_RUN" == true ]]; then
+            npm run analyze -- --review --apply
+          elif [[ "$(node -p "require('./config/automation.json').autoPublishArchitecture")" == true ]]; then
             npm run analyze -- --apply
           fi
       - name: Check whether there are review candidates
@@ -114,17 +118,26 @@ jobs:
       - run: npm ci
       - name: Prepare review candidate
         env:
+          GH_TOKEN: ${{ github.token }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           ARCHITECTURE_MODEL: ${{ vars.ARCHITECTURE_MODEL }}
         run: |
           export REVIEW_ID="$(node -e 'const c=require("./config/discovery.json"); console.log(require("node:crypto").createHash("sha256").update(JSON.stringify(c.pending)).digest("hex").slice(0,12))')"
           echo "REVIEW_ID=$REVIEW_ID" >> "$GITHUB_ENV"
+          mode=evidence
+          if [[ -n "$OPENAI_API_KEY" ]]; then mode=ai; fi
+          branch="automation/review-$REVIEW_ID-$mode"
+          echo "REVIEW_BRANCH=$branch" >> "$GITHUB_ENV"
+          if git ls-remote --exit-code --heads origin "$branch" >/dev/null; then exit 0; fi
           mkdir -p reviews
           if [[ -n "$OPENAI_API_KEY" ]]; then
             node automation/review-report.mjs --has-model > "reviews/$REVIEW_ID.md"
-            npm run analyze -- --review --apply
+            if ! npm run analyze -- --review --apply; then
+              git restore -- projects config/discovery.json
+              if [[ -d src/content/posts/generated ]]; then git clean -fd -- src/content/posts/generated; fi
+              printf '\nModel analysis failed. Review the evidence before retrying or implementing the scene.\n' >> "reviews/$REVIEW_ID.md"
+            fi
           else
-
             node automation/review-report.mjs > "reviews/$REVIEW_ID.md"
           fi
           npm run check
@@ -137,14 +150,16 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          if [[ -z "$(git status --porcelain -- config/discovery.json projects reviews)" ]]; then exit 0; fi
-          branch="automation/review-$REVIEW_ID"
-          if git ls-remote --exit-code --heads origin "$branch" >/dev/null; then exit 0; fi
-          git switch -c "$branch"
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -- config/discovery.json projects/*.json
-          if [[ -d reviews ]]; then git add -- reviews; fi
-          git commit -m "Propose architecture evidence for review"
-          git push origin "$branch"
-          gh pr create --draft --base main --head "$branch" --title "Review architecture evidence $REVIEW_ID" --body "Check the immutable upstream evidence and review any proposed scene before merging. This draft does not deploy the changes."
+          if ! git ls-remote --exit-code --heads origin "$REVIEW_BRANCH" >/dev/null; then
+            if [[ -z "$(git status --porcelain -- config/discovery.json projects reviews src/content/posts/generated)" ]]; then exit 0; fi
+            git switch -c "$REVIEW_BRANCH"
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add -- config/discovery.json projects/*.json reviews
+            if [[ -d src/content/posts/generated ]]; then git add -- src/content/posts/generated; fi
+            git commit -m "Propose architecture evidence for review"
+            git push origin "$REVIEW_BRANCH"
+          fi
+          if [[ "$(gh pr list --head "$REVIEW_BRANCH" --state all --json number --jq length)" == 0 ]]; then
+            gh pr create --draft --base main --head "$REVIEW_BRANCH" --title "Review architecture evidence $REVIEW_ID" --body "Check the immutable upstream evidence and review any proposed scene before merging. This draft does not deploy the changes."
+          fi

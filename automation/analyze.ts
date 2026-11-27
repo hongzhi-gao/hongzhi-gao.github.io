@@ -1,6 +1,6 @@
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
+import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { z } from 'zod';
@@ -69,8 +69,13 @@ async function model(input:string){
       const schema=join(folder,'schema.json');
       const output=join(folder,'result.json');
       await writeFile(schema,JSON.stringify(jsonSchema));
-      execFileSync('codex',['exec','--ephemeral','--sandbox','read-only','--skip-git-repo-check','--ignore-user-config','-C',folder,'-m',settings.localCodexModel,'--output-schema',schema,'-o',output,'-'],
-        {input,timeout:settings.requestTimeoutSeconds*1000,stdio:['pipe','ignore','ignore']});
+      const environment=Object.fromEntries(
+        ['PATH','HOME','CODEX_HOME','XDG_CONFIG_HOME','LANG','HTTPS_PROXY','HTTP_PROXY','NO_PROXY','https_proxy','http_proxy','no_proxy']
+          .filter(name=>process.env[name]).map(name=>[name,process.env[name]])
+      );
+      execFileSync('codex',['exec','--ephemeral','--sandbox','read-only','--skip-git-repo-check','--ignore-user-config',
+        '--disable','shell_tool','-c','web_search="disabled"','-C',folder,'-m',settings.localCodexModel,'--output-schema',schema,'-o',output,'-'],
+        {input,env:environment,timeout:settings.requestTimeoutSeconds*1000,stdio:['pipe','ignore','ignore']});
       return proposalSchema.parse(JSON.parse(await readFile(output,'utf8')));
     }finally{await rm(folder,{recursive:true,force:true})}
   }
@@ -86,6 +91,29 @@ async function model(input:string){
   const result=parsed.output?.flatMap(item=>item.content??[]).find(part=>part.type==='output_text')?.text;
   if(!result)throw new Error('Model returned no structured output');
   return proposalSchema.parse(JSON.parse(result));
+}
+function markdownText(value:string){
+  return value.replace(/[\r\n]+/g,' ').replace(/[&<>[\]()*_!#`\\]/g,char=>`&#${char.charCodeAt(0)};`);
+}
+async function draftNote(proposal:Proposal,hash:string,source:Evidence){
+  const folder='src/content/posts/generated';
+  const id=`change-${hash}`;
+  const metadata={
+    title:proposal.title,description:proposal.summary,date:new Date().toISOString().slice(0,10),
+    tags:[proposal.module],category:'Architecture updates',draft:true
+  };
+  const frontmatter=Object.entries(metadata).map(([key,value])=>`${key}: ${JSON.stringify(value)}`).join('\n');
+  const path=source.path.split('/').map(encodeURIComponent).join('/');
+  await mkdir(folder,{recursive:true});
+  try {
+    await writeFile(`${folder}/${id}.md`,[
+      '---',frontmatter,'---','','## Behavior under review','',markdownText(proposal.explanation),'',
+      `[Review the generated exhibit](/lab/${id}/) · [Pinned source](https://github.com/${source.repo}/blob/${source.sha}/${path})`,''
+    ].join('\n'),{flag:'wx'});
+  } catch(error) {
+    // Reruns preserve the previous draft, including editorial changes.
+    if((error as NodeJS.ErrnoException).code!=='EEXIST')throw error;
+  }
 }
 function materialize(project:Awaited<ReturnType<typeof readProject>>,candidate:Candidate,proposal:Proposal,snippets:Snippet[],hash:string,discovery:Discovery){
   const module=project.modules.find(item=>item.id===proposal.module);
@@ -148,7 +176,11 @@ for(const candidate of queue){
   decisionLog.push(`${candidate.id} · ${proposal.decision} · ${review?'review':'eligible'}`);
   if(proposal.decision==='architecture'){
     const updated=materialize(project,candidate,proposal,snippets,hash,discovery);
-    if(options.apply&&!options.dry)await writeFile(`projects/${project.id}.json`,JSON.stringify(updated,null,2)+'\n');
+    if(options.apply&&!options.dry){
+      await writeFile(`projects/${project.id}.json`,JSON.stringify(updated,null,2)+'\n');
+      const source=updated.evidence.find(item=>item.id.startsWith(`src-${hash}-`)&&item.sha===candidate.head)!;
+      if(options.review)await draftNote(proposal,hash,source);
+    }
   }
   if(options.apply&&!options.dry)processed.add(candidate.id);
 }

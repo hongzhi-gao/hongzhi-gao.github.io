@@ -81,7 +81,7 @@ test('mobile hero fits and blog search matches body text',async({page})=>{
 test('an unavailable WebGL context retains selectable components and active paths',async({page})=>{
   await page.addInitScript(()=>{
     const native=HTMLCanvasElement.prototype.getContext;
-    HTMLCanvasElement.prototype.getContext=function(contextId:string,...args:unknown[]){
+    HTMLCanvasElement.prototype.getContext=function(this:HTMLCanvasElement,contextId:string,...args:unknown[]){
       if(contextId==='webgl2')return null;
       return Reflect.apply(native,this,[contextId,...args]);
     } as typeof HTMLCanvasElement.prototype.getContext;
