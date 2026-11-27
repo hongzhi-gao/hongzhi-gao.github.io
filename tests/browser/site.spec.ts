@@ -6,6 +6,16 @@ const mooncake='/projects/mooncake-store/';
 test('portfolio links to both source maps and draws a responsive Canvas environment',async({page})=>{
   const errors:string[]=[];
   page.on('pageerror',error=>errors.push(error.message));
+  await page.emulateMedia({reducedMotion:'no-preference'});
+  await page.addInitScript(()=>{
+    const native=window.matchMedia.bind(window);
+    window.matchMedia=query=>{
+      const result=native(query);
+      if(query==='(hover: hover) and (pointer: fine)'&&!result.matches)
+        Object.defineProperty(result,'matches',{value:true});
+      return result;
+    };
+  });
   await page.goto('/');
   await expect(page.getByRole('heading',{name:'Hongzhi Gao',exact:true})).toBeVisible();
   for(const href of [iotdb,mooncake]) await expect(page.locator(`main a[href="${href}"]`).first()).toBeVisible();
@@ -15,6 +25,9 @@ test('portfolio links to both source maps and draws a responsive Canvas environm
   await page.mouse.move(120,240);
   await page.mouse.move(865,335,{steps:14});
   await expect.poll(()=>canvas.evaluate(node=>(node as HTMLCanvasElement).toDataURL())).not.toBe(before);
+  const magnetic=page.locator('main [data-magnetic]').first();
+  await magnetic.hover();
+  await expect.poll(()=>magnetic.evaluate(node=>(node as HTMLElement).style.getPropertyValue('--magnet-light'))).not.toBe('');
   expect(errors).toEqual([]);
 });
 
