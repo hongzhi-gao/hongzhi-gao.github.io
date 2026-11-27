@@ -1,0 +1,78 @@
+---
+import ArchitectureDrawing from './ArchitectureDrawing.astro';
+import { sourceUrl } from '../architecture-ir/data';
+import { contributionEntries, publicActivity } from '../architecture-ir/contributions';
+import type { Graph } from '../structure/data';
+import type { Project } from '../architecture-ir/schema';
+import '../structure/structure.css';
+const {graph,project}=Astro.props as {graph:Graph;project:Project};
+const sources=new Map(project.evidence.map(item=>[item.id,item]));
+const explicit=contributionEntries(project);
+const curated=explicit.map(item=>({
+  title:item.title, href:`https://github.com/${item.repository}/pull/${item.number}`,number:`#${item.number}`,
+  status:item.status,role:item.role==='author'?'PR author':item.role,
+  nodes:graph.contributions[item.id]??graph.modules[item.module]??[],
+  detail:item.design,module:project.modules.find(module=>module.id===item.module)?.title,
+}));
+const curatedUrls=new Set(curated.map(item=>item.href));
+const discovered=publicActivity.filter(item=>project.repos.includes(item.repo)&&item.module&&
+  (item.url.includes('/pull/')||item.url.includes('/issues/'))&&!curatedUrls.has(item.url));
+const entries=[...curated,...discovered.map(item=>({
+  title:item.title,href:item.url,number:item.url.match(/\/(?:pull|issues)\/(\d+)/)?.[1] ? '#'+item.url.match(/\/(?:pull|issues)\/(\d+)/)?.[1]:'',
+  status:item.status,role:item.role==='reviewer'?'Reviewer':item.role==='design-contributor'?'RFC author':item.url.includes('/issues/')?'Issue author':'PR author',
+  nodes:graph.modules[item.module!]??[],detail:'Matched by changed source paths.',module:project.modules.find(module=>module.id===item.module)?.title,
+}))];
+const roles={control:'Control',data:'Payload',replica:'Replication',storage:'Storage'};
+---
+<architecture-canvas class="architecture-workspace">
+  <script type="application/json" data-structure set:html={JSON.stringify({
+    tracks:graph.tracks,edges:graph.edges.map(({id,from,to,label})=>({id,from,to,label})),
+    nodes:graph.nodes.map(({id,label,detail,fields,proposal,evidence})=>({id,label,detail,fields,proposal,
+      links:evidence.map(ref=>({href:sourceUrl(sources.get(ref)!),label:sources.get(ref)!.label}))}))
+  }).replaceAll('<','\\u003c')}></script>
+  <div class="architecture-main">
+    <div class="diagram-toolbar">
+      <div class="diagram-actions" aria-label="Diagram view">
+        <button data-view="minus" type="button" aria-label="Zoom out">−</button>
+        <output data-zoom aria-label="Zoom level">100%</output>
+        <button data-view="plus" type="button" aria-label="Zoom in">+</button>
+        <button data-view="fit" type="button">Fit</button>
+        <button data-view="reset" type="button">Reset</button>
+        <button data-view="fullscreen" type="button" aria-pressed="false">Fullscreen</button>
+      </div>
+      <div class="diagram-actions diagram-tracks" aria-label="Illustrative data paths">
+        {graph.tracks.map(track=><button type="button" data-track={track.id} aria-pressed="false">{track.label}</button>)}
+      </div>
+      <button class="diagram-panel-toggle" type="button" data-panel-toggle aria-controls="contribution-panel" aria-expanded="true">Contributions</button>
+    </div>
+    <div class="architecture-viewport" style={`--graph-transition:atlas-${graph.id}`} tabindex="0" aria-label="Architecture canvas. Use plus or minus to zoom and arrow keys to pan." data-viewport>
+      <ArchitectureDrawing graph={graph} />
+    </div>
+    <div class="diagram-footer">
+      <div class="diagram-legend" aria-label="Connection types">{Object.entries(roles).map(([id,label])=><span data-legend={id}><i></i>{label}</span>)}</div>
+      <div class="diagram-sources">
+        {graph.pins.map(id=>{const pin=sources.get(id)!;return <a href={`https://github.com/${pin.repo}/commit/${pin.sha}`} title={pin.sha}>{pin.repo.split('/')[1]} / {pin.sha.slice(0,8)}</a>})}
+        <span>Illustrative traces</span>
+      </div>
+    </div>
+  </div>
+  <aside class="architecture-contributions" id="contribution-panel">
+    <div class="contribution-heading"><h2>Contributions</h2><button type="button" data-panel-toggle aria-label="Close contributions">×</button></div>
+    <div class="contribution-inspector" data-inspector hidden>
+      <button class="clear-selection" type="button" data-clear>Clear selection</button>
+      <h3 data-inspector-title></h3><p data-inspector-detail></p>
+      <ul data-inspector-fields></ul><ul class="inspector-paths" data-inspector-paths aria-label="Direct connections"></ul><div class="inspector-code-links" data-inspector-links></div>
+    </div>
+    <p data-no-contributions hidden>No verified contributions are mapped to this node.</p>
+    <ul class="architecture-pr-list">
+      {entries.map(item=><li data-contribution data-node-links={item.nodes.join(' ')}>
+        <a href={item.href}><span class="contribution-title">{item.title}</span>
+          <span class="contribution-meta"><span>{item.number}</span><span>{item.role}</span><span>{item.status}</span></span>
+          <span class="contribution-module">{item.module}</span>
+          <span class="contribution-detail">{item.detail}</span>
+        </a>
+      </li>)}
+    </ul>
+  </aside>
+</architecture-canvas>
+<script>import '../structure/interaction';</script>

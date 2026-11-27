@@ -1,0 +1,83 @@
+<svg class="topology-hero" viewBox="0 0 710 530" fill="none" aria-hidden="true">
+  <defs>
+    <radialGradient id="topology-haze">
+      <stop stop-color="#ABB4C8" stop-opacity=".10"/>
+      <stop offset="1" stop-color="#111113" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="topology-metal" x1="0" y1="0" x2="34" y2="125" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#343438"/>
+      <stop offset="1" stop-color="#121215"/>
+    </linearGradient>
+    <linearGradient id="topology-spectrum">
+      <stop stop-color="#67E8F9"/>
+      <stop offset=".37" stop-color="#A78BFA"/>
+      <stop offset=".72" stop-color="#ED477B"/>
+      <stop offset="1" stop-color="#FFD166"/>
+    </linearGradient>
+    <radialGradient id="topology-floor">
+      <stop stop-color="#242427" stop-opacity=".64"/>
+      <stop offset="1" stop-color="#0A0A0B" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="topology-glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2.1" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <g id="topology-rack">
+      <path d="M-24-20 1-34 29-20 4-6Z" fill="#333336" stroke="#666670" stroke-width=".8"/>
+      <path d="M-24-20 4-6V25l-28-15Z" fill="#121215" stroke="#52525B" stroke-width=".75"/>
+      <path d="M4-6 29-20v31L4 25Z" fill="url(#topology-metal)" stroke="#52525B" stroke-width=".75"/>
+      <path d="m11 0 11-6M11 6l11-6M11 12l11-6M-17-10l13 7m-13 0 13 7m-13 0 13 7" stroke="#707079" stroke-width=".8"/>
+      <circle cx="16" cy="-16" r="1.4" fill="currentColor"/>
+    </g>
+  </defs>
+  <ellipse cx="378" cy="286" rx="321" ry="218" fill="url(#topology-haze)"/>
+  <ellipse cx="378" cy="302" rx="314" ry="155" fill="url(#topology-floor)"/>
+  <g transform="translate(375 282) rotate(-14)">
+    <ellipse rx="323" ry="151" stroke="#39393E" stroke-width=".7" stroke-dasharray="2 5" opacity=".7"/>
+    <ellipse rx="291" ry="135" stroke="#52525B" stroke-width=".7" opacity=".68"/>
+    <ellipse rx="260" ry="118" stroke="#333336" stroke-width=".8" opacity=".63"/>
+    <ellipse rx="205" ry="94" stroke="#39393E" stroke-width=".75" stroke-dasharray="1 4"/>
+    <ellipse rx="162" ry="72" stroke="#52525B" stroke-width=".6" opacity=".65"/>
+    <path d="M-310 0H310M0-137v274M-236-96 237 96M-237 96 236-96" stroke="#3F3F46" stroke-width=".75" stroke-dasharray="3 9"/>
+    <path d="M-230-82c45-33 128-51 207-51m131 2a291 135 0 0 1 175 87M-200 95c43 20 99 33 172 38" stroke="url(#topology-spectrum)" stroke-width="1.1" opacity=".61"/>
+    <path class="topology-scan" d="M-289 1a289 133 0 1 1 578 0 289 133 0 1 1-578 0" stroke="url(#topology-spectrum)" stroke-width="2" pathLength="1000"/>
+  </g>
+  <g stroke="#60606B" stroke-width="1">
+    <path d="M160 160C214 151 241 187 292 211S353 237 378 260"/>
+    <path d="M153 336C255 353 290 326 330 286S356 266 378 260"/>
+    <path d="M274 429C309 405 326 374 339 331S360 279 378 260"/>
+    <path d="M573 323C520 302 499 295 463 274S404 252 378 260"/>
+    <path d="M599 173C556 148 515 150 481 174S433 214 378 260"/>
+    <path d="M470 98C421 120 423 151 424 183S419 218 378 260"/>
+  </g>
+  <g class="topology-packets" filter="url(#topology-glow)" fill="none" stroke-width="2.15" stroke-linecap="round">
+    <path style="--travel:-.9s" d="M160 160C214 151 241 187 292 211S353 237 378 260" stroke="#67E8F9" pathLength="1000"/>
+    <path style="--travel:-1.5s" d="M153 336C255 353 290 326 330 286S356 266 378 260" stroke="#A78BFA" pathLength="1000"/>
+    <path style="--travel:-2.4s" d="M274 429C309 405 326 374 339 331S360 279 378 260" stroke="#ED477B" pathLength="1000"/>
+    <path style="--travel:-1.7s" d="M573 323C520 302 499 295 463 274S404 252 378 260" stroke="#FFD166" pathLength="1000"/>
+    <path style="--travel:-3.1s" d="M599 173C556 148 515 150 481 174S433 214 378 260" stroke="#FF6B35" pathLength="1000"/>
+    <path style="--travel:-1.3s" d="M470 98C421 120 423 151 424 183S419 218 378 260" stroke="#A78BFA" pathLength="1000"/>
+  </g>
+  <g opacity=".9">
+    <g transform="translate(149 153) scale(.87)" style="color:#67E8F9"><use href="#topology-rack"/></g>
+    <g transform="translate(147 327) scale(.83)" style="color:#A78BFA"><use href="#topology-rack"/></g>
+    <g transform="translate(267 423) scale(.87)" style="color:#ED477B"><use href="#topology-rack"/></g>
+    <g transform="translate(578 315) scale(.94)" style="color:#FFD166"><use href="#topology-rack"/></g>
+    <g transform="translate(603 166) scale(.96)" style="color:#FF6B35"><use href="#topology-rack"/></g>
+    <g transform="translate(471 91) scale(.68)" style="color:#A78BFA"><use href="#topology-rack"/></g>
+  </g>
+  <g>
+    <path d="M332 242l45-28 55 28-47 33Z" fill="#242427" stroke="#6C6C78"/>
+    <path d="M332 242v26l53 32v-25Zm53 33 47-33v26l-47 32Z" fill="url(#topology-metal)" stroke="#74747D" stroke-width=".9"/>
+    <path d="M338 252l42 26m-42-21 42 26m11-6 34-24m-34 29 34-24" stroke="#6D6D76" stroke-width=".9"/>
+    <path d="M345 230l32-19 38 19-32 23Z" fill="#38383F" stroke="#A1A1AA" stroke-width=".85"/>
+    <path d="M357 226l20-11 25 11-21 14Z" fill="#151519" stroke="#8C8C99"/>
+    <path d="M365 226l13-7 16 8-13 8Z" fill="url(#topology-spectrum)" opacity=".83"/>
+    <path d="M345 230v9l38 22v-8Zm38 23 32-23v8l-32 23Z" fill="#202025" stroke="#848491" stroke-width=".72"/>
+  </g>
+  <g opacity=".43" stroke="#A1A1AA">
+    <path d="M102 256h44m-22-22v44M645 247h27m-13-13v26M366 417h23m-12-11v23"/>
+    <circle cx="125" cy="255" r="6"/>
+    <circle cx="659" cy="247" r="3"/>
+  </g>
+</svg>

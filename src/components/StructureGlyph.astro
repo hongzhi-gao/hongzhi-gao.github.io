@@ -1,0 +1,18 @@
+---
+import type { GraphNode } from '../structure/data';
+const {shape,w,h} = Astro.props as {shape:GraphNode['shape'];w:number;h:number};
+const width=Math.min(104,w-26);
+const row=Array.from({length:5},(_,i)=>i);
+---
+<g class="drawing-glyph" transform={`translate(${w-width-12} ${h-27})`} aria-hidden="true">
+  {shape==='file' && <><rect x="0" y="0" width={width} height="18" rx="1"/><path d={`M12 0v18M${width-23} 0v18M17 4H${width-29}V14H17ZM24 7H${width-36}V11H24Z`}/></>}
+  {shape==='memory' && row.map(i=><rect x={i*width/5} y="0" width={width/5-3} height="17" rx="1" class:list={['memory-cell',i<3&&'used']} style={`--unit:${i}`}/>)}
+  {shape==='log' && <><path d={`M0 15H${width}M0 4H${width-13}m8-4 5 4-5 4`}/>{row.map(i=><rect x={i*(width-8)/5} y="8" width={(width-8)/5-3} height="9" class="log-cell" style={`--unit:${i}`}/>)}</>}
+  {shape==='queue' && <><path d={`M0 13H${width}m-8-5 8 5-8 5`}/>{[0,1,2,3].map(i=><rect x={5+i*(width-19)/4} y="5" width={(width-19)/4-3} height="14" class="queue-cell" style={`--unit:${i}`}/>)}</>}
+  {shape==='tree' && <><path d={`M${width/2} 4V9M5 9H${width-5}M5 9V16M${width/2} 9V16M${width-5} 9V16`}/><circle cx={width/2} cy="3" r="3"/>{[5,width/2,width-5].map(x=><rect x={x-4} y="15" width="8" height="6"/>)}</>}
+  {shape==='map' && <>{[0,1,2].map(i=><><rect x="0" y={i*7} width={width*.28} height="5"/><path d={`M${width*.31} ${i*7+2.5}H${width*.54}`}/><rect x={width*.57} y={i*7} width={width*.41} height="5"/></>)}</>}
+  {shape==='cluster' && <><path d={`M8 10H${width-8}M${width/2} 2V18`}/>{[8,width/2,width-8].map(x=><circle cx={x} cy="10" r="5"/>)}</>}
+  {shape==='merge' && <path d={`M0 2H${width*.36}L${width*.58} 11H${width}m-7-5 7 5-7 5M0 20H${width*.36}L${width*.58} 11`}/>}
+  {shape==='levels' && [0,1,2].map(i=><path d={`M${i*7} ${i*7}h${width-i*14}l-5 4h-${width-i*14-10}Z`}/>)}
+  {(shape==='service'||shape==='interface') && <path d={`M${width-39} 10h8l4-7 6 14 4-7h17`}/>}
+</g>

@@ -190,6 +190,168 @@
       "sha": "f5859ea51830de8492d46af0a90daea7ae200188",
       "path": "mooncake-store/tests/object_storage_e2e.py",
       "label": "object_storage_e2e.py"
+    },
+    {
+      "id": "master-header",
+      "repo": "kvcache-ai/Mooncake",
+      "sha": "e57be7d873799eb2f1a7eaaa59e80444a5b65f12",
+      "path": "mooncake-store/include/master_service.h",
+      "label": "master_service.h"
+    },
+    {
+      "id": "file-storage",
+      "repo": "kvcache-ai/Mooncake",
+      "sha": "e57be7d873799eb2f1a7eaaa59e80444a5b65f12",
+      "path": "mooncake-store/include/file_storage.h",
+      "label": "file_storage.h"
+    },
+    {
+      "id": "allocation",
+      "repo": "kvcache-ai/Mooncake",
+      "sha": "e57be7d873799eb2f1a7eaaa59e80444a5b65f12",
+      "path": "mooncake-store/include/allocation_strategy.h",
+      "label": "allocation_strategy.h"
+    },
+    {
+      "id": "allocator",
+      "repo": "kvcache-ai/Mooncake",
+      "sha": "e57be7d873799eb2f1a7eaaa59e80444a5b65f12",
+      "path": "mooncake-store/include/allocator.h",
+      "label": "allocator.h"
+    },
+    {
+      "id": "pool",
+      "repo": "kvcache-ai/Mooncake",
+      "sha": "e57be7d873799eb2f1a7eaaa59e80444a5b65f12",
+      "path": "mooncake-store/include/cachelib_memory_allocator/MemoryPool.h",
+      "label": "MemoryPool.h"
+    },
+    {
+      "id": "evictor",
+      "repo": "kvcache-ai/Mooncake",
+      "sha": "e57be7d873799eb2f1a7eaaa59e80444a5b65f12",
+      "path": "mooncake-store/include/eviction/evictor.h",
+      "label": "evictor.h"
+    },
+    {
+      "id": "oplog",
+      "repo": "kvcache-ai/Mooncake",
+      "sha": "e57be7d873799eb2f1a7eaaa59e80444a5b65f12",
+      "path": "mooncake-store/include/ha/oplog/ordered_oplog_writer.h",
+      "label": "ordered_oplog_writer.h"
+    },
+    {
+      "id": "snapshot",
+      "repo": "kvcache-ai/Mooncake",
+      "sha": "e57be7d873799eb2f1a7eaaa59e80444a5b65f12",
+      "path": "mooncake-store/include/ha/snapshot/batch_oplog/batch_oplog_snapshot_provider.h",
+      "label": "batch_oplog_snapshot_provider.h"
+    },
+    {
+      "id": "standby",
+      "repo": "kvcache-ai/Mooncake",
+      "sha": "e57be7d873799eb2f1a7eaaa59e80444a5b65f12",
+      "path": "mooncake-store/include/ha/standby_metadata_store.h",
+      "label": "standby_metadata_store.h"
+    },
+    {
+      "id": "namespace-table",
+      "repo": "kvcache-ai/Mooncake",
+      "sha": "e57be7d873799eb2f1a7eaaa59e80444a5b65f12",
+      "path": "mooncake-store/include/metadata/namespace_table.h",
+      "label": "namespace_table.h",
+      "lines": [
+        42,
+        82
+      ]
+    },
+    {
+      "id": "namespace",
+      "repo": "kvcache-ai/Mooncake",
+      "sha": "e57be7d873799eb2f1a7eaaa59e80444a5b65f12",
+      "path": "mooncake-store/include/metadata/namespace.h",
+      "label": "namespace.h",
+      "lines": [
+        48,
+        73
+      ]
+    },
+    {
+      "id": "object-route",
+      "repo": "kvcache-ai/Mooncake",
+      "sha": "e57be7d873799eb2f1a7eaaa59e80444a5b65f12",
+      "path": "mooncake-store/include/metadata/object_route.h",
+      "label": "object_route.h",
+      "lines": [
+        423,
+        450
+      ]
+    },
+    {
+      "id": "segment-type",
+      "repo": "kvcache-ai/Mooncake",
+      "sha": "e57be7d873799eb2f1a7eaaa59e80444a5b65f12",
+      "path": "mooncake-store/include/types.h",
+      "label": "types.h",
+      "lines": [
+        562,
+        586
+      ]
+    },
+    {
+      "id": "object-current-authorize",
+      "repo": "kvcache-ai/Mooncake",
+      "sha": "118062c297107b1c8f6c03460a5ffbe11fdd025e",
+      "path": "mooncake-store/src/master_object_storage.cpp",
+      "lines": [
+        301,
+        369
+      ],
+      "label": "master_object_storage.cpp"
+    },
+    {
+      "id": "object-current-commit",
+      "repo": "kvcache-ai/Mooncake",
+      "sha": "118062c297107b1c8f6c03460a5ffbe11fdd025e",
+      "path": "mooncake-store/src/master_object_storage.cpp",
+      "lines": [
+        443,
+        558
+      ],
+      "label": "master_object_storage.cpp"
+    },
+    {
+      "id": "object-current-io",
+      "repo": "kvcache-ai/Mooncake",
+      "sha": "118062c297107b1c8f6c03460a5ffbe11fdd025e",
+      "path": "mooncake-store/src/client_object_storage.cpp",
+      "lines": [
+        52,
+        106
+      ],
+      "label": "client_object_storage.cpp"
+    },
+    {
+      "id": "object-current-gc",
+      "repo": "kvcache-ai/Mooncake",
+      "sha": "118062c297107b1c8f6c03460a5ffbe11fdd025e",
+      "path": "mooncake-store/src/master_object_storage.cpp",
+      "lines": [
+        685,
+        753
+      ],
+      "label": "master_object_storage.cpp"
+    },
+    {
+      "id": "object-current-design",
+      "repo": "kvcache-ai/Mooncake",
+      "sha": "118062c297107b1c8f6c03460a5ffbe11fdd025e",
+      "path": "docs/source/design/store/object-storage-catalog.md",
+      "lines": [
+        36,
+        65
+      ],
+      "label": "object-storage-catalog.md"
     }
   ],
   "versions": [

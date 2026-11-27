@@ -1,0 +1,308 @@
+.atlas-site {
+  --bg: #0a0a0b;
+  --surface: #111113;
+  --line: #333336;
+  --contrast: #fafafa;
+  --muted: #a1a1aa;
+  --dim: #71717a;
+  --mint: #e4e4e7;
+  --ink-secondary: #18181b;
+  --ink-surface: #242427;
+  --ink-border: #52525b;
+  --spectral-orange: #ff6b35;
+  --spectral-pink: #ed477b;
+  --spectral-yellow: #ffd166;
+  --spectral-lavender: #a78bfa;
+  --spectral-cyan: #67e8f9;
+  isolation: isolate;
+  min-height: 100vh;
+}
+
+.atlas-site .site-header {
+  height: 71px;
+  background: #0a0a0bd9;
+  border-bottom: 1px solid #333336a3;
+  backdrop-filter: blur(17px);
+}
+
+.atlas-site .header-inner,
+.atlas-site .footer-inner {
+  max-width: 1580px;
+  padding-inline: clamp(1.15rem, 5vw, 5.5rem);
+}
+
+.atlas-site .site-footer {
+  background: #0a0a0bbc;
+  border-color: #33333699;
+}
+
+.atlas-site .site-header,
+.atlas-site main,
+.atlas-site .site-footer {
+  position: relative;
+}
+
+.atlas-site .site-header {
+  z-index: 3;
+}
+
+.atlas-site main,
+.atlas-site .site-footer {
+  z-index: 1;
+}
+
+.atlas-site .wordmark {
+  color: #fafafa;
+  gap: 0.75rem;
+  font-size: 0.99rem;
+  letter-spacing: -0.025em;
+}
+
+.holo-mark {
+  width: 1.6rem;
+  height: 1.4rem;
+  display: inline-block;
+  position: relative;
+}
+
+.holo-mark span {
+  height: 0.57rem;
+  width: 1.25rem;
+  border: 1px solid #bcbcc5;
+  border-radius: 50%;
+  position: absolute;
+  left: 0;
+  top: 0.41rem;
+  transform: rotate(-39deg);
+}
+
+.holo-mark span:nth-child(2) {
+  transform: rotate(39deg);
+  border-color: #a1a1aa;
+}
+
+.holo-mark span:nth-child(3) {
+  width: 0.21rem;
+  height: 0.21rem;
+  border: 0;
+  background: #d4d4d8;
+  top: 0.59rem;
+  left: 0.53rem;
+}
+
+.atlas-site .atlas-nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.8rem, 3vw, 2.45rem);
+  color: #a1a1aa;
+  font-size: 0.84rem;
+}
+
+.atlas-nav a {
+  padding-block: 0.45rem;
+  position: relative;
+  white-space: nowrap;
+}
+
+.atlas-nav a[aria-current="page"],
+.atlas-nav a:hover {
+  color: #fafafa;
+}
+.atlas-nav a[aria-current="page"]::after {
+  position: absolute;
+  content: "";
+  left: 0;
+  right: 0;
+  bottom: 0.08rem;
+  height: 1px;
+  background: #b5b5bf;
+}
+
+.holo-button {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  min-height: 42px;
+  padding: 0.55rem 0.88rem;
+  border: 1px solid #66666d;
+  color: #fafafa;
+  border-radius: 5px;
+  background: #222225;
+  font-family: var(--head);
+  font-size: 0.9rem;
+  font-weight: 580;
+  white-space: nowrap;
+  transform: translate(var(--magnet-x, 0), var(--magnet-y, 0));
+  transition:
+    transform 160ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    background-color 180ms ease,
+    border-color 180ms ease;
+}
+
+.holo-button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0;
+  background: radial-gradient(
+    circle at var(--magnet-light, center),
+    #67e8f940,
+    #a78bfa29 30%,
+    transparent 66%
+  );
+  transition: opacity 200ms ease;
+}
+
+.holo-button:hover {
+  color: #fafafa;
+  border-color: #b7b1c8;
+  background: #29292e;
+}
+
+.holo-button:hover::before,
+.holo-button:focus-visible::before {
+  opacity: 1;
+}
+
+.holo-button:active {
+  transform: scale(0.98);
+}
+
+.holo-button-quiet {
+  background: #111113b5;
+  border-color: #52525b;
+}
+
+.atlas-site .atlas-github {
+  min-height: 35px;
+  font-size: 0.83rem;
+  padding: 0.38rem 0.77rem;
+}
+
+.holo-environment,
+.holo-aurora,
+.holo-grain,
+.holo-canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+.holo-environment {
+  overflow: hidden;
+  z-index: 4;
+}
+
+.holo-canvas {
+  width: 100%;
+  height: 100%;
+  opacity: 0.87;
+}
+
+.holo-aurora {
+  inset: 0 auto auto 0;
+  width: min(72vw, 920px);
+  height: min(58vh, 590px);
+  opacity: calc(var(--holo-energy, 0.78) * 0.28);
+  transform: translate3d(
+      calc(var(--holo-x, 76vw) - 50%),
+      calc(var(--holo-y, 38vh) - 50% - var(--holo-scroll, 0px)),
+      0
+    )
+    scale(calc(0.91 + var(--holo-energy, 0.78) * 0.11));
+  will-change: transform, opacity;
+  background:
+    radial-gradient(
+      ellipse 56% 51% at 46% 54%,
+      #ff6b3533 0%,
+      #ed477b18 33%,
+      transparent 82%
+    ),
+    radial-gradient(
+      ellipse 47% 48% at 53% 46%,
+      #a78bfa27 0%,
+      #67e8f91e 42%,
+      transparent 79%
+    );
+}
+
+.holo-environment-home .holo-aurora {
+  opacity: calc(var(--holo-energy, 0.78) * 0.67);
+}
+
+.holo-grain {
+  opacity: 0.047;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 185 185' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.94' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 185px 185px;
+}
+
+::view-transition-old(root) {
+  animation: holo-route-out 240ms ease both;
+}
+::view-transition-new(root) {
+  animation: holo-route-in 370ms cubic-bezier(0.16, 0.76, 0.25, 1) both;
+}
+@keyframes holo-route-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.995);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@keyframes holo-route-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.14;
+  }
+}
+
+@media (max-width: 760px) {
+  .atlas-site .site-header {
+    height: auto;
+  }
+  .atlas-site .header-inner {
+    gap: 0.72rem;
+    padding-block: 0.78rem 0.64rem;
+  }
+  .atlas-site .atlas-nav {
+    gap: 0.85rem;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .atlas-nav a {
+    font-size: 0.79rem;
+  }
+  .atlas-nav a[aria-current="page"]::after {
+    bottom: 0;
+  }
+  .atlas-site .footer-inner > div:last-child {
+    column-gap: 0.85rem;
+    row-gap: 0.35rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+  }
+  .holo-aurora {
+    inset: 14vh auto auto 34vw;
+    transform: none;
+  }
+  .holo-button,
+  .holo-button:active {
+    transform: none;
+  }
+}

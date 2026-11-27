@@ -1,84 +1,69 @@
 ---
 import Base from '../layouts/Base.astro';
-import ProjectWorkbench from '../components/ProjectWorkbench.astro';
+import TopologyHero from '../components/TopologyHero.astro';
+import ArchitecturePreview from '../components/ArchitecturePreview.astro';
 import profile from '../../config/profile.json';
-import { featuredContributions, contributionEntries, publicActivity } from '../architecture-ir/contributions';
+import { featuredContributions } from '../architecture-ir/contributions';
 import { projects } from '../architecture-ir/data';
-import type { Project } from '../architecture-ir/schema';
-import '../workbench.css';
+import '../visual/landing.css';
 
-function selectTabs(project:Project){
-  if(project.id==='iotdb-tsfile')return [
-    ['storage-engine','Storage Engine'],['iotconsensus-v1','IoTConsensus V1'],['tsfile','TsFile Format'],
-  ].map(([id,label])=>({id,label,scenarios:project.modules.find(module=>module.id===id)!.scenarios}));
-  if(project.id==='mooncake-store'){
-    const variants=project.modules.find(module=>module.id==='object-replica')!.scenarios;
-    return [{id:'object-replica',label:'Object Storage Replica',scenarios:['object-replica-sync',...variants.filter(id=>id!=='object-replica-sync')]}];
-  }
-  return project.modules.map(module=>({id:module.id,label:module.title,scenarios:module.scenarios}));
-}
-type Pull = {repo:string; number:number; title:string; status:string; role:string};
-function pullRequests(project:Project){
-  const top=featuredContributions(project);
-  const featured=new Set(top.map(item=>item.id));
-  const curated=top.concat(contributionEntries(project).filter(item=>!featured.has(item.id)));
-  const entries = new Map<string,Pull>(curated.map(item=>[`${item.repository}:${item.number}`,{
-    repo:item.repository,number:item.number,title:item.title,status:item.status,role:item.role
-  }]));
-  const activity=publicActivity.filter(item=>project.repos.includes(item.repo)).sort((first,second)=>
-    Number(first.role==='reviewer')-Number(second.role==='reviewer') || second.date.localeCompare(first.date)
-  );
-  for(const item of activity){
-    const number=Number(item.url.match(/\/pull\/(\d+)(?:[/?#]|$)/)?.[1]);
-    const key=`${item.repo}:${number}`;
-    if(!number||entries.has(key))continue;
-    entries.set(key,{repo:item.repo,number,title:item.title,status:item.status,role:item.role});
-  }
-  return [...entries.values()];
-}
-const slogans: Record<string,string>={
-  'iotdb-tsfile':'Time-series ingestion, replication and file layout.',
-  'mooncake-store':'Shared object replicas, from write authorization to lease-aware cleanup.'
+const descriptions: Record<string,string>={
+  'iotdb-tsfile':'Time-series ingestion, consensus replication and the file format that stores it.',
+  'mooncake-store':'Shared object replicas for distributed KV cache, from write authorization to lease-aware cleanup.'
 };
 ---
-<Base title="Open Source Engineering" workbench>
-<section class="identity" id="about" aria-labelledby="identity-title">
-  <div class="shell identity-inner">
-    <div>
-      <h1 id="identity-title">{profile.name}<span lang="zh-Hans">{profile.nameZh}</span></h1>
-      <p class="identity-credentials">{profile.role}<span aria-hidden="true"></span>{profile.education}</p>
-    </div>
-    <div class="identity-details">
-      <p>Distributed storage, database kernels and KV cache infrastructure.</p>
-      <div class="identity-links">
-        {profile.verified && <a href={`https://github.com/${profile.github}`}>GitHub profile</a>}
-        <a href={`mailto:${profile.email}`}>{profile.email}</a>
+<Base title="Open Source Engineering" home>
+  <section class="atlas-hero shell" id="about" aria-labelledby="atlas-title">
+    <div class="atlas-intro">
+      <h1 id="atlas-title">{profile.name}</h1>
+      <div class="atlas-identity">
+        <span lang="zh-Hans">{profile.nameZh}</span>
+        <span>{profile.role}</span>
+      </div>
+      <p class="atlas-expertise">Distributed storage, database kernels and KV cache infrastructure.</p>
+      <p class="atlas-education">{profile.education}</p>
+      <div class="atlas-contact">
+        {profile.verified && <a class="holo-button" data-magnetic href={`https://github.com/${profile.github}`}>GitHub profile</a>}
+        <a class="atlas-email" href={`mailto:${profile.email}`}>{profile.email}</a>
       </div>
     </div>
-  </div>
-</section>
-{projects.map(project => {
-  const entries=pullRequests(project);
-  const visible=entries.slice(0,Math.max(3,project.contributions.length));
-  const extra=entries.slice(visible.length);
-  return <section class="shell workbench-project" id={project.id} aria-labelledby={`${project.id}-title`} style={`--workbench-accent:${project.accent}`}>
-    <div class="workbench-heading">
-      <div>
-        <h2 id={`${project.id}-title`}>{project.name}</h2>
-        <p>{slogans[project.id]??project.description}</p>
-      </div>
-      <div class="upstream-links" aria-label="Upstream repositories">{project.repos.map(repo=><a href={`https://github.com/${repo}`}>{repo}</a>)}</div>
+    <div class="atlas-topology"><TopologyHero /></div>
+  </section>
+  <section class="atlas-projects shell" id="projects" aria-labelledby="atlas-projects-title">
+    <div class="atlas-section-heading">
+      <h2 id="atlas-projects-title">Open source projects</h2>
     </div>
-    <ProjectWorkbench project={project} tabs={selectTabs(project)} />
-    {entries.length>0 && <div class="project-prs">
-      <div class="project-prs-heading"><h3>Pull requests</h3><span>{entries.length} linked to GitHub</span></div>
-      <ul class="project-pr-list">
-        {visible.map(item=><li><a href={`https://github.com/${item.repo}/pull/${item.number}`}><span class="pull-number">#{item.number}</span><span>{item.title}</span><span class:list={['pull-state',item.status]}>{item.role==='reviewer'?'Reviewed':item.status}</span></a></li>)}
-      </ul>
-      {extra.length>0 && <details class="more-prs"><summary>{extra.length} more pull requests</summary><ul class="project-pr-list">
-        {extra.map(item=><li><a href={`https://github.com/${item.repo}/pull/${item.number}`}><span class="pull-number">#{item.number}</span><span>{item.title}</span><span class:list={['pull-state',item.status]}>{item.role==='reviewer'?'Reviewed':item.status}</span></a></li>)}
-      </ul></details>}
-    </div>}
-  </section>;
-})}
+    <div class="atlas-projects-grid">
+      {projects.map(project=>{
+        const path=`/projects/${project.id}/`;
+        const contributions=featuredContributions(project);
+        return <article class="atlas-entry" id={project.id} data-atlas-reveal>
+          <a class="atlas-entry-visual" href={path} aria-label={`Explore ${project.name}`} style={`--atlas-transition:atlas-${project.id}`}>
+            <ArchitecturePreview projectId={project.id}/>
+          </a>
+          <div class="atlas-entry-content">
+            <h3><a href={path}>{project.name}</a></h3>
+            <p>{descriptions[project.id]??project.description}</p>
+            {contributions.length>0&&<ul class="atlas-entry-proof" aria-label="Selected contributions">
+              {contributions.map(entry=><li><a href={`https://github.com/${entry.repository}/pull/${entry.number}`}><span>#{entry.number}</span> <span class="contribution-title">{entry.title}</span><small>{entry.status}</small></a></li>)}
+            </ul>}
+            <a class="holo-button holo-button-quiet" data-magnetic href={path}>Explore architecture</a>
+          </div>
+        </article>;
+      })}
+    </div>
+  </section>
 </Base>
+
+<script>
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
+    const observer=new IntersectionObserver(items=>{
+      for(const item of items){
+        if(!item.isIntersecting)continue;
+        item.target.classList.add('is-revealed');
+        observer.unobserve(item.target);
+      }
+    },{threshold:.12});
+    for(const entry of document.querySelectorAll('[data-atlas-reveal]'))observer.observe(entry);
+  }
+</script>

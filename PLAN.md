@@ -1,8 +1,7 @@
 # Plan
 
-1. Confirm account, repository access, and upstream evidence.
-2. Build a data-driven static site with a shared WebGL and reduced-motion explorer.
-3. Encode source-pinned IoTDB, TsFile, and Mooncake Store technical scenes and contribution comparisons.
-4. Build daily incremental sync with distinct deterministic and AI gates.
-5. Test replay, validation, browser rendering, mobile, and fixture-to-update behavior.
-6. Publish to GitHub Pages and independently verify the live site.
+1. Maintain the public project, identity and source evidence registrations.
+2. Build the portfolio around the shared obsidian and holographic visual layer.
+3. Develop the source maps, selective data flows and contribution panel in separate modules.
+4. Verify source anchors, builds and interactions across laptop, widescreen and mobile viewports.
+5. Publish verified builds through GitHub Pages. Preserve the legacy article links and public contribution synchronization.

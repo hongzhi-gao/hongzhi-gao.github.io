@@ -1,0 +1,881 @@
+{
+  "version": 1,
+  "id": "mooncake-store",
+  "width": 1440,
+  "height": 960,
+  "groups": [
+    {
+      "id": "client",
+      "title": "Client process",
+      "note": "Inference integration & local data plane",
+      "rect": [
+        20,
+        45,
+        415,
+        390
+      ]
+    },
+    {
+      "id": "master",
+      "title": "Master process",
+      "note": "Control plane \u00b7 allocation & visibility",
+      "rect": [
+        463,
+        45,
+        957,
+        390
+      ]
+    },
+    {
+      "id": "storage",
+      "title": "Storage nodes",
+      "note": "Memory and SSD data plane",
+      "rect": [
+        20,
+        464,
+        680,
+        450
+      ]
+    },
+    {
+      "id": "ha",
+      "title": "High availability",
+      "note": "Ordered metadata persistence and replay",
+      "rect": [
+        721,
+        464,
+        699,
+        167
+      ]
+    },
+    {
+      "id": "proposal",
+      "title": "Object Storage Replica",
+      "note": "Pinned implementation proposal \u00b7 PR #5494",
+      "rect": [
+        721,
+        654,
+        699,
+        260
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "client",
+      "label": "Client / ClientService",
+      "caption": "Put, Get and buffer API",
+      "shape": "interface",
+      "group": "client",
+      "rect": [
+        43,
+        95,
+        365,
+        86
+      ],
+      "evidence": [
+        "client"
+      ],
+      "detail": "Store clients request placement and readable descriptors from MasterService; the payload uses a separate data path.",
+      "fields": [
+        "Put",
+        "Get",
+        "GetReplicaList"
+      ]
+    },
+    {
+      "id": "transfer",
+      "label": "TransferEngine",
+      "caption": "Registered memory transport",
+      "shape": "service",
+      "group": "client",
+      "rect": [
+        43,
+        210,
+        365,
+        81
+      ],
+      "evidence": [
+        "transfer"
+      ],
+      "detail": "Clients transfer directly to or from memory replicas using the transfer engine and registered addresses.",
+      "fields": [
+        "submitTransfer",
+        "TransferRequest"
+      ]
+    },
+    {
+      "id": "ssd-client",
+      "label": "FileStorage",
+      "caption": "Client-side SSD offload",
+      "shape": "log",
+      "group": "client",
+      "rect": [
+        43,
+        322,
+        365,
+        81
+      ],
+      "evidence": [
+        "file-storage"
+      ],
+      "detail": "FileStorage implements client local-disk caching/offloading. It is separate from the open direct object-replica proposal.",
+      "fields": [
+        "FileStorage",
+        "ReRegisterOffloadedObjects"
+      ]
+    },
+    {
+      "id": "master",
+      "label": "MasterService",
+      "caption": "Metadata RPCs and placement",
+      "shape": "interface",
+      "group": "master",
+      "rect": [
+        485,
+        95,
+        410,
+        86
+      ],
+      "evidence": [
+        "master",
+        "master-end",
+        "list",
+        "master-header"
+      ],
+      "detail": "PutStart allocates placement, PutEnd resolves completion, and GetReplicaList returns descriptors under the lease policy.",
+      "fields": [
+        "PutStart",
+        "PutEnd",
+        "GetReplicaList"
+      ]
+    },
+    {
+      "id": "tenant",
+      "label": "NamespaceTable / ObjectRoute",
+      "caption": "Tenant \u2192 key \u2192 guarded object",
+      "shape": "map",
+      "group": "master",
+      "rect": [
+        928,
+        95,
+        464,
+        86
+      ],
+      "evidence": [
+        "namespace-table",
+        "namespace",
+        "object-route"
+      ],
+      "detail": "The Master resolves TenantId through NamespaceTable. Each Namespace owns an ObjectRoute with striped locks; Read obtains a shared guard for the key.",
+      "fields": [
+        "TenantId",
+        "Namespace::objects",
+        "ObjectRoute::Read",
+        "kStripeCount"
+      ]
+    },
+    {
+      "id": "metadata",
+      "label": "ObjectMetadata",
+      "caption": "Replica set and lease state",
+      "shape": "map",
+      "group": "master",
+      "rect": [
+        485,
+        212,
+        410,
+        87
+      ],
+      "evidence": [
+        "metadata",
+        "replica"
+      ],
+      "detail": "Object metadata tracks replicas and leases. Master owns logical visibility while client-side mechanisms move payload bytes.",
+      "fields": [
+        "parts_",
+        "lease_",
+        "client_id",
+        "tenant_id"
+      ]
+    },
+    {
+      "id": "replica",
+      "label": "Replica descriptors",
+      "caption": "Location and completion",
+      "shape": "cluster",
+      "group": "master",
+      "rect": [
+        928,
+        212,
+        464,
+        87
+      ],
+      "evidence": [
+        "replica",
+        "master-end",
+        "list"
+      ],
+      "detail": "Replica descriptors encode type, location and status. Only readable completed replicas are exposed by the ordinary lookup path.",
+      "fields": [
+        "Replica",
+        "ReplicaStatus",
+        "ReplicaType"
+      ]
+    },
+    {
+      "id": "placement",
+      "label": "Allocation strategy",
+      "caption": "Choose registered segments",
+      "shape": "memory",
+      "group": "master",
+      "rect": [
+        485,
+        329,
+        410,
+        79
+      ],
+      "evidence": [
+        "allocation",
+        "segment",
+        "master"
+      ],
+      "detail": "Placement resolves memory replicas to registered segment allocations. Segment identity and allocation offsets determine the destination.",
+      "fields": [
+        "AllocationStrategy",
+        "Segment"
+      ]
+    },
+    {
+      "id": "eviction",
+      "label": "Evictor",
+      "caption": "Reclaim eligible cache data",
+      "shape": "merge",
+      "group": "master",
+      "rect": [
+        928,
+        329,
+        464,
+        79
+      ],
+      "evidence": [
+        "evictor",
+        "metadata"
+      ],
+      "detail": "Eviction selects eligible cache entries and respects metadata protections. Local disk and memory have distinct cleanup mechanisms.",
+      "fields": [
+        "Evictor",
+        "EvictionPolicy"
+      ]
+    },
+    {
+      "id": "segment",
+      "label": "Segment",
+      "caption": "Registered address range",
+      "shape": "memory",
+      "group": "storage",
+      "rect": [
+        43,
+        516,
+        630,
+        103
+      ],
+      "evidence": [
+        "segment-type",
+        "segment"
+      ],
+      "detail": "Segments expose memory capacity and registered address ranges. Allocation yields a buffer within a segment.",
+      "fields": [
+        "Segment::base",
+        "Segment::size",
+        "te_endpoint"
+      ]
+    },
+    {
+      "id": "allocator",
+      "label": "BufferAllocatorBase",
+      "caption": "Allocation and release",
+      "shape": "memory",
+      "group": "storage",
+      "rect": [
+        43,
+        650,
+        297,
+        96
+      ],
+      "evidence": [
+        "allocator",
+        "pool"
+      ],
+      "detail": "Store-owned buffer allocators manage segment memory. The cachelib memory pool is one implementation building block.",
+      "fields": [
+        "BufferAllocatorBase",
+        "CachelibBufferAllocator",
+        "OffsetBufferAllocator"
+      ]
+    },
+    {
+      "id": "memory",
+      "label": "Memory replicas",
+      "caption": "Payload on storage owner",
+      "shape": "cluster",
+      "group": "storage",
+      "rect": [
+        370,
+        650,
+        303,
+        96
+      ],
+      "evidence": [
+        "replica",
+        "segment"
+      ],
+      "detail": "A memory replica descriptor identifies a data location in a mounted segment. The data plane transfers directly through the client.",
+      "fields": [
+        "ReplicaType::MEMORY",
+        "Segment"
+      ]
+    },
+    {
+      "id": "ssd",
+      "label": "Local SSD",
+      "caption": "File-backed cache copy",
+      "shape": "levels",
+      "group": "storage",
+      "rect": [
+        43,
+        776,
+        630,
+        93
+      ],
+      "evidence": [
+        "file-storage",
+        "replica"
+      ],
+      "detail": "Local disk offloading has its own client-owned file lifecycle; this is independent of first-class shared object storage.",
+      "fields": [
+        "FileStorage",
+        "LOCAL_DISK"
+      ]
+    },
+    {
+      "id": "oplog",
+      "label": "OrderedOpLogWriter",
+      "caption": "Durable ordered mutation",
+      "shape": "log",
+      "group": "ha",
+      "rect": [
+        747,
+        508,
+        204,
+        95
+      ],
+      "evidence": [
+        "oplog",
+        "persist-state"
+      ],
+      "detail": "The fenced log writer orders metadata mutations. Merged upload/retirement records extend that recovery contract.",
+      "fields": [
+        "OrderedOpLogWriter",
+        "ObjectReplicaMutation"
+      ]
+    },
+    {
+      "id": "snapshot",
+      "label": "Snapshot",
+      "caption": "Batch OpLog recovery",
+      "shape": "file",
+      "group": "ha",
+      "rect": [
+        973,
+        508,
+        202,
+        95
+      ],
+      "evidence": [
+        "snapshot",
+        "persist-doc"
+      ],
+      "detail": "Snapshot v3 can include the merged physical object recovery records. Earlier formats remain readable.",
+      "fields": [
+        "BatchOpLogSnapshotProvider",
+        "ObjectReplicaSnapshot"
+      ]
+    },
+    {
+      "id": "recovery",
+      "label": "StandbyMetadataStore",
+      "caption": "Replay / promotion boundary",
+      "shape": "service",
+      "group": "ha",
+      "rect": [
+        1194,
+        508,
+        198,
+        95
+      ],
+      "evidence": [
+        "standby",
+        "persist-test"
+      ],
+      "detail": "Standby validates and applies ordered mutations and restores snapshot state. Merged upload records alone do not wire Store Put/Get.",
+      "fields": [
+        "StandbyMetadataStore",
+        "ObjectUploadRecord"
+      ]
+    },
+    {
+      "id": "auth",
+      "label": "Upload authorization",
+      "caption": "Durable token and object name",
+      "shape": "log",
+      "group": "proposal",
+      "rect": [
+        747,
+        701,
+        309,
+        69
+      ],
+      "evidence": [
+        "object-current-authorize"
+      ],
+      "detail": "The synchronous integration proposal persists authorization before returning an immutable object name and write token.",
+      "fields": [
+        "PutStart",
+        "write token"
+      ],
+      "proposal": true
+    },
+    {
+      "id": "commit",
+      "label": "Commit + read lease",
+      "caption": "Publish after durable commit",
+      "shape": "map",
+      "group": "proposal",
+      "rect": [
+        1080,
+        701,
+        312,
+        69
+      ],
+      "evidence": [
+        "object-current-commit",
+        "list"
+      ],
+      "detail": "The same logical value is published only after exact-attempt validation and durable completion. Readers acquire a lease before direct object access.",
+      "fields": [
+        "PutEnd",
+        "GetReplicaList"
+      ],
+      "proposal": true
+    },
+    {
+      "id": "object",
+      "label": "Shared object backend",
+      "caption": "Direct PUT / GET from client",
+      "shape": "levels",
+      "group": "proposal",
+      "rect": [
+        747,
+        801,
+        309,
+        76
+      ],
+      "evidence": [
+        "object-current-io",
+        "object-backend"
+      ],
+      "detail": "The local bounded I/O backend has independent upstream evidence; wiring it as a shared replica is shown at the pinned PR revision.",
+      "fields": [
+        "ObjectStorageBackend",
+        "GET / range GET"
+      ],
+      "proposal": true
+    },
+    {
+      "id": "gc",
+      "label": "Retirement / orphan GC",
+      "caption": "Lease-aware DELETE + fenced sweep",
+      "shape": "queue",
+      "group": "proposal",
+      "rect": [
+        1080,
+        801,
+        312,
+        76
+      ],
+      "evidence": [
+        "object-current-gc",
+        "object-current-design",
+        "persist-state"
+      ],
+      "detail": "The proposal waits for durable retirement and read protection. Unknown outcomes remain tracked after a DELETE. Managed names can hand off to fenced orphan GC only after the configured retention window and a successful final DELETE.",
+      "fields": [
+        "not_before_ms",
+        "upload_finished",
+        "CanForgetUncertainObject",
+        "SweepObjectStorageOrphans"
+      ],
+      "proposal": true
+    }
+  ],
+  "edges": [
+    {
+      "id": "rpc",
+      "from": "client",
+      "to": "master",
+      "kind": "control",
+      "label": "Placement and descriptors",
+      "via": []
+    },
+    {
+      "id": "get-meta",
+      "from": "master",
+      "to": "tenant",
+      "kind": "control",
+      "label": "Shard lookup",
+      "via": []
+    },
+    {
+      "id": "lookup",
+      "from": "tenant",
+      "to": "metadata",
+      "kind": "control",
+      "label": "Tenant and key \u2192 metadata",
+      "via": [
+        [
+          1160,
+          197
+        ],
+        [
+          689,
+          197
+        ]
+      ]
+    },
+    {
+      "id": "descriptor",
+      "from": "metadata",
+      "to": "replica",
+      "kind": "control",
+      "label": "Object \u2192 replica records",
+      "via": []
+    },
+    {
+      "id": "alloc",
+      "from": "metadata",
+      "to": "placement",
+      "kind": "control",
+      "label": "Allocate a buffer",
+      "via": []
+    },
+    {
+      "id": "place",
+      "from": "placement",
+      "to": "segment",
+      "kind": "control",
+      "label": "Registered segment selection",
+      "via": [
+        [
+          688,
+          451
+        ],
+        [
+          359,
+          451
+        ]
+      ]
+    },
+    {
+      "id": "segment-allocator",
+      "from": "segment",
+      "to": "allocator",
+      "kind": "control",
+      "label": "Memory pool address range",
+      "via": []
+    },
+    {
+      "id": "segment-replica",
+      "from": "segment",
+      "to": "memory",
+      "kind": "control",
+      "label": "Location inside segment",
+      "via": []
+    },
+    {
+      "id": "execute",
+      "from": "client",
+      "to": "transfer",
+      "kind": "control",
+      "label": "Submit data transfer",
+      "via": []
+    },
+    {
+      "id": "payload",
+      "from": "transfer",
+      "to": "memory",
+      "kind": "data",
+      "label": "Direct memory payload",
+      "via": [
+        [
+          447,
+          250
+        ],
+        [
+          447,
+          442
+        ],
+        [
+          688,
+          442
+        ],
+        [
+          688,
+          635
+        ],
+        [
+          525,
+          635
+        ]
+      ]
+    },
+    {
+      "id": "offload",
+      "from": "ssd-client",
+      "to": "ssd",
+      "kind": "storage",
+      "label": "Client file offload",
+      "via": [
+        [
+          28,
+          366
+        ],
+        [
+          28,
+          823
+        ]
+      ]
+    },
+    {
+      "id": "evict",
+      "from": "eviction",
+      "to": "replica",
+      "kind": "control",
+      "label": "Lease / eligibility checks",
+      "via": []
+    },
+    {
+      "id": "persist",
+      "from": "metadata",
+      "to": "oplog",
+      "kind": "replica",
+      "label": "Ordered mutation",
+      "via": [
+        [
+          911,
+          255
+        ],
+        [
+          911,
+          452
+        ],
+        [
+          710,
+          452
+        ],
+        [
+          710,
+          555
+        ]
+      ]
+    },
+    {
+      "id": "snapshot-log",
+      "from": "oplog",
+      "to": "snapshot",
+      "kind": "storage",
+      "label": "Capture persisted state",
+      "via": []
+    },
+    {
+      "id": "snapshot-load",
+      "from": "snapshot",
+      "to": "recovery",
+      "kind": "replica",
+      "label": "Restore + replay",
+      "via": []
+    },
+    {
+      "id": "authorize",
+      "from": "master",
+      "to": "auth",
+      "kind": "control",
+      "label": "Allocate object target (proposal)",
+      "via": [
+        [
+          911,
+          137
+        ],
+        [
+          911,
+          445
+        ],
+        [
+          709,
+          445
+        ],
+        [
+          709,
+          735
+        ]
+      ]
+    },
+    {
+      "id": "authorize-log",
+      "from": "auth",
+      "to": "oplog",
+      "kind": "replica",
+      "label": "Persist authorization (proposal)",
+      "via": [
+        [
+          849,
+          666
+        ]
+      ]
+    },
+    {
+      "id": "upload",
+      "from": "client",
+      "to": "object",
+      "kind": "data",
+      "label": "Client-to-object PUT/GET (proposal)",
+      "via": [
+        [
+          30,
+          138
+        ],
+        [
+          10,
+          138
+        ],
+        [
+          10,
+          928
+        ],
+        [
+          903,
+          928
+        ]
+      ]
+    },
+    {
+      "id": "complete",
+      "from": "object",
+      "to": "commit",
+      "kind": "control",
+      "label": "Commit exact attempt (proposal)",
+      "via": [
+        [
+          900,
+          785
+        ],
+        [
+          1237,
+          785
+        ]
+      ]
+    },
+    {
+      "id": "retire",
+      "from": "commit",
+      "to": "gc",
+      "kind": "storage",
+      "label": "Retire before cleanup (proposal)",
+      "via": []
+    },
+    {
+      "id": "delete",
+      "from": "gc",
+      "to": "object",
+      "kind": "storage",
+      "label": "Reclaim after lease and outcome checks",
+      "via": []
+    }
+  ],
+  "tracks": [
+    {
+      "id": "memory",
+      "label": "Memory Put / Get",
+      "edges": [
+        "rpc",
+        "get-meta",
+        "lookup",
+        "descriptor",
+        "alloc",
+        "place",
+        "execute",
+        "payload"
+      ]
+    },
+    {
+      "id": "recover",
+      "label": "Recover metadata",
+      "edges": [
+        "persist",
+        "snapshot-log",
+        "snapshot-load"
+      ]
+    },
+    {
+      "id": "object",
+      "label": "Object replica \u00b7 proposal",
+      "edges": [
+        "rpc",
+        "authorize",
+        "authorize-log",
+        "upload",
+        "complete",
+        "retire",
+        "delete"
+      ]
+    }
+  ],
+  "contributions": {
+    "object-sync": [
+      "auth",
+      "commit",
+      "object",
+      "gc"
+    ],
+    "object-records-pr": [
+      "oplog",
+      "snapshot",
+      "recovery",
+      "gc"
+    ],
+    "object-io-pr": [
+      "object"
+    ]
+  },
+  "overview": "Master placement and metadata, direct-transfer storage, and the pinned synchronous object-replica proposal.",
+  "modules": {
+    "system": [
+      "client",
+      "transfer"
+    ],
+    "store": [
+      "master",
+      "metadata"
+    ],
+    "object-replica": [
+      "auth",
+      "commit",
+      "object",
+      "gc"
+    ]
+  },
+  "pins": [
+    "master",
+    "object-current-commit"
+  ]
+}

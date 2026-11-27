@@ -1,8 +1,6 @@
 # Hongzhi Gao · Engineering Atlas
 
-An interactive site for exploring Apache IoTDB, Apache TsFile and Mooncake Store from project architecture down to public source and tests. Exhibits distinguish upstream behavior, teaching examples, historical snapshots and open proposals. The Mooncake replica integration in PR #5494 is an open proposal in its pinned snapshot. Its object I/O and durable recovery prerequisites each have a separate merged exhibit.
-
-The homepage is the workbench. Pick one of the three IoTDB modules or switch the Mooncake replica scenario in place. Each project has a direct GitHub PR list. Individual exhibits and notes keep their own permalinks.
+The portfolio opens two source maps. The IoTDB and TsFile map shows client access, ConfigNode, query execution, persistence, IoTConsensus V1 and Pipe. Mooncake separates placement metadata from direct payload transfers and marks the pinned synchronous object-replica proposal. Select a node to find source files and mapped contributions. Use the path buttons to follow illustrative traffic.
 
 ## Local development
 
@@ -23,11 +21,11 @@ npm run test:e2e
 
 ## Add a project or exhibit
 
-1. Add a public repository and relevant path prefixes to `config/projects.json`. Use `modulePaths` to map the most specific repository paths to a module ID.
-2. Add one file under `projects/` using the versioned Zod schema in `src/architecture-ir/schema.ts`. The existing project files define project metadata, modules, component identities, containment, relationships, states, a deterministic timeline, camera keyframes and source evidence.
-3. Pin GitHub file references to full commit SHAs. Keep attribution in the contribution records and link the official PR. Use distinct version records for the historical baseline and the reviewed change.
-4. Reuse component kinds and timeline events before extending the shared WebGL models. Renderers use the same replay state in 2D and 3D. Set `initialPosition` when a component should expand from a compact arrangement.
-5. Run the checks and compare the first, middle and last steps. Add a Markdown or MDX note under `src/content/posts/` when extra context warrants it. An MDX post can import `Embed.astro` and pass a scenario ID to reuse its IR. The blog supports heading navigation, tags, categories, math, Mermaid, static SVG and full-text search.
+1. Register the public repository and relevant paths in `config/projects.json`. Use `modulePaths` for the best-supported source-path mappings.
+2. Register metadata, source links pinned to commits and verified contribution records in `projects/`. Existing article embeds and archived exhibit URLs use this data.
+3. Write the project drawing in `architecture/`. Define nested process and subsystem boundaries, nodes, source IDs, routed edges, illustrative paths and contribution-to-node mappings. `src/structure/data.ts` validates both registrations together at build time.
+4. Reuse the engineering glyphs in `StructureGlyph.astro` or draw a structure-specific inset in `ArchitectureDrawing.astro`. The portfolio preview uses the same drawing.
+5. Run source validation, build and browser checks. Inspect the map at fit and detail scales, and confirm that the same contribution selection works in both directions.
 
 ## Scheduled evolution and publishing
 

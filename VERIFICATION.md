@@ -25,3 +25,9 @@ The GitHub Actions hosted model stage depends on the repository's `OPENAI_API_KE
 ## Single-page workbench
 
 The final workbench passes its 390px layout and keyboard/tab switching tests, along with in-place Mooncake comparison, scenario reload and direct PR link tests. A real Chromium run completed twenty module switches with one canvas mounted per project and no WebGL context warnings. Playback is before the stage in visual and keyboard order. Workbench screenshots are under `../architecture-lab-evidence/workbench/`.
+
+## Obsidian and holographic redesign
+
+The production checks cover the portfolio, both project pages, fixed source links, contributor hover and selection, path highlighting, wheel zoom, drag, fit, fullscreen, 390px touch pinch, the contribution drawer, notes search and RSS. The source-map audit inspected 1440×900, 1920×1080, 2560×1440 and 390×844 in Chromium. Browser artifacts are kept outside the checkout under `../architecture-lab-evidence/redesign/`. The canvas trail and responsive topology capture are under `../architecture-lab-evidence/holographic/`.
+
+The source verification includes the current pinned Mooncake #5494 proposal and its bounded orphan reclamation, with upstream and proposal revisions labeled separately. The two drawings' routed edges were checked against unrelated node interiors. Geometry and source-reference checks do not establish every upstream runtime behavior. The 2560px local headless rendering sample measured 33.3 ms p50 and 33.4 ms p95 between animation frames. Touch idle paused recurring Canvas draws. Native GPU and real iOS Safari performance were not measured.

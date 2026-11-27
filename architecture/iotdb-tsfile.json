@@ -1,0 +1,1340 @@
+{
+  "version": 1,
+  "id": "iotdb-tsfile",
+  "width": 1440,
+  "height": 960,
+  "groups": [
+    {
+      "id": "access",
+      "title": "Client process",
+      "note": "Applications & drivers",
+      "rect": [
+        20,
+        35,
+        265,
+        150
+      ]
+    },
+    {
+      "id": "config",
+      "title": "ConfigNode cluster",
+      "note": "Metadata control plane",
+      "rect": [
+        20,
+        211,
+        265,
+        258
+      ]
+    },
+    {
+      "id": "pipe",
+      "title": "Pipe task",
+      "note": "Separate cross-cluster replication",
+      "rect": [
+        20,
+        493,
+        265,
+        407
+      ]
+    },
+    {
+      "id": "data",
+      "title": "DataNode process",
+      "note": "Execution and persistence",
+      "rect": [
+        312,
+        35,
+        1108,
+        570
+      ]
+    },
+    {
+      "id": "query",
+      "title": "Query engine",
+      "note": "Tree-model execution shown",
+      "rect": [
+        329,
+        162,
+        470,
+        420
+      ],
+      "parent": "data"
+    },
+    {
+      "id": "store",
+      "title": "Storage & consensus",
+      "note": "DataRegion and its replica group",
+      "rect": [
+        820,
+        162,
+        582,
+        420
+      ],
+      "parent": "data"
+    },
+    {
+      "id": "file",
+      "title": "Apache TsFile",
+      "note": "Persistent binary layout \u00b7 Java reader/writer",
+      "rect": [
+        312,
+        629,
+        1108,
+        271
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "client",
+      "label": "Client drivers",
+      "caption": "Application boundary",
+      "shape": "interface",
+      "group": "access",
+      "rect": [
+        39,
+        84,
+        226,
+        65
+      ],
+      "evidence": [
+        "session",
+        "jdbc"
+      ],
+      "detail": "Session and JDBC are different client APIs to the DataNode RPC service.",
+      "fields": [
+        "Session",
+        "IoTDBDriver"
+      ]
+    },
+    {
+      "id": "cfg",
+      "label": "ConfigManager",
+      "caption": "Cluster services",
+      "shape": "service",
+      "group": "config",
+      "rect": [
+        39,
+        255,
+        226,
+        67
+      ],
+      "evidence": [
+        "config",
+        "cfg-manager"
+      ],
+      "detail": "ConfigNode coordinates node membership, partitions, and region management. Application rows travel to DataNodes.",
+      "fields": [
+        "NodeManager",
+        "PartitionManager"
+      ]
+    },
+    {
+      "id": "part",
+      "label": "PartitionManager",
+      "caption": "Partition \u2192 region group",
+      "shape": "map",
+      "group": "config",
+      "rect": [
+        39,
+        346,
+        226,
+        96
+      ],
+      "evidence": [
+        "partition",
+        "region-group"
+      ],
+      "detail": "Schema and data partitions map to region groups. Data partition placement includes device series slots and time partition slots.",
+      "fields": [
+        "SchemaPartition",
+        "DataPartition",
+        "RegionGroup"
+      ]
+    },
+    {
+      "id": "pipe-task",
+      "label": "PipeDataNodeTaskAgent",
+      "caption": "Task & progress management",
+      "shape": "service",
+      "group": "pipe",
+      "rect": [
+        39,
+        538,
+        226,
+        66
+      ],
+      "evidence": [
+        "pipe-agent"
+      ],
+      "detail": "The DataNode task agent manages local tasks under the Pipe runtime.",
+      "fields": [
+        "PipeTaskMeta",
+        "ProgressIndex"
+      ]
+    },
+    {
+      "id": "capture",
+      "label": "IoTDBDataRegionSource",
+      "caption": "Historical + realtime",
+      "shape": "queue",
+      "group": "pipe",
+      "rect": [
+        39,
+        625,
+        226,
+        72
+      ],
+      "evidence": [
+        "pipe-source"
+      ],
+      "detail": "Historical source reads TsFile events. Realtime sources can capture insertion events associated with WAL or TsFiles.",
+      "fields": [
+        "PipeHistoricalDataRegionSource",
+        "PipeRealtimeDataRegionSource"
+      ]
+    },
+    {
+      "id": "delivery",
+      "label": "Processor \u2192 Connector",
+      "caption": "Transform / deliver events",
+      "shape": "queue",
+      "group": "pipe",
+      "rect": [
+        39,
+        717,
+        226,
+        72
+      ],
+      "evidence": [
+        "pipe-api-processor",
+        "pipe-api-connector"
+      ],
+      "detail": "Pipe processing and transport are pluggable. Progress tracking is separate from IoTConsensus.",
+      "fields": [
+        "PipeProcessor",
+        "PipeConnector"
+      ]
+    },
+    {
+      "id": "receive",
+      "label": "IoTDBDataNodeReceiver",
+      "caption": "Receiving cluster",
+      "shape": "interface",
+      "group": "pipe",
+      "rect": [
+        39,
+        807,
+        226,
+        65
+      ],
+      "evidence": [
+        "pipe-receiver"
+      ],
+      "detail": "The receiver handles protocol requests at the destination DataNode.",
+      "fields": [
+        "receive",
+        "TPipeTransferReq"
+      ]
+    },
+    {
+      "id": "rpc",
+      "label": "ClientRPCServiceImpl",
+      "caption": "Thrift request ingress",
+      "shape": "interface",
+      "group": "data",
+      "rect": [
+        530,
+        84,
+        280,
+        59
+      ],
+      "evidence": [
+        "client-rpc",
+        "coordinator"
+      ],
+      "detail": "Tree-model statements enter the DataNode and are handed to query coordination or write execution.",
+      "fields": [
+        "executeStatement",
+        "insertRecord"
+      ]
+    },
+    {
+      "id": "schema",
+      "label": "SchemaEngine",
+      "caption": "SchemaRegion metadata",
+      "shape": "map",
+      "group": "data",
+      "rect": [
+        1054,
+        84,
+        310,
+        59
+      ],
+      "evidence": [
+        "schema-engine",
+        "schema-region"
+      ],
+      "detail": "SchemaRegion belongs to the schema engine. The storage engine owns the data regions.",
+      "fields": [
+        "SchemaEngine",
+        "SchemaRegion"
+      ]
+    },
+    {
+      "id": "parse",
+      "label": "ASTVisitor \u2192 Analyzer",
+      "caption": "SQL parse & semantic analysis",
+      "shape": "service",
+      "group": "query",
+      "rect": [
+        352,
+        205,
+        201,
+        64
+      ],
+      "evidence": [
+        "ast",
+        "analyzer"
+      ],
+      "detail": "The tree-model analyzer resolves statement semantics, schema and partition information.",
+      "fields": [
+        "ASTVisitor",
+        "Analyzer"
+      ]
+    },
+    {
+      "id": "plan",
+      "label": "LogicalPlanner",
+      "caption": "Logical operator tree",
+      "shape": "tree",
+      "group": "query",
+      "rect": [
+        578,
+        205,
+        198,
+        64
+      ],
+      "evidence": [
+        "logical-planner"
+      ],
+      "detail": "Logical planning turns the analyzed statement into a tree of plan nodes.",
+      "fields": [
+        "LogicalPlanner",
+        "PlanNode"
+      ]
+    },
+    {
+      "id": "dist",
+      "label": "DistributionPlanner",
+      "caption": "Partition-aware fragments",
+      "shape": "tree",
+      "group": "query",
+      "rect": [
+        352,
+        291,
+        201,
+        74
+      ],
+      "evidence": [
+        "distribution",
+        "fragment"
+      ],
+      "detail": "Distribution planning rewrites the plan for data distribution and produces executable fragment instances.",
+      "fields": [
+        "PlanFragment",
+        "FragmentInstance"
+      ]
+    },
+    {
+      "id": "fragment",
+      "label": "FragmentInstance",
+      "caption": "Execution and scheduling",
+      "shape": "service",
+      "group": "query",
+      "rect": [
+        578,
+        291,
+        198,
+        74
+      ],
+      "evidence": [
+        "query",
+        "fragment",
+        "scheduler"
+      ],
+      "detail": "Fragment instances are scheduled for local execution. FragmentInstanceManager manages instance execution.",
+      "fields": [
+        "FragmentInstanceManager",
+        "DriverScheduler"
+      ]
+    },
+    {
+      "id": "driver",
+      "label": "DataDriver / Operator",
+      "caption": "Local operator pipeline",
+      "shape": "queue",
+      "group": "query",
+      "rect": [
+        352,
+        391,
+        201,
+        78
+      ],
+      "evidence": [
+        "local-planner",
+        "data-driver",
+        "operator"
+      ],
+      "detail": "The local execution planner builds driver and operator pipelines. Drivers execute operators via the scheduling layer.",
+      "fields": [
+        "LocalExecutionPlanner",
+        "DataDriver",
+        "Operator"
+      ]
+    },
+    {
+      "id": "exchange",
+      "label": "MPPDataExchangeManager",
+      "caption": "Exchange between instances",
+      "shape": "interface",
+      "group": "query",
+      "rect": [
+        578,
+        391,
+        198,
+        78
+      ],
+      "evidence": [
+        "exchange"
+      ],
+      "detail": "Exchange sends and receives intermediate data between fragment instances.",
+      "fields": [
+        "MPPDataExchangeManager",
+        "TsBlock"
+      ]
+    },
+    {
+      "id": "scan",
+      "label": "Series scan",
+      "caption": "Memtable + file reads",
+      "shape": "service",
+      "group": "query",
+      "rect": [
+        352,
+        497,
+        424,
+        58
+      ],
+      "evidence": [
+        "region",
+        "reader"
+      ],
+      "detail": "The DataRegion provides query data sources from both running and flushed storage as applicable. Readers resolve file chunks with metadata.",
+      "fields": [
+        "DataRegion",
+        "TsFileSequenceReader"
+      ]
+    },
+    {
+      "id": "region",
+      "label": "StorageEngine / DataRegion",
+      "caption": "Region routing and ownership",
+      "shape": "service",
+      "group": "store",
+      "rect": [
+        846,
+        205,
+        253,
+        65
+      ],
+      "evidence": [
+        "storage",
+        "region"
+      ],
+      "detail": "StorageEngine owns DataRegions. DataRegion routes writes into a working TsFileProcessor and manages its queryable resources.",
+      "fields": [
+        "StorageEngine",
+        "DataRegion",
+        "insert"
+      ]
+    },
+    {
+      "id": "consensus",
+      "label": "IoTConsensus V1",
+      "caption": "Region peer group",
+      "shape": "cluster",
+      "group": "store",
+      "rect": [
+        1129,
+        205,
+        248,
+        83
+      ],
+      "evidence": [
+        "consensus",
+        "dispatcher",
+        "rpc",
+        "index"
+      ],
+      "detail": "Any participating peer can accept writes. Local apply is synchronous; peer dispatch is asynchronous and has per-peer indexes. Local success is not a quorum acknowledgement.",
+      "fields": [
+        "IoTConsensusServerImpl.write",
+        "LogDispatcher",
+        "IndexController",
+        "syncLog"
+      ]
+    },
+    {
+      "id": "processor",
+      "label": "TsFileProcessor",
+      "caption": "Working / flushing tables",
+      "shape": "service",
+      "group": "store",
+      "rect": [
+        846,
+        297,
+        253,
+        62
+      ],
+      "evidence": [
+        "processor",
+        "flush"
+      ],
+      "detail": "For the illustrated row insertion path, the WAL listener result is resolved before the working MemTable is mutated.",
+      "fields": [
+        "insert",
+        "asyncFlush",
+        "endFile"
+      ]
+    },
+    {
+      "id": "wal",
+      "label": "WALNode",
+      "caption": "Append-only records",
+      "shape": "log",
+      "group": "store",
+      "rect": [
+        846,
+        384,
+        118,
+        80
+      ],
+      "evidence": [
+        "wal",
+        "processor",
+        "wal-rebuild"
+      ],
+      "detail": "WAL entries support recovery and, for IoTConsensus, indexed replication. The durability boundary depends on configured WAL mode.",
+      "fields": [
+        "log",
+        "safelyDeletedSearchIndex"
+      ]
+    },
+    {
+      "id": "mem",
+      "label": "MemTable",
+      "caption": "Working memory",
+      "shape": "memory",
+      "group": "store",
+      "rect": [
+        977,
+        384,
+        122,
+        80
+      ],
+      "evidence": [
+        "processor",
+        "flush"
+      ],
+      "detail": "The active MemTable accumulates rows; a flushing MemTable stays in the lifecycle until the flush completes.",
+      "fields": [
+        "workMemTable",
+        "flushingMemTables"
+      ]
+    },
+    {
+      "id": "flush",
+      "label": "MemTableFlushTask",
+      "caption": "Encode and append",
+      "shape": "queue",
+      "group": "store",
+      "rect": [
+        1129,
+        316,
+        248,
+        58
+      ],
+      "evidence": [
+        "flush",
+        "writer"
+      ],
+      "detail": "Flush encodes MemTable data and appends chunks. File sealing writes the final metadata and footer.",
+      "fields": [
+        "MemTableFlushTask",
+        "TsFileIOWriter"
+      ]
+    },
+    {
+      "id": "files",
+      "label": "TsFileManager",
+      "caption": "Resources & lifecycle",
+      "shape": "map",
+      "group": "store",
+      "rect": [
+        1129,
+        397,
+        248,
+        67
+      ],
+      "evidence": [
+        "file-manager",
+        "file-resource"
+      ],
+      "detail": "TsFileManager manages TsFileResource entries instead of owning the serialized file format. Resources track per-file state and information.",
+      "fields": [
+        "TsFileResource",
+        "TsFileManager"
+      ]
+    },
+    {
+      "id": "compaction",
+      "label": "CompactionScheduler",
+      "caption": "Rewrite eligible files",
+      "shape": "merge",
+      "group": "store",
+      "rect": [
+        846,
+        497,
+        162,
+        60
+      ],
+      "evidence": [
+        "compaction",
+        "compaction-scheduler"
+      ],
+      "detail": "Compaction selects and schedules eligible files for rewrite. The data region consumes the resulting file resources.",
+      "fields": [
+        "CompactionScheduler",
+        "CompactionTaskManager"
+      ]
+    },
+    {
+      "id": "tier",
+      "label": "TierManager",
+      "caption": "Directories per tier",
+      "shape": "levels",
+      "group": "store",
+      "rect": [
+        1024,
+        497,
+        163,
+        60
+      ],
+      "evidence": [
+        "tier",
+        "tier-recovery"
+      ],
+      "detail": "The pinned implementation manages configured local folders per tier. The linked recovery fix handles disk-full detection during reconfiguration.",
+      "fields": [
+        "TierManager",
+        "resetFolders"
+      ]
+    },
+    {
+      "id": "ttl",
+      "label": "DataNodeTTLCache",
+      "caption": "Retention policy",
+      "shape": "service",
+      "group": "store",
+      "rect": [
+        1203,
+        497,
+        174,
+        60
+      ],
+      "evidence": [
+        "ttl-cache",
+        "ttl-manager"
+      ],
+      "detail": "The DataNode caches TTL policy and uses it in data access. Policy, filtering and file reclamation act at different layers.",
+      "fields": [
+        "TTLManager",
+        "DataNodeTTLCache"
+      ]
+    },
+    {
+      "id": "writer",
+      "label": "TsFileIOWriter",
+      "caption": "Write groups / finalize",
+      "shape": "interface",
+      "group": "file",
+      "rect": [
+        337,
+        676,
+        226,
+        64
+      ],
+      "evidence": [
+        "writer",
+        "file-header",
+        "group-header"
+      ],
+      "detail": "The writer opens the file, appends device chunk groups, and finishes the metadata and closing magic when sealing.",
+      "fields": [
+        "startFile",
+        "startChunkGroup",
+        "endFile"
+      ]
+    },
+    {
+      "id": "layout",
+      "label": "TsFile binary layout",
+      "caption": "On-disk file sections",
+      "shape": "file",
+      "group": "file",
+      "rect": [
+        337,
+        763,
+        581,
+        106
+      ],
+      "evidence": [
+        "file-header",
+        "group-header",
+        "writer",
+        "chunk",
+        "page"
+      ],
+      "detail": "File data contains device ChunkGroups. Each group contains Chunks, whose payload contains Pages. Metadata and the tail follow the data area.",
+      "fields": [
+        "Magic + version",
+        "ChunkGroup \u2192 Chunk \u2192 Page",
+        "Metadata + metadata size",
+        "Closing magic"
+      ]
+    },
+    {
+      "id": "index",
+      "label": "MetadataIndexNode",
+      "caption": "Device / measurement lookup",
+      "shape": "tree",
+      "group": "file",
+      "rect": [
+        587,
+        676,
+        331,
+        64
+      ],
+      "evidence": [
+        "indexnode",
+        "reader"
+      ],
+      "detail": "Reader metadata traversal locates series metadata and chunk offsets.",
+      "fields": [
+        "MetadataIndexNode",
+        "TimeseriesMetadata"
+      ]
+    },
+    {
+      "id": "reader",
+      "label": "TsFileSequenceReader",
+      "caption": "Seek / read / decode",
+      "shape": "interface",
+      "group": "file",
+      "rect": [
+        941,
+        676,
+        454,
+        64
+      ],
+      "evidence": [
+        "reader",
+        "readpage"
+      ],
+      "detail": "The reader resolves metadata, seeks to a chunk and reads individual page bodies; encoding and compression determine decode steps.",
+      "fields": [
+        "readFileMetadata",
+        "readPage"
+      ]
+    },
+    {
+      "id": "page-codec",
+      "label": "Page encoding & compression",
+      "caption": "Headers and encoded payload",
+      "shape": "log",
+      "group": "file",
+      "rect": [
+        941,
+        763,
+        454,
+        106
+      ],
+      "evidence": [
+        "chunk",
+        "page",
+        "readpage"
+      ],
+      "detail": "Page writing produces encoded bytes and applies the configured compression; page header sizes drive reading.",
+      "fields": [
+        "ChunkWriterImpl",
+        "PageWriter",
+        "PageHeader"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "request",
+      "from": "client",
+      "to": "rpc",
+      "kind": "control",
+      "label": "Client RPC",
+      "via": [
+        [
+          398,
+          116
+        ]
+      ]
+    },
+    {
+      "id": "cfg-part",
+      "from": "cfg",
+      "to": "part",
+      "kind": "control",
+      "label": "Partition metadata",
+      "via": []
+    },
+    {
+      "id": "resolve",
+      "from": "part",
+      "to": "parse",
+      "kind": "control",
+      "label": "Schema/partition lookup",
+      "via": [
+        [
+          302,
+          392
+        ],
+        [
+          302,
+          192
+        ],
+        [
+          452,
+          192
+        ]
+      ]
+    },
+    {
+      "id": "rpc-parse",
+      "from": "rpc",
+      "to": "parse",
+      "kind": "control",
+      "label": "Tree-model statement",
+      "via": [
+        [
+          668,
+          151
+        ],
+        [
+          451,
+          151
+        ]
+      ]
+    },
+    {
+      "id": "rpc-consensus",
+      "from": "rpc",
+      "to": "consensus",
+      "kind": "control",
+      "label": "Region write dispatch",
+      "via": [
+        [
+          941,
+          113
+        ],
+        [
+          941,
+          151
+        ],
+        [
+          1254,
+          151
+        ]
+      ]
+    },
+    {
+      "id": "route-schema",
+      "from": "rpc",
+      "to": "schema",
+      "kind": "control",
+      "label": "Schema lookup",
+      "via": []
+    },
+    {
+      "id": "analyze-plan",
+      "from": "parse",
+      "to": "plan",
+      "kind": "control",
+      "label": "Analyzed statement",
+      "via": []
+    },
+    {
+      "id": "plan-dist",
+      "from": "plan",
+      "to": "dist",
+      "kind": "control",
+      "label": "Distributed fragment plan",
+      "via": [
+        [
+          677,
+          279
+        ],
+        [
+          451,
+          279
+        ]
+      ]
+    },
+    {
+      "id": "dist-instance",
+      "from": "dist",
+      "to": "fragment",
+      "kind": "control",
+      "label": "Fragment instances",
+      "via": []
+    },
+    {
+      "id": "instance-driver",
+      "from": "fragment",
+      "to": "driver",
+      "kind": "control",
+      "label": "Plan to execution",
+      "via": [
+        [
+          678,
+          379
+        ],
+        [
+          451,
+          379
+        ]
+      ]
+    },
+    {
+      "id": "driver-exchange",
+      "from": "driver",
+      "to": "exchange",
+      "kind": "data",
+      "label": "Intermediate TsBlocks",
+      "via": []
+    },
+    {
+      "id": "driver-scan",
+      "from": "driver",
+      "to": "scan",
+      "kind": "control",
+      "label": "Scan operators",
+      "via": []
+    },
+    {
+      "id": "region-scan",
+      "from": "region",
+      "to": "scan",
+      "kind": "data",
+      "label": "Query data source",
+      "via": [
+        [
+          812,
+          240
+        ],
+        [
+          812,
+          524
+        ]
+      ]
+    },
+    {
+      "id": "apply",
+      "from": "consensus",
+      "to": "region",
+      "kind": "control",
+      "label": "Local state-machine apply",
+      "via": []
+    },
+    {
+      "id": "region-processor",
+      "from": "region",
+      "to": "processor",
+      "kind": "data",
+      "label": "Route insert",
+      "via": []
+    },
+    {
+      "id": "processor-wal",
+      "from": "processor",
+      "to": "wal",
+      "kind": "storage",
+      "label": "WAL log",
+      "via": [
+        [
+          905,
+          370
+        ]
+      ]
+    },
+    {
+      "id": "wal-mem",
+      "from": "wal",
+      "to": "mem",
+      "kind": "data",
+      "label": "WAL acknowledged \u2192 mutate MemTable",
+      "via": []
+    },
+    {
+      "id": "sync",
+      "from": "wal",
+      "to": "consensus",
+      "kind": "replica",
+      "label": "Indexed log dispatch to peers",
+      "via": [
+        [
+          905,
+          372
+        ],
+        [
+          1110,
+          372
+        ],
+        [
+          1110,
+          251
+        ]
+      ]
+    },
+    {
+      "id": "mem-flush",
+      "from": "mem",
+      "to": "flush",
+      "kind": "storage",
+      "label": "Flushing MemTable",
+      "via": [
+        [
+          1114,
+          422
+        ],
+        [
+          1114,
+          345
+        ]
+      ]
+    },
+    {
+      "id": "flush-files",
+      "from": "flush",
+      "to": "files",
+      "kind": "storage",
+      "label": "Append/seal resource",
+      "via": []
+    },
+    {
+      "id": "file-compaction",
+      "from": "files",
+      "to": "compaction",
+      "kind": "storage",
+      "label": "Schedule rewrite",
+      "via": [
+        [
+          1253,
+          478
+        ],
+        [
+          927,
+          478
+        ]
+      ]
+    },
+    {
+      "id": "file-tier",
+      "from": "files",
+      "to": "tier",
+      "kind": "storage",
+      "label": "Placement uses configured folders",
+      "via": [
+        [
+          1249,
+          485
+        ],
+        [
+          1105,
+          485
+        ]
+      ]
+    },
+    {
+      "id": "ttl-scan",
+      "from": "ttl",
+      "to": "scan",
+      "kind": "control",
+      "label": "TTL filtering policy",
+      "via": [
+        [
+          1288,
+          572
+        ],
+        [
+          804,
+          572
+        ],
+        [
+          804,
+          525
+        ]
+      ]
+    },
+    {
+      "id": "write-file",
+      "from": "files",
+      "to": "writer",
+      "kind": "storage",
+      "label": "Storage writer",
+      "via": [
+        [
+          1390,
+          431
+        ],
+        [
+          1390,
+          617
+        ],
+        [
+          449,
+          617
+        ]
+      ]
+    },
+    {
+      "id": "write-layout",
+      "from": "writer",
+      "to": "layout",
+      "kind": "storage",
+      "label": "Serialized data",
+      "via": []
+    },
+    {
+      "id": "lookup",
+      "from": "layout",
+      "to": "index",
+      "kind": "storage",
+      "label": "Read metadata index",
+      "via": []
+    },
+    {
+      "id": "index-read",
+      "from": "index",
+      "to": "reader",
+      "kind": "storage",
+      "label": "Locate chunks",
+      "via": []
+    },
+    {
+      "id": "read-page",
+      "from": "reader",
+      "to": "page-codec",
+      "kind": "storage",
+      "label": "Read and decode page",
+      "via": []
+    },
+    {
+      "id": "read-scan",
+      "from": "reader",
+      "to": "scan",
+      "kind": "data",
+      "label": "Persisted data",
+      "via": [
+        [
+          1152,
+          655
+        ],
+        [
+          565,
+          655
+        ],
+        [
+          565,
+          606
+        ]
+      ]
+    },
+    {
+      "id": "task-source",
+      "from": "pipe-task",
+      "to": "capture",
+      "kind": "control",
+      "label": "Configure task",
+      "via": []
+    },
+    {
+      "id": "capture-send",
+      "from": "capture",
+      "to": "delivery",
+      "kind": "data",
+      "label": "Pipe event",
+      "via": []
+    },
+    {
+      "id": "send-receive",
+      "from": "delivery",
+      "to": "receive",
+      "kind": "data",
+      "label": "Cross-cluster transport",
+      "via": []
+    },
+    {
+      "id": "wal-capture",
+      "from": "wal",
+      "to": "capture",
+      "kind": "data",
+      "label": "Realtime insertion events",
+      "via": [
+        [
+          829,
+          420
+        ],
+        [
+          806,
+          420
+        ],
+        [
+          806,
+          600
+        ],
+        [
+          302,
+          600
+        ],
+        [
+          302,
+          662
+        ]
+      ]
+    },
+    {
+      "id": "file-capture",
+      "from": "layout",
+      "to": "capture",
+      "kind": "storage",
+      "label": "Historical file events",
+      "via": [
+        [
+          301,
+          817
+        ],
+        [
+          301,
+          677
+        ]
+      ]
+    }
+  ],
+  "tracks": [
+    {
+      "id": "write",
+      "label": "Write path",
+      "edges": [
+        "request",
+        "rpc-consensus",
+        "apply",
+        "region-processor",
+        "processor-wal",
+        "wal-mem",
+        "mem-flush",
+        "flush-files",
+        "write-file",
+        "write-layout"
+      ]
+    },
+    {
+      "id": "query",
+      "label": "Query path",
+      "edges": [
+        "request",
+        "rpc-parse",
+        "analyze-plan",
+        "plan-dist",
+        "dist-instance",
+        "instance-driver",
+        "driver-exchange",
+        "driver-scan",
+        "lookup",
+        "index-read",
+        "read-page",
+        "read-scan"
+      ]
+    },
+    {
+      "id": "replication",
+      "label": "Peer replication",
+      "edges": [
+        "rpc-consensus",
+        "apply",
+        "region-processor",
+        "processor-wal",
+        "sync"
+      ]
+    },
+    {
+      "id": "pipe-flow",
+      "label": "Pipe delivery",
+      "edges": [
+        "task-source",
+        "wal-capture",
+        "capture-send",
+        "send-receive"
+      ]
+    }
+  ],
+  "contributions": {
+    "wal-retention": [
+      "wal",
+      "consensus"
+    ],
+    "multi-recovery": [
+      "writer",
+      "layout",
+      "index"
+    ],
+    "deletion-wal": [
+      "processor",
+      "wal",
+      "flush"
+    ],
+    "tier-full-recovery": [
+      "tier"
+    ]
+  },
+  "overview": "Client access, distribution, replication and the TsFile boundary in one drawing.",
+  "modules": {
+    "system": [
+      "rpc"
+    ],
+    "storage-engine": [
+      "region",
+      "processor",
+      "files"
+    ],
+    "iotconsensus-v1": [
+      "consensus"
+    ],
+    "tsfile": [
+      "layout",
+      "writer",
+      "reader"
+    ]
+  },
+  "pins": [
+    "node",
+    "writer"
+  ]
+}

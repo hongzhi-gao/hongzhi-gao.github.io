@@ -1,0 +1,13 @@
+---
+const {home=false}=Astro.props as {home?:boolean};
+---
+<div class:list={['holo-environment',home&&'holo-environment-home']} data-holo-environment data-room={home?'home':'exhibit'} aria-hidden="true">
+  <div class="holo-aurora"></div>
+  <canvas class="holo-canvas" data-holo-canvas></canvas>
+  <div class="holo-grain"></div>
+</div>
+<script>
+  import { mountEnvironment } from '../visual/environment';
+  const stage=document.querySelector<HTMLElement>('[data-holo-environment]');
+  if(stage)mountEnvironment(stage);
+</script>

@@ -1,0 +1,7 @@
+---
+import ArchitectureDrawing from './ArchitectureDrawing.astro';
+import { graphFor } from '../structure/data';
+import '../structure/structure.css';
+const graph=graphFor(Astro.props.projectId);
+---
+{graph&&<ArchitectureDrawing graph={graph} preview />}

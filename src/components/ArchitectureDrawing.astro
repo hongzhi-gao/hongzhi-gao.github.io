@@ -1,0 +1,53 @@
+---
+import StructureGlyph from './StructureGlyph.astro';
+import { route } from '../structure/data';
+import type { Graph } from '../structure/data';
+const {graph,preview=false}=Astro.props as {graph:Graph;preview?:boolean};
+const nodes=new Map(graph.nodes.map(node=>[node.id,node]));
+const marker=`${graph.id}-${preview?'mini':'full'}`;
+---
+<svg class:list={['architecture-drawing',preview&&'drawing-preview']} data-drawing viewBox={`0 0 ${graph.width} ${graph.height}`} aria-hidden={preview?'true':undefined} role={preview?undefined:'group'} aria-label={preview?undefined:'Source architecture diagram'}>
+  <defs>
+    <marker id={marker} viewBox="0 0 8 8" refX="7" refY="4" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="m1 1 5 3-5 3" fill="none" stroke="#a1a1aa" stroke-width="1.15"/></marker>
+  </defs>
+  <g data-camera>
+    {graph.groups.map(group=><g class:list={['drawing-group',group.parent&&'drawing-nested',group.id==='proposal'&&'drawing-proposal']}>
+      <rect x={group.rect[0]} y={group.rect[1]} width={group.rect[2]} height={group.rect[3]} rx="5"/>
+      <text x={group.rect[0]+17} y={group.rect[1]+25}>{group.title}</text>
+      <text class="group-note" x={group.rect[0]+17} y={group.rect[1]+39}>{group.note}</text>
+    </g>)}
+    <g class="drawing-edges">
+      {graph.edges.map(edge=>{
+        const d=route(edge,nodes);
+        return <g data-edge={edge.id} data-kind={edge.kind}>
+          <path class="base-edge" d={d} marker-end={preview?undefined:`url(#${marker})`}/>
+          {!preview&&<><path class="edge-halo" d={d}/><path class="edge-pulse" d={d} pathLength="100"/></>}
+        </g>;
+      })}
+    </g>
+    {graph.nodes.map(node=>{
+      const [x,y,w,h]=node.rect;
+      const section = node.id === "layout" && node.shape === "file";
+      const fields = node.fields.slice(0,w>240?2:1).join("  /  ");
+      const count=Object.values(graph.contributions).filter(related=>related.includes(node.id)).length;
+      return <g transform={`translate(${x} ${y})`} data-node-id={node.id} data-shape={node.shape} class:list={['drawing-node',node.proposal&&'node-proposal']} tabindex={preview?undefined:0} role={preview?undefined:'button'} aria-pressed={preview?undefined:'false'} aria-label={preview?undefined:`${node.label}. ${node.caption}`}>
+        <rect class="node-body" width={w} height={h} rx="3"/>
+        <path class="node-notch" d="M0 14V0H14"/>
+        <text class="node-label" x="11" y="21" textLength={node.label.length*8>w-30?w-30:undefined} lengthAdjust="spacingAndGlyphs">{node.label}</text>
+        <text class="node-caption" x="11" y="37">{node.caption}</text>
+        {section ? <g class="tsfile-section" transform="translate(11 46)" aria-hidden="true">
+          <rect x="0" y="0" width="61" height="45" rx="2"/><text x="10" y="26">HEADER</text>
+          <rect x="67" y="0" width="287" height="45" rx="2"/><text x="75" y="12">CHUNKGROUP</text>
+          <rect class="section-chunk" x="151" y="7" width="145" height="31" rx="2"/><text x="159" y="20">CHUNK</text>
+          <rect class="section-page" x="212" y="13" width="37" height="19"/><text x="218" y="26">PAGE</text>
+          <rect class="section-page" x="253" y="13" width="36" height="19"/><text x="259" y="26">PAGE</text>
+          <path d="M305 23h35m-9-4 9 4-9 4"/>
+          <rect x="360" y="0" width="122" height="45" rx="2"/><text x="369" y="26">METADATA + INDEX</text>
+          <rect x="488" y="0" width="70" height="45" rx="2"/><text x="500" y="26">TAIL</text>
+        </g> : <StructureGlyph shape={node.shape} w={w} h={h}/>}
+        {!section&&fields&&<text class="node-fields" x="11" y={h-10} textLength={fields.length*6>w-20?w-20:undefined} lengthAdjust="spacingAndGlyphs">{fields}</text>}
+        {count>0&&!preview&&<g class="node-contributions" transform={`translate(${w-13} 12)`}><circle r="8"/><text text-anchor="middle" y="3.5">{count}</text></g>}
+      </g>;
+    })}
+  </g>
+</svg>

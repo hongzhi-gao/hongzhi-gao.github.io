@@ -2,8 +2,10 @@
 import '@fontsource-variable/inter';
 import '@fontsource-variable/space-grotesk';
 import '../style.css';
+import '../visual/theme.css';
+import HolographicEnvironment from '../components/HolographicEnvironment.astro';
 import profile from '../../config/profile.json';
-const {title, workbench = false, description = 'An interactive field guide to distributed storage systems and open-source engineering by Hongzhi Gao.'} = Astro.props;
+const {title, home = false, description = 'An interactive field guide to distributed storage systems and open-source engineering by Hongzhi Gao.'} = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 <!doctype html>
@@ -13,7 +15,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>{title} · Hongzhi Gao</title>
 <meta name="description" content={description} />
-<meta name="theme-color" content="#090f15" />
+<meta name="theme-color" content="#0A0A0B" />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:type" content="website" />
@@ -21,17 +23,22 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 <link rel="alternate" type="application/rss+xml" title="Engineering notes" href="/rss.xml" />
 <link rel="icon" href="/mark.svg" type="image/svg+xml" />
 </head>
-<body>
+<body class:list={['atlas-site',home&&'atlas-site-home']}>
+<HolographicEnvironment home={home} />
 <a class="skip" href="#main">Skip to content</a>
-<header class:list={['site-header',workbench&&'workbench-header']}><div class="shell header-inner">
-<a class="wordmark" href="/"><img src="/mark.svg" alt="" width="33" height="33" /><span>Hongzhi Gao<small>ENGINEERING ATLAS</small></span></a>
-{workbench ? <nav aria-label="Projects"><a href="#iotdb-tsfile">IoTDB &amp; TsFile</a><a href="#mooncake-store">Mooncake Store</a></nav> : <nav aria-label="Main navigation"><a href="/">Workbench</a><a href="/lab/">Architecture Lab</a><a href="/contributions/">Contributions</a><a href="/blog/">Notes</a></nav>}
-<a class="github-link" href={profile.verified ? `https://github.com/${profile.github}` : '#about'}>GitHub</a>
+<header class="site-header"><div class="shell header-inner">
+<a class="wordmark" href="/"><span class="holo-mark" aria-hidden="true"><span></span><span></span><span></span></span><span>Hongzhi Gao</span></a>
+<nav aria-label="Main navigation" class="atlas-nav">
+  <a href={home?'#projects':'/#projects'} aria-current={home?'page':undefined}>Projects</a>
+  <a href="/projects/iotdb-tsfile/" aria-current={Astro.url.pathname.startsWith('/projects/iotdb-tsfile/')?'page':undefined}>IoTDB &amp; TsFile</a>
+  <a href="/projects/mooncake-store/" aria-current={Astro.url.pathname.startsWith('/projects/mooncake-store/')?'page':undefined}>Mooncake Store</a>
+</nav>
+{profile.verified&&<a class="holo-button holo-button-quiet atlas-github" data-magnetic href={`https://github.com/${profile.github}`}>GitHub</a>}
 </div></header>
 <main id="main"><slot /></main>
 <footer class="site-footer"><div class="shell footer-inner">
-<div><a class="wordmark" href="/"><img src="/mark.svg" alt="" width="31" height="31" /><span>Hongzhi Gao<small>ENGINEERING ATLAS</small></span></a></div>
-<div>{workbench&&<a href="/blog/">Technical notes</a>}<a href={`mailto:${profile.email}`}>Apache email</a><a href="/rss.xml">RSS</a><a href={`https://github.com/${profile.github}/${profile.github}.github.io`}>Site source</a></div>
+<div><a class="wordmark" href="/"><span class="holo-mark" aria-hidden="true"><span></span><span></span><span></span></span><span>Hongzhi Gao</span></a></div>
+<div><a href="/blog/">Technical notes</a><a href={`mailto:${profile.email}`}>Apache email</a><a href="/rss.xml">RSS</a><a href={`https://github.com/${profile.github}/${profile.github}.github.io`}>Site source</a></div>
 </div></footer>
 </body>
 </html>
