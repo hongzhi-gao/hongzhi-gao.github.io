@@ -1,10 +1,9 @@
 ---
 const {home=false}=Astro.props as {home?:boolean};
 ---
-<div class:list={['holo-environment',home&&'holo-environment-home']} data-holo-environment data-room={home?'home':'exhibit'} aria-hidden="true">
-  <div class="holo-aurora"></div>
+<div class="holo-environment" data-holo-environment data-room={home?'home':'exhibit'} aria-hidden="true">
+  {home && <div class="holo-ambient"><div class="holo-aurora"></div><div class="holo-grain"></div></div>}
   <canvas class="holo-canvas" data-holo-canvas></canvas>
-  <div class="holo-grain"></div>
 </div>
 <script>
   import { mountEnvironment } from '../visual/environment';

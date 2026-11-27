@@ -1,5 +1,4 @@
 .source-project {
-  --drawing-bg: #111113;
   --drawing-ink: #fafafa;
   --drawing-line: #333336;
   --drawing-subtle: #a1a1aa;
@@ -100,7 +99,7 @@
   cursor: grab;
   user-select: none;
   overflow: hidden;
-  background-color: #111113;
+  background-color: var(--atlas-canvas);
   background-image: radial-gradient(circle, #8b8b9e29 1px, transparent 1.5px);
   background-size: 18px 18px;
 }
@@ -207,7 +206,7 @@
 .contribution-module { font-size:.72rem; color:#b3b3bf; }
 .contribution-detail,[data-no-contributions] { color:#94949f; font-size:.77rem; line-height:1.35; }
 [data-no-contributions] { margin:13px; }
-.drawing-preview { pointer-events:none; width:100%; height:auto; background:#111113; }
+.drawing-preview { pointer-events:none; width:100%; height:auto; background:var(--atlas-canvas); }
 .drawing-preview .base-edge { opacity:.45; }
 @media(max-width:900px) {
   .source-project-head { align-items:start; flex-direction:column; gap:10px; }

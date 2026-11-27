@@ -1,6 +1,12 @@
+:root {
+  --atlas-page: #0a0a0b;
+  --atlas-canvas: #111113;
+  background-color: var(--atlas-page);
+}
+
 .atlas-site {
-  --bg: #0a0a0b;
-  --surface: #111113;
+  --bg: var(--atlas-page);
+  --surface: var(--atlas-canvas);
   --line: #333336;
   --contrast: #fafafa;
   --muted: #a1a1aa;
@@ -20,9 +26,8 @@
 
 .atlas-site .site-header {
   height: 71px;
-  background: #0a0a0bd9;
+  background: var(--atlas-page);
   border-bottom: 1px solid #333336a3;
-  backdrop-filter: blur(17px);
 }
 
 .atlas-site .header-inner,
@@ -32,7 +37,7 @@
 }
 
 .atlas-site .site-footer {
-  background: #0a0a0bbc;
+  background: var(--atlas-page);
   border-color: #33333699;
 }
 
@@ -185,8 +190,7 @@
 }
 
 .holo-environment,
-.holo-aurora,
-.holo-grain,
+.holo-ambient,
 .holo-canvas {
   position: fixed;
   inset: 0;
@@ -198,6 +202,12 @@
   z-index: 4;
 }
 
+.holo-ambient {
+  height: min(82vh, 740px);
+  overflow: hidden;
+  mask-image: radial-gradient(ellipse 48% 58% at 79% 51%, #000 18%, transparent 87%);
+}
+
 .holo-canvas {
   width: 100%;
   height: 100%;
@@ -205,10 +215,11 @@
 }
 
 .holo-aurora {
+  position: absolute;
   inset: 0 auto auto 0;
   width: min(72vw, 920px);
   height: min(58vh, 590px);
-  opacity: calc(var(--holo-energy, 0.78) * 0.28);
+  opacity: calc(var(--holo-energy, 0.78) * 0.67);
   transform: translate3d(
       calc(var(--holo-x, 76vw) - 50%),
       calc(var(--holo-y, 38vh) - 50% - var(--holo-scroll, 0px)),
@@ -231,11 +242,9 @@
     );
 }
 
-.holo-environment-home .holo-aurora {
-  opacity: calc(var(--holo-energy, 0.78) * 0.67);
-}
-
 .holo-grain {
+  position: absolute;
+  inset: 0;
   opacity: 0.047;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 185 185' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.94' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size: 185px 185px;
