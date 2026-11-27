@@ -2,9 +2,9 @@
 import Base from '../../layouts/Base.astro';
 import ArchitectureCanvas from '../../components/ArchitectureCanvas.astro';
 import { graphFor } from '../../structure/data';
-import { projects } from '../../architecture-ir/data';
+import { projects, projectSlug } from '../../architecture-ir/data';
 export function getStaticPaths() {
-  return projects.filter(project=>graphFor(project.id)).map(project=>({params:{project:project.id},props:{project,graph:graphFor(project.id)!}}));
+  return projects.filter(project=>graphFor(project.id)).map(project=>({params:{project:projectSlug(project.id)},props:{project,graph:graphFor(project.id)!}}));
 }
 const {project,graph}=Astro.props;
 ---

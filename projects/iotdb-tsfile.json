@@ -487,6 +487,50 @@
       "sha": "dc790cca0aac847f678aaa4214fc7ac2ba1a6bf5",
       "path": "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/pipe/receiver/protocol/thrift/IoTDBDataNodeReceiver.java",
       "label": "IoTDBDataNodeReceiver.java"
+    },
+    {
+      "id": "iiot-ecosystem",
+      "repo": "apache/iotdb",
+      "sha": "dc790cca0aac847f678aaa4214fc7ac2ba1a6bf5",
+      "path": "README.md",
+      "label": "IoTDB industrial data collection",
+      "lines": [
+        37,
+        39
+      ]
+    },
+    {
+      "id": "grafana-ecosystem",
+      "repo": "apache/iotdb",
+      "sha": "dc790cca0aac847f678aaa4214fc7ac2ba1a6bf5",
+      "path": "README.md",
+      "label": "IoTDB ecosystem integrations",
+      "lines": [
+        55,
+        55
+      ]
+    },
+    {
+      "id": "grafana-rest",
+      "repo": "apache/iotdb",
+      "sha": "dc790cca0aac847f678aaa4214fc7ac2ba1a6bf5",
+      "path": "external-service-impl/rest/src/main/java/org/apache/iotdb/rest/protocol/v2/impl/GrafanaApiServiceImpl.java",
+      "label": "Grafana REST query handler",
+      "lines": [
+        166,
+        222
+      ]
+    },
+    {
+      "id": "tsfile-ecosystem",
+      "repo": "apache/tsfile",
+      "sha": "405a13b868054c3d96aae64ed3c9f771f211e4a3",
+      "path": "README.md",
+      "label": "Spark and Flink integration",
+      "lines": [
+        37,
+        37
+      ]
     }
   ],
   "versions": [
