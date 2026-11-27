@@ -1,0 +1,8 @@
+---
+import Base from '../../layouts/Base.astro';
+import {projects} from '../../architecture-ir/data';
+---
+<Base title="Architecture Lab">
+<section class="shell page-intro"><p class="eyebrow">INTERACTIVE EXPLORER</p><h1>Architecture Lab</h1><p>Replay a storage path, inspect peer progress or unpack a file. Every exhibit links to a pinned source revision.</p><div class="actions"><a class="button soft" href="/evolution/">Architecture time machine</a></div></section>
+<section class="shell inner-content lab-catalog">{projects.map(project=><div style={`--mint:${project.accent}`}><h2>{project.name}</h2>{project.scenarios.filter(scenario=>scenario.status!=='historical').map(scenario=><a href={`/lab/${scenario.id}/`}><strong>{scenario.title}</strong><span>{scenario.summary}</span></a>)}</div>)}</section>
+</Base>

@@ -1,0 +1,53 @@
+---
+import Base from '../layouts/Base.astro';
+import profile from '../../config/profile.json';
+import { contributionEntries } from '../architecture-ir/contributions';
+import { projects } from '../architecture-ir/data';
+import { getCollection } from 'astro:content';
+const featured = projects.flatMap(project => contributionEntries(project).slice(0,2).map(entry => ({...entry, project: project.name})));
+const recent = (await getCollection('posts', ({data}) => !data.draft)).sort((a,b) => +b.data.date - +a.data.date).slice(0,3);
+---
+<Base title="Architecture in motion">
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-viewport" aria-hidden="true"><canvas id="hero-canvas"></canvas><div class="hero-grid"></div></div>
+  <div class="shell hero-inner">
+    <div class="hero-copy">
+      <p class="eyebrow"><span class="signal"></span> OPEN SOURCE ENGINEERING</p>
+      <h1 id="hero-title">Architecture<br />in <em>motion.</em></h1>
+      <p class="hero-subtitle">Don’t just read the architecture. Watch it come alive.</p>
+      <p class="hero-detail">Explore the storage engines, consensus protocols and cache infrastructure behind my open-source work.</p>
+      <div class="actions"><a class="button primary" href="/lab/"><span class="play-icon" aria-hidden="true"></span> Enter the Architecture Lab</a><a class="button soft" href="#projects">Browse projects</a></div>
+    </div>
+    <div class="hero-captions"><span><i></i> Distributed storage</span><span><i></i> Consensus</span><span><i></i> Database kernels</span><span><i></i> KV cache</span></div>
+  </div>
+</section>
+<section class="shell section" id="projects">
+  <div class="section-heading"><div><p class="eyebrow">PROJECT INDEX</p><h2>Explore the systems</h2></div><p>Two open-source project tracks, from cluster topology to file layout and individual code paths.</p></div>
+  <div class="project-index">
+  {projects.map(project => <a class="project-panel" href={`/projects/${project.id}/`} style={`--project-accent:${project.accent}`}>
+    <div class:list={['project-art',project.id]} aria-hidden="true"><div></div><div></div><div></div><div></div><div></div></div>
+    <div class="project-caption"><p class="eyebrow">{project.domain}</p><h3>{project.name}</h3><p>{project.description}</p><strong>Explore project <span aria-hidden="true">+</span></strong></div>
+  </a>)}
+  </div>
+</section>
+<section class="section evidence-section"><div class="shell">
+  <div class="section-heading"><div><p class="eyebrow">SOURCE EVIDENCE</p><h2>Selected contributions</h2></div><a class="button soft" href="/contributions/">View contribution timeline</a></div>
+  <div class="contribution-list">
+  {featured.map(item => <article class="contribution-row">
+    <p class="row-meta">{item.project}<small>{item.module.replaceAll('-', ' ')}</small></p>
+    <div><h3>{item.title}</h3><p>{item.problem} {item.design}</p></div>
+    <div class="row-links"><span class:list={['status', item.status]}>{item.status}</span><a href={`/lab/${item.scenario}/`}>Replay</a><a href={`https://github.com/${item.repository}/pull/${item.number}`}>PR #{item.number}</a></div>
+  </article>)}
+  </div>
+</div></section>
+<section class="shell section about" id="about">
+  <div><p class="eyebrow">ABOUT</p><h2>{profile.name}<span lang="zh-Hans">{profile.nameZh}</span></h2></div>
+  <div><p>{profile.role} · {profile.education}</p><p>I work on distributed storage systems, consensus protocols and database kernels, with open-source contributions to Apache IoTDB, Apache TsFile and Mooncake Store.</p><div class="actions">{profile.verified && <a href={`https://github.com/${profile.github}`}>GitHub profile</a>}<a href={`mailto:${profile.email}`}>{profile.email}</a></div></div>
+</section>
+{recent.length > 0 && <section class="shell section notes-preview"><div class="section-heading"><div><p class="eyebrow">TECHNICAL BLOG</p><h2>Engineering notes</h2></div><a class="button soft" href="/blog/">All notes</a></div>{recent.map(post => <a href={`/blog/${post.id}/`}><strong>{post.data.title}</strong><span>{post.data.description}</span></a>)}</section>}
+</Base>
+<script>
+  import {mountHero} from '../engine/hero';
+  const canvas = document.querySelector<HTMLCanvasElement>('#hero-canvas');
+  if (canvas) mountHero(canvas);
+</script>

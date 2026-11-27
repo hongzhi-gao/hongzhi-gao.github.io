@@ -1,0 +1,16 @@
+---
+import Base from '../../layouts/Base.astro';
+import Explorer from '../../components/Explorer.astro';
+import {exhibits} from '../../architecture-ir/data';
+export function getStaticPaths(){return exhibits.map(item=>({params:{exhibit:item.scenario.id},props:item}))}
+const {project,scenario}=Astro.props;
+const module=project.modules.find(item=>item.scenarios.includes(scenario.id))!;
+---
+<Base title={scenario.title} description={scenario.summary}>
+<div class="shell expo-wrap">
+<nav aria-label="Breadcrumb" class="breadcrumbs"><a href="/lab/">Architecture Lab</a> / <a href={`/projects/${project.id}/`}>{project.name}</a> / <span>{module.title}</span></nav>
+<section class="page-intro exhibit-intro"><p class="eyebrow" style={`--mint:${project.accent}`}>{project.short} / {module.title}</p><h1>{scenario.title}</h1><p>{scenario.summary}</p></section>
+<Explorer project={project} scenario={scenario} />
+<div class="related-links"><a href={`/projects/${project.id}/`}>Back to project</a><a href={`/evolution/#${project.id}`}>Compare versions</a><a href="/lab/">All exhibits</a></div>
+</div>
+</Base>

@@ -1,0 +1,14 @@
+---
+import Base from '../../layouts/Base.astro';
+import {projects} from '../../architecture-ir/data';
+import {contributionEntries,publicActivity} from '../../architecture-ir/contributions';
+const entries=projects.flatMap(project=>contributionEntries(project).map(entry=>({...entry, project:project.name}))).sort((a,b)=>b.date.localeCompare(a.date));
+const featured=new Set(entries.map(entry=>`${entry.repository}:pull:${entry.number}`));
+const synced=publicActivity.filter(entry=>!featured.has(entry.key)).slice(0,100);
+---
+<Base title="Open-source contributions">
+<section class="shell page-intro"><p class="eyebrow">CONTRIBUTION TIMELINE</p><h1>Open-source work</h1><p>Explore my contributions by repository, engineering problem and public evidence.</p></section>
+<div class="shell inner-content"><div class="contribution-list">{entries.map(entry=><article class="contribution-row"><p class="row-meta"><time datetime={entry.date}>{entry.date}</time><small>{entry.project} · {entry.role}</small></p><div><h3>{entry.title}</h3><p>{entry.problem} {entry.design}</p></div><div class="row-links"><span class:list={['status',entry.status]}>{entry.status}</span><a href={`/lab/${entry.scenario}/`}>Replay</a><a href={`https://github.com/${entry.repository}/pull/${entry.number}`}>PR #{entry.number}</a></div></article>)}</div>
+{synced.length>0&&<><h2>GitHub activity</h2><div class="contribution-list">{synced.map(entry=><article class="contribution-row"><p class="row-meta">{entry.date.slice(0,10)}<small>{entry.repo} · {entry.role}</small></p><div><h3><a href={entry.url}>{entry.title}</a></h3>{entry.module&&<p id={synced.find(item=>item.module===entry.module)===entry?`activity-${entry.module}`:undefined}>Matched source path · {entry.module}</p>}</div><span>{entry.status}</span></article>)}</div></>}
+</div>
+</Base>

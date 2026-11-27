@@ -1,0 +1,1520 @@
+{
+  "schemaVersion": 1,
+  "id": "mooncake-store",
+  "name": "Mooncake Store",
+  "short": "Mooncake",
+  "domain": "DISTRIBUTED KV CACHE",
+  "description": "Follow a cache object from client allocation to transfer, replica visibility and recovery.",
+  "accent": "#a9b0ff",
+  "repos": [
+    "kvcache-ai/Mooncake"
+  ],
+  "evidence": [
+    {
+      "id": "master",
+      "repo": "kvcache-ai/Mooncake",
+      "sha": "e57be7d873799eb2f1a7eaaa59e80444a5b65f12",
+      "path": "mooncake-store/src/master_service.cpp",
+      "label": "master_service.cpp",
+      "lines": [
+        5341,
+        5358
+      ]
+    },
+    {
+      "id": "master-end",
+      "repo": "kvcache-ai/Mooncake",
+      "sha": "e57be7d873799eb2f1a7eaaa59e80444a5b65f12",
+      "path": "mooncake-store/src/master_service.cpp",
+      "label": "master_service.cpp",
+      "lines": [
+        5426,
+        5456
+      ]
+    },
+    {
+      "id": "list",
+      "repo": "kvcache-ai/Mooncake",
+      "sha": "e57be7d873799eb2f1a7eaaa59e80444a5b65f12",
+      "path": "mooncake-store/src/master_service.cpp",
+      "label": "master_service.cpp",
+      "lines": [
+        4664,
+        4710
+      ]
+    },
+    {
+      "id": "replica",
+      "repo": "kvcache-ai/Mooncake",
+      "sha": "e57be7d873799eb2f1a7eaaa59e80444a5b65f12",
+      "path": "mooncake-store/include/replica.h",
+      "label": "replica.h"
+    },
+    {
+      "id": "client",
+      "repo": "kvcache-ai/Mooncake",
+      "sha": "e57be7d873799eb2f1a7eaaa59e80444a5b65f12",
+      "path": "mooncake-store/src/client_service.cpp",
+      "label": "client_service.cpp"
+    },
+    {
+      "id": "metadata",
+      "repo": "kvcache-ai/Mooncake",
+      "sha": "e57be7d873799eb2f1a7eaaa59e80444a5b65f12",
+      "path": "mooncake-store/include/object_metadata.h",
+      "label": "object_metadata.h"
+    },
+    {
+      "id": "segment",
+      "repo": "kvcache-ai/Mooncake",
+      "sha": "e57be7d873799eb2f1a7eaaa59e80444a5b65f12",
+      "path": "mooncake-store/include/segment.h",
+      "label": "segment.h"
+    },
+    {
+      "id": "transfer",
+      "repo": "kvcache-ai/Mooncake",
+      "sha": "e57be7d873799eb2f1a7eaaa59e80444a5b65f12",
+      "path": "mooncake-transfer-engine/include/transfer_engine.h",
+      "label": "transfer_engine.h"
+    },
+    {
+      "id": "object-backend",
+      "repo": "kvcache-ai/Mooncake",
+      "sha": "e57be7d873799eb2f1a7eaaa59e80444a5b65f12",
+      "path": "mooncake-store/src/storage/distributed/object_storage_backend.cpp",
+      "label": "object_storage_backend.cpp"
+    },
+    {
+      "id": "io-merged",
+      "repo": "kvcache-ai/Mooncake",
+      "sha": "446237a56672ce3eb7ed2e73e780eb52c6e86d3a",
+      "path": "mooncake-store/src/storage/distributed/object_storage_backend.cpp",
+      "label": "object_storage_backend.cpp"
+    },
+    {
+      "id": "io-test",
+      "repo": "kvcache-ai/Mooncake",
+      "sha": "446237a56672ce3eb7ed2e73e780eb52c6e86d3a",
+      "path": "mooncake-store/tests/object_storage_backend_test.cpp",
+      "label": "object_storage_backend_test.cpp"
+    },
+    {
+      "id": "persist-base",
+      "repo": "kvcache-ai/Mooncake",
+      "sha": "b23dc3860f0271ca3f273980a20cd5c6cd162c59",
+      "path": "mooncake-store/src/ha/standby_metadata_store.cpp",
+      "label": "standby_metadata_store.cpp"
+    },
+    {
+      "id": "persist-doc",
+      "repo": "kvcache-ai/Mooncake",
+      "sha": "c0e80e2b997e4cd0907355f54bd4c4180e3e190f",
+      "path": "docs/source/design/store/object-storage-catalog.md",
+      "label": "object-storage-catalog.md"
+    },
+    {
+      "id": "persist-state",
+      "repo": "kvcache-ai/Mooncake",
+      "sha": "c0e80e2b997e4cd0907355f54bd4c4180e3e190f",
+      "path": "mooncake-store/include/storage/distributed/object_replica_state.h",
+      "label": "object_replica_state.h"
+    },
+    {
+      "id": "persist-test",
+      "repo": "kvcache-ai/Mooncake",
+      "sha": "c0e80e2b997e4cd0907355f54bd4c4180e3e190f",
+      "path": "mooncake-store/tests/ha/standby/standby_metadata_store_test.cpp",
+      "label": "standby_metadata_store_test.cpp"
+    },
+    {
+      "id": "sync-base",
+      "repo": "kvcache-ai/Mooncake",
+      "sha": "e46d3389f2db506383ce727f739baf948bb4f0d4",
+      "path": "mooncake-store/src/master_service.cpp",
+      "label": "master_service.cpp"
+    },
+    {
+      "id": "sync-base-data",
+      "repo": "kvcache-ai/Mooncake",
+      "sha": "e46d3389f2db506383ce727f739baf948bb4f0d4",
+      "path": "mooncake-store/include/replica.h",
+      "label": "replica.h"
+    },
+    {
+      "id": "sync-master",
+      "repo": "kvcache-ai/Mooncake",
+      "sha": "f5859ea51830de8492d46af0a90daea7ae200188",
+      "path": "mooncake-store/src/master_object_storage.cpp",
+      "label": "master_object_storage.cpp",
+      "lines": [
+        318,
+        448
+      ]
+    },
+    {
+      "id": "sync-client",
+      "repo": "kvcache-ai/Mooncake",
+      "sha": "f5859ea51830de8492d46af0a90daea7ae200188",
+      "path": "mooncake-store/src/client_object_storage.cpp",
+      "label": "client_object_storage.cpp"
+    },
+    {
+      "id": "sync-doc",
+      "repo": "kvcache-ai/Mooncake",
+      "sha": "f5859ea51830de8492d46af0a90daea7ae200188",
+      "path": "docs/source/design/store/object-storage-catalog.md",
+      "label": "object-storage-catalog.md"
+    },
+    {
+      "id": "sync-replica",
+      "repo": "kvcache-ai/Mooncake",
+      "sha": "f5859ea51830de8492d46af0a90daea7ae200188",
+      "path": "mooncake-store/include/replica.h",
+      "label": "replica.h"
+    },
+    {
+      "id": "sync-gc",
+      "repo": "kvcache-ai/Mooncake",
+      "sha": "f5859ea51830de8492d46af0a90daea7ae200188",
+      "path": "mooncake-store/src/master_object_storage.cpp",
+      "label": "master_object_storage.cpp",
+      "lines": [
+        686,
+        823
+      ]
+    },
+    {
+      "id": "sync-test",
+      "repo": "kvcache-ai/Mooncake",
+      "sha": "f5859ea51830de8492d46af0a90daea7ae200188",
+      "path": "mooncake-store/tests/object_storage_e2e.py",
+      "label": "object_storage_e2e.py"
+    }
+  ],
+  "versions": [
+    {
+      "id": "mooncake-overview",
+      "label": "Mooncake Store system overview",
+      "repo": "kvcache-ai/Mooncake",
+      "sha": "e57be7d873799eb2f1a7eaaa59e80444a5b65f12",
+      "note": "The client separates placement metadata from the path that moves cache bytes.",
+      "scenario": "mooncake-overview"
+    },
+    {
+      "id": "store-internals",
+      "label": "Inside the Store Master",
+      "repo": "kvcache-ai/Mooncake",
+      "sha": "e57be7d873799eb2f1a7eaaa59e80444a5b65f12",
+      "note": "A single MEMORY object illustrates the placement, publication and read control paths.",
+      "scenario": "store-internals"
+    },
+    {
+      "id": "object-replica-before",
+      "label": "Before · memory-only Put",
+      "repo": "kvcache-ai/Mooncake",
+      "sha": "e46d3389f2db506383ce727f739baf948bb4f0d4",
+      "note": "The parent of PR #5494 already contains object I/O and recovery foundations. This example requests a normal memory replica.",
+      "scenario": "object-replica-before"
+    },
+    {
+      "id": "object-replica-sync",
+      "label": "After · synchronous object replica",
+      "repo": "kvcache-ai/Mooncake",
+      "sha": "f5859ea51830de8492d46af0a90daea7ae200188",
+      "note": "Open PR #5494 integrates a directly readable object copy. This is the pinned proposal, not current upstream Store behavior.",
+      "scenario": "object-replica-sync",
+      "compareWith": "object-replica-before"
+    },
+    {
+      "id": "object-records",
+      "label": "Durable upload and cleanup records",
+      "repo": "kvcache-ai/Mooncake",
+      "sha": "c0e80e2b997e4cd0907355f54bd4c4180e3e190f",
+      "note": "Merged review unit #5310 supplies the persistent recovery contract used by the proposed integration.",
+      "scenario": "object-records"
+    },
+    {
+      "id": "object-io",
+      "label": "Bounded object I/O",
+      "repo": "kvcache-ai/Mooncake",
+      "sha": "446237a56672ce3eb7ed2e73e780eb52c6e86d3a",
+      "note": "The merged backend carries bytes for object operations as an independent I/O layer.",
+      "scenario": "object-io"
+    }
+  ],
+  "modules": [
+    {
+      "id": "system",
+      "title": "System overview",
+      "description": "Inference integration, Store control plane and the transfer and storage data plane.",
+      "scenarios": [
+        "mooncake-overview"
+      ]
+    },
+    {
+      "id": "store",
+      "title": "Store architecture",
+      "description": "ObjectMetadata, replicas, placement, Mark Complete and leased reads.",
+      "scenarios": [
+        "store-internals"
+      ]
+    },
+    {
+      "id": "object-replica",
+      "title": "Object storage replica",
+      "description": "Before/after proposal, its merged I/O layer, and its merged recovery records.",
+      "scenarios": [
+        "object-replica-before",
+        "object-replica-sync",
+        "object-records",
+        "object-io"
+      ]
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "mooncake-overview",
+      "title": "Mooncake Store system overview",
+      "summary": "The client separates placement metadata from the path that moves cache bytes.",
+      "category": "source",
+      "status": "upstream",
+      "components": [
+        {
+          "id": "infer",
+          "kind": "InferenceWorker",
+          "label": "Inference integration",
+          "description": "An inference client may reuse KV cache through the Store.",
+          "position": [
+            -4,
+            0,
+            1.9
+          ],
+          "level": 2,
+          "evidence": [
+            "client"
+          ]
+        },
+        {
+          "id": "client",
+          "kind": "Client",
+          "label": "Store client",
+          "description": "Requests placement or replica descriptors and arranges byte transfers.",
+          "position": [
+            0,
+            0,
+            1.9
+          ],
+          "level": 2,
+          "evidence": [
+            "client"
+          ]
+        },
+        {
+          "id": "master",
+          "kind": "Master",
+          "label": "Master Service",
+          "description": "Control plane for allocations, object state and leases.",
+          "position": [
+            4,
+            0,
+            1.9
+          ],
+          "level": 2,
+          "evidence": [
+            "master"
+          ],
+          "jump": "store-internals"
+        },
+        {
+          "id": "engine",
+          "kind": "TransferEngine",
+          "label": "Transfer Engine",
+          "description": "Moves bytes independently of placement RPCs.",
+          "position": [
+            -4,
+            0,
+            -2.2
+          ],
+          "level": 2,
+          "evidence": [
+            "transfer"
+          ]
+        },
+        {
+          "id": "memory",
+          "kind": "MemoryPool",
+          "label": "Memory segment",
+          "description": "Storage supplied by an attached store client.",
+          "position": [
+            0,
+            0,
+            -2.2
+          ],
+          "level": 2,
+          "evidence": [
+            "segment"
+          ]
+        },
+        {
+          "id": "storage",
+          "kind": "SSD",
+          "label": "Storage backend",
+          "description": "Disk or offload paths are separate from the proposed shared object replica integration.",
+          "position": [
+            4,
+            0,
+            -2.2
+          ],
+          "level": 2,
+          "evidence": [
+            "replica"
+          ],
+          "jump": "object-replica-sync"
+        }
+      ],
+      "relationships": [
+        {
+          "to": "client",
+          "label": "rpc",
+          "from": "infer"
+        },
+        {
+          "to": "master",
+          "label": "allocate",
+          "from": "client"
+        },
+        {
+          "to": "engine",
+          "label": "transfer",
+          "from": "client"
+        },
+        {
+          "to": "memory",
+          "label": "transfer",
+          "from": "engine"
+        },
+        {
+          "to": "client",
+          "label": "rpc",
+          "from": "master"
+        }
+      ],
+      "timeline": [
+        {
+          "type": "rpc",
+          "target": "client",
+          "state": "requested",
+          "label": "Request a cache object",
+          "detail": "Inference integration submits Store operations through a client API.",
+          "evidence": [
+            "client"
+          ],
+          "from": "infer"
+        },
+        {
+          "type": "allocate",
+          "target": "master",
+          "state": "allocated",
+          "label": "Resolve placement",
+          "detail": "The Store master owns allocation and object metadata.",
+          "evidence": [
+            "master"
+          ],
+          "from": "client"
+        },
+        {
+          "type": "transfer",
+          "target": "engine",
+          "state": "moving",
+          "label": "Move bytes along the data plane",
+          "detail": "The Store client can use the Transfer Engine for the requested memory transfers.",
+          "evidence": [
+            "transfer"
+          ],
+          "from": "client"
+        },
+        {
+          "type": "transfer",
+          "target": "memory",
+          "state": "filled",
+          "label": "Fill the destination segment",
+          "detail": "Segment capacity belongs to mounted storage and its allocator.",
+          "evidence": [
+            "segment"
+          ],
+          "from": "engine",
+          "progress": 0.75
+        },
+        {
+          "type": "rpc",
+          "target": "client",
+          "state": "readable",
+          "label": "Resolve readers through the Master",
+          "detail": "GetReplicaList returns eligible replicas and updates lease state.",
+          "evidence": [
+            "list"
+          ],
+          "from": "master"
+        }
+      ],
+      "cameraTrack": [
+        {
+          "step": 0,
+          "target": "client"
+        },
+        {
+          "step": 1,
+          "target": "master"
+        },
+        {
+          "step": 2,
+          "target": "engine"
+        },
+        {
+          "step": 3,
+          "target": "memory"
+        },
+        {
+          "step": 4,
+          "target": "client"
+        }
+      ],
+      "version": "mooncake-overview"
+    },
+    {
+      "id": "store-internals",
+      "title": "Inside the Store Master",
+      "summary": "A single MEMORY object illustrates the placement, publication and read control paths.",
+      "category": "teaching",
+      "status": "upstream",
+      "components": [
+        {
+          "id": "client",
+          "kind": "Client",
+          "label": "Writer / reader",
+          "description": "Store clients call Master metadata RPCs.",
+          "position": [
+            -4,
+            0,
+            1.9
+          ],
+          "level": 2,
+          "evidence": [
+            "client"
+          ]
+        },
+        {
+          "id": "master",
+          "kind": "Master",
+          "label": "Master Service",
+          "description": "Coordinates allocations, completion and readers.",
+          "position": [
+            0,
+            0,
+            1.9
+          ],
+          "level": 2,
+          "evidence": [
+            "master"
+          ]
+        },
+        {
+          "id": "metadata",
+          "kind": "Metadata",
+          "label": "ObjectMetadata",
+          "description": "Owns replica records for a logical cache key.",
+          "position": [
+            4,
+            0,
+            1.9
+          ],
+          "level": 4,
+          "evidence": [
+            "metadata"
+          ],
+          "parent": "master"
+        },
+        {
+          "id": "segment",
+          "kind": "Segment",
+          "label": "Memory segment",
+          "description": "Provides space for the object bytes.",
+          "position": [
+            -4,
+            0,
+            -2.2
+          ],
+          "level": 2,
+          "evidence": [
+            "segment"
+          ]
+        },
+        {
+          "id": "replica",
+          "kind": "Replica",
+          "label": "Replica descriptor",
+          "description": "Tracks a particular allocated copy.",
+          "position": [
+            0,
+            0,
+            -2.2
+          ],
+          "level": 5,
+          "evidence": [
+            "replica"
+          ],
+          "jump": "object-replica-sync",
+          "parent": "metadata"
+        },
+        {
+          "id": "engine",
+          "kind": "TransferEngine",
+          "label": "Transfer Engine",
+          "description": "Moves bytes to the allocated address.",
+          "position": [
+            4,
+            0,
+            -2.2
+          ],
+          "level": 2,
+          "evidence": [
+            "transfer"
+          ]
+        }
+      ],
+      "relationships": [
+        {
+          "to": "master",
+          "label": "rpc",
+          "from": "client"
+        },
+        {
+          "to": "segment",
+          "label": "allocate",
+          "from": "master"
+        },
+        {
+          "to": "metadata",
+          "label": "state",
+          "from": "segment"
+        },
+        {
+          "to": "segment",
+          "label": "transfer",
+          "from": "engine"
+        },
+        {
+          "to": "replica",
+          "label": "rpc",
+          "from": "client"
+        },
+        {
+          "to": "client",
+          "label": "lock",
+          "from": "master"
+        }
+      ],
+      "timeline": [
+        {
+          "type": "rpc",
+          "target": "master",
+          "state": "starting",
+          "label": "PutStart",
+          "detail": "Master begins a write and returns replica placement metadata.",
+          "evidence": [
+            "master"
+          ],
+          "from": "client"
+        },
+        {
+          "type": "allocate",
+          "target": "segment",
+          "state": "reserved",
+          "label": "Allocate replica capacity",
+          "detail": "The allocator reserves part of a registered segment.",
+          "evidence": [
+            "segment"
+          ],
+          "from": "master",
+          "progress": 0.55
+        },
+        {
+          "type": "state",
+          "target": "metadata",
+          "state": "processing",
+          "label": "Record the in-progress replica",
+          "detail": "ObjectMetadata tracks replicas for the key; writing bytes is client work.",
+          "evidence": [
+            "metadata"
+          ],
+          "from": "segment"
+        },
+        {
+          "type": "transfer",
+          "target": "segment",
+          "state": "written",
+          "label": "Transfer bytes",
+          "detail": "The data plane writes to the allocated memory location.",
+          "evidence": [
+            "transfer"
+          ],
+          "from": "engine",
+          "progress": 0.8
+        },
+        {
+          "type": "rpc",
+          "target": "replica",
+          "state": "complete",
+          "label": "PutEnd",
+          "detail": "Completion is reported back through the metadata path before the copy can be returned to readers.",
+          "evidence": [
+            "master-end"
+          ],
+          "from": "client"
+        },
+        {
+          "type": "lock",
+          "target": "client",
+          "state": "leased",
+          "label": "Get replica and lease",
+          "detail": "Successful lookup returns descriptors under the lease policy.",
+          "evidence": [
+            "list"
+          ],
+          "from": "master"
+        }
+      ],
+      "cameraTrack": [
+        {
+          "step": 0,
+          "target": "master"
+        },
+        {
+          "step": 1,
+          "target": "segment"
+        },
+        {
+          "step": 2,
+          "target": "metadata"
+        },
+        {
+          "step": 3,
+          "target": "segment"
+        },
+        {
+          "step": 4,
+          "target": "replica"
+        },
+        {
+          "step": 5,
+          "target": "client"
+        }
+      ],
+      "version": "store-internals"
+    },
+    {
+      "id": "object-replica-before",
+      "title": "Before · memory-only Put",
+      "summary": "The parent of PR #5494 already contains object I/O and recovery foundations. This example requests a normal memory replica.",
+      "category": "teaching",
+      "status": "historical",
+      "components": [
+        {
+          "id": "writer",
+          "kind": "Client",
+          "label": "Writer",
+          "description": "Submits a Store Put.",
+          "position": [
+            -4,
+            0,
+            1.9
+          ],
+          "level": 2,
+          "evidence": [
+            "sync-base"
+          ]
+        },
+        {
+          "id": "master",
+          "kind": "Master",
+          "label": "Master Service",
+          "description": "Maintains placement and visibility.",
+          "position": [
+            0,
+            0,
+            1.9
+          ],
+          "level": 2,
+          "evidence": [
+            "sync-base"
+          ]
+        },
+        {
+          "id": "memory",
+          "kind": "MemoryPool",
+          "label": "MEMORY replica",
+          "description": "Reads depend on an eligible memory copy for this example.",
+          "position": [
+            4,
+            0,
+            1.9
+          ],
+          "level": 2,
+          "evidence": [
+            "sync-base-data"
+          ]
+        }
+      ],
+      "relationships": [
+        {
+          "to": "master",
+          "label": "rpc",
+          "from": "writer"
+        },
+        {
+          "to": "memory",
+          "label": "transfer",
+          "from": "writer"
+        },
+        {
+          "to": "master",
+          "label": "state",
+          "from": "memory"
+        }
+      ],
+      "timeline": [
+        {
+          "type": "rpc",
+          "target": "master",
+          "state": "allocating",
+          "label": "Request a memory replica",
+          "detail": "The Master allocates a normal Store replica.",
+          "evidence": [
+            "sync-base"
+          ],
+          "from": "writer"
+        },
+        {
+          "type": "transfer",
+          "target": "memory",
+          "state": "written",
+          "label": "Transfer to memory",
+          "detail": "The application bytes live in the requested memory replica.",
+          "evidence": [
+            "sync-base-data"
+          ],
+          "from": "writer",
+          "progress": 0.8
+        },
+        {
+          "type": "state",
+          "target": "master",
+          "state": "committed",
+          "label": "Report completion",
+          "detail": "Master makes the completed memory copy visible. The backend and recovery records alone do not create an integrated object replica.",
+          "evidence": [
+            "sync-base"
+          ],
+          "from": "memory"
+        },
+        {
+          "type": "failure",
+          "target": "master",
+          "state": "unavailable",
+          "label": "Lose the only eligible memory copy",
+          "detail": "In this single-copy example the reader has no alternate object replica descriptor. Other configurations may have alternate replicas.",
+          "evidence": [
+            "sync-base-data"
+          ],
+          "from": "memory"
+        }
+      ],
+      "cameraTrack": [
+        {
+          "step": 0,
+          "target": "master"
+        },
+        {
+          "step": 1,
+          "target": "memory"
+        },
+        {
+          "step": 2,
+          "target": "master"
+        },
+        {
+          "step": 3,
+          "target": "master"
+        }
+      ],
+      "version": "object-replica-before",
+      "contribution": "object-sync"
+    },
+    {
+      "id": "object-replica-sync",
+      "title": "After · synchronous object replica",
+      "summary": "Open PR #5494 integrates a directly readable object copy. This is the pinned proposal, not current upstream Store behavior.",
+      "category": "source",
+      "status": "proposal",
+      "components": [
+        {
+          "id": "writer",
+          "kind": "Client",
+          "label": "Writer",
+          "description": "Requests one object replica, with or without memory copies.",
+          "position": [
+            -4,
+            0,
+            1.9
+          ],
+          "level": 2,
+          "evidence": [
+            "sync-client"
+          ]
+        },
+        {
+          "id": "master",
+          "kind": "Master",
+          "label": "Master Service",
+          "description": "Owns logical publication and validates the write token.",
+          "position": [
+            0,
+            0,
+            1.9
+          ],
+          "level": 2,
+          "evidence": [
+            "sync-master"
+          ]
+        },
+        {
+          "id": "log",
+          "kind": "WAL",
+          "label": "Ordered HA log",
+          "description": "Durable authorization, completion and retirement under the fenced HA writer.",
+          "position": [
+            4,
+            0,
+            1.9
+          ],
+          "level": 2,
+          "evidence": [
+            "sync-doc"
+          ]
+        },
+        {
+          "id": "reader",
+          "kind": "Client",
+          "label": "Reader",
+          "description": "Gets a descriptor and lease to read a committed copy.",
+          "position": [
+            -4,
+            0,
+            -2.2
+          ],
+          "level": 2,
+          "evidence": [
+            "sync-client"
+          ]
+        },
+        {
+          "id": "object",
+          "kind": "ObjectStorage",
+          "label": "Object storage",
+          "description": "Independent shared backend with an immutable name per attempt.",
+          "position": [
+            0,
+            0,
+            -2.2
+          ],
+          "level": 4,
+          "evidence": [
+            "sync-replica"
+          ],
+          "parent": "master",
+          "structure": [
+            {
+              "name": "object_key",
+              "meaning": "Immutable physical name scoped to one attempt"
+            }
+          ],
+          "stateMachine": {
+            "initial": "ready",
+            "transitions": {
+              "ready": [
+                "uploaded"
+              ],
+              "uploaded": [
+                "readable"
+              ],
+              "readable": [
+                "retry"
+              ],
+              "retry": [
+                "reclaimed"
+              ]
+            }
+          }
+        },
+        {
+          "id": "memory",
+          "kind": "MemoryPool",
+          "label": "Optional MEMORY",
+          "description": "The synchronous proposal supports object-only and combined writes.",
+          "position": [
+            4,
+            0,
+            -2.2
+          ],
+          "level": 2,
+          "evidence": [
+            "sync-doc"
+          ]
+        }
+      ],
+      "relationships": [
+        {
+          "to": "master",
+          "label": "rpc",
+          "from": "writer"
+        },
+        {
+          "to": "log",
+          "label": "log",
+          "from": "master"
+        },
+        {
+          "to": "object",
+          "label": "transfer",
+          "from": "writer"
+        },
+        {
+          "to": "master",
+          "label": "state",
+          "from": "log"
+        },
+        {
+          "to": "object",
+          "label": "transfer",
+          "from": "reader"
+        },
+        {
+          "to": "object",
+          "label": "reclamation",
+          "from": "master"
+        }
+      ],
+      "timeline": [
+        {
+          "type": "rpc",
+          "target": "master",
+          "state": "allocating",
+          "label": "PutStart · reserve an attempt",
+          "detail": "The master identifies the write attempt and storage target. Default configuration requests zero object replicas.",
+          "evidence": [
+            "sync-master"
+          ],
+          "from": "writer"
+        },
+        {
+          "type": "log",
+          "target": "log",
+          "state": "authorized",
+          "label": "Persist authorization",
+          "detail": "The ordered HA log acknowledges authorization before the writer receives its immutable object name and token.",
+          "evidence": [
+            "sync-doc"
+          ],
+          "from": "master"
+        },
+        {
+          "type": "transfer",
+          "target": "object",
+          "state": "uploaded",
+          "label": "Run a single-attempt PUT",
+          "detail": "The writer sends bytes directly to the object backend. A successful upload by itself does not publish the Store replica.",
+          "evidence": [
+            "sync-client"
+          ],
+          "from": "writer",
+          "progress": 0.63
+        },
+        {
+          "type": "rpc",
+          "target": "master",
+          "state": "committing",
+          "label": "PutEnd · validate exact attempt",
+          "detail": "The master verifies the token against the active attempt. Combined writes require the requested foreground transfers.",
+          "evidence": [
+            "sync-master"
+          ],
+          "from": "writer"
+        },
+        {
+          "type": "state",
+          "target": "master",
+          "state": "published",
+          "label": "Commit, then publish",
+          "detail": "The ordered log durably records completion and logical mutation before readers see the replica.",
+          "evidence": [
+            "sync-doc"
+          ],
+          "from": "log"
+        },
+        {
+          "type": "transfer",
+          "target": "object",
+          "state": "readable",
+          "label": "Read through a leased descriptor",
+          "detail": "Another client can GET or range-GET the committed object directly using the descriptor and read lease.",
+          "evidence": [
+            "sync-client"
+          ],
+          "from": "reader",
+          "progress": 1
+        },
+        {
+          "type": "state",
+          "target": "log",
+          "state": "retired",
+          "label": "Retire before deleting",
+          "detail": "Removal or replacement durably retires the old object. Its existing readers remain protected by the lease window.",
+          "evidence": [
+            "sync-doc"
+          ],
+          "from": "master"
+        },
+        {
+          "type": "retry",
+          "target": "object",
+          "state": "retry",
+          "label": "Handle uncertain upload outcomes",
+          "detail": "A successful DELETE cannot rule out a delayed PUT. The proposal retains the cleanup obligation until the outcome is known.",
+          "evidence": [
+            "sync-gc"
+          ],
+          "from": "object",
+          "progress": 0.45
+        },
+        {
+          "type": "reclamation",
+          "target": "object",
+          "state": "reclaimed",
+          "label": "Release after safe reclamation",
+          "detail": "Once upload termination is known and deletion succeeds, the proposal can forget the retirement record. The protocol suite covers object Store operations.",
+          "evidence": [
+            "sync-test"
+          ],
+          "from": "master",
+          "progress": 0
+        }
+      ],
+      "cameraTrack": [
+        {
+          "step": 0,
+          "target": "master"
+        },
+        {
+          "step": 1,
+          "target": "log"
+        },
+        {
+          "step": 2,
+          "target": "object"
+        },
+        {
+          "step": 3,
+          "target": "master"
+        },
+        {
+          "step": 4,
+          "target": "master"
+        },
+        {
+          "step": 5,
+          "target": "object"
+        },
+        {
+          "step": 6,
+          "target": "log"
+        },
+        {
+          "step": 7,
+          "target": "object"
+        },
+        {
+          "step": 8,
+          "target": "object"
+        }
+      ],
+      "version": "object-replica-sync",
+      "contribution": "object-sync"
+    },
+    {
+      "id": "object-records",
+      "title": "Durable upload and cleanup records",
+      "summary": "Merged review unit #5310 supplies the persistent recovery contract used by the proposed integration.",
+      "category": "source",
+      "status": "upstream",
+      "components": [
+        {
+          "id": "master",
+          "kind": "Master",
+          "label": "Master metadata",
+          "description": "Authority for the logical key. This merged unit does not wire the replica into Store operations.",
+          "position": [
+            -4,
+            0,
+            1.9
+          ],
+          "level": 2,
+          "evidence": [
+            "persist-doc"
+          ]
+        },
+        {
+          "id": "record",
+          "kind": "Metadata",
+          "label": "Upload record",
+          "description": "Tracks immutable attempts, owners, phase and cleanup deadlines.",
+          "position": [
+            0,
+            0,
+            1.9
+          ],
+          "level": 2,
+          "evidence": [
+            "persist-state"
+          ]
+        },
+        {
+          "id": "log",
+          "kind": "WAL",
+          "label": "Ordered HA log",
+          "description": "Stores record changes together with applicable metadata mutations.",
+          "position": [
+            4,
+            0,
+            1.9
+          ],
+          "level": 2,
+          "evidence": [
+            "persist-doc"
+          ]
+        },
+        {
+          "id": "snapshot",
+          "kind": "File",
+          "label": "Snapshot v3",
+          "description": "Includes the recovery artifact when object state is present.",
+          "position": [
+            -4,
+            0,
+            -2.2
+          ],
+          "level": 2,
+          "evidence": [
+            "persist-doc"
+          ]
+        }
+      ],
+      "relationships": [
+        {
+          "to": "record",
+          "label": "create",
+          "from": "master"
+        },
+        {
+          "to": "log",
+          "label": "log",
+          "from": "record"
+        },
+        {
+          "to": "snapshot",
+          "label": "flush",
+          "from": "log"
+        },
+        {
+          "to": "record",
+          "label": "recovery",
+          "from": "snapshot"
+        }
+      ],
+      "timeline": [
+        {
+          "type": "create",
+          "target": "record",
+          "state": "authorized",
+          "label": "Authorize a physical attempt",
+          "detail": "The record can outlive the logical key and retain its cleanup obligation.",
+          "evidence": [
+            "persist-state"
+          ],
+          "from": "master"
+        },
+        {
+          "type": "log",
+          "target": "log",
+          "state": "durable",
+          "label": "Apply one ordered mutation",
+          "detail": "The standby validates the mutation before applying it under its metadata lock.",
+          "evidence": [
+            "persist-doc"
+          ],
+          "from": "record"
+        },
+        {
+          "type": "flush",
+          "target": "snapshot",
+          "state": "snapshot",
+          "label": "Capture unresolved obligations",
+          "detail": "Snapshot v3 stores the recovery records; v1/v2 snapshots remain readable.",
+          "evidence": [
+            "persist-doc"
+          ],
+          "from": "log"
+        },
+        {
+          "type": "recovery",
+          "target": "record",
+          "state": "recovered",
+          "label": "Recover without enabling service",
+          "detail": "The intermediate implementation preserves recovery state and refuses promotion to service when object state exists.",
+          "evidence": [
+            "persist-doc"
+          ],
+          "from": "snapshot"
+        },
+        {
+          "type": "reclamation",
+          "target": "record",
+          "state": "retained",
+          "label": "Keep uncertain retirements",
+          "detail": "One successful DELETE is insufficient evidence of upload termination. Standby tests exercise recovery invariants.",
+          "evidence": [
+            "persist-test"
+          ],
+          "from": "master"
+        }
+      ],
+      "cameraTrack": [
+        {
+          "step": 0,
+          "target": "record"
+        },
+        {
+          "step": 1,
+          "target": "log"
+        },
+        {
+          "step": 2,
+          "target": "snapshot"
+        },
+        {
+          "step": 3,
+          "target": "record"
+        },
+        {
+          "step": 4,
+          "target": "record"
+        }
+      ],
+      "version": "object-records",
+      "contribution": "object-records-pr"
+    },
+    {
+      "id": "object-io",
+      "title": "Bounded object I/O",
+      "summary": "The merged backend carries bytes for object operations as an independent I/O layer.",
+      "category": "source",
+      "status": "upstream",
+      "components": [
+        {
+          "id": "client",
+          "kind": "Client",
+          "label": "Caller buffers",
+          "description": "Scatter/gather inputs provided by the caller.",
+          "position": [
+            -4,
+            0,
+            1.9
+          ],
+          "level": 2,
+          "evidence": [
+            "io-merged"
+          ]
+        },
+        {
+          "id": "staging",
+          "kind": "MemoryPool",
+          "label": "Staging budget",
+          "description": "Bounds live payload staging for the backend.",
+          "position": [
+            0,
+            0,
+            1.9
+          ],
+          "level": 2,
+          "evidence": [
+            "io-merged"
+          ]
+        },
+        {
+          "id": "object",
+          "kind": "ObjectStorage",
+          "label": "Object adapter",
+          "description": "OSS/S3 component for bounded writes and reads.",
+          "position": [
+            4,
+            0,
+            1.9
+          ],
+          "level": 2,
+          "evidence": [
+            "io-merged"
+          ]
+        }
+      ],
+      "relationships": [
+        {
+          "to": "staging",
+          "label": "allocate",
+          "from": "client"
+        },
+        {
+          "to": "object",
+          "label": "transfer",
+          "from": "staging"
+        },
+        {
+          "to": "client",
+          "label": "transfer",
+          "from": "object"
+        }
+      ],
+      "timeline": [
+        {
+          "type": "allocate",
+          "target": "staging",
+          "state": "reserved",
+          "label": "Reserve bounded host staging",
+          "detail": "Staging consumes the configured budget. Only explicitly host-accessible inputs can be borrowed safely.",
+          "evidence": [
+            "io-merged"
+          ],
+          "from": "client",
+          "progress": 0.55
+        },
+        {
+          "type": "transfer",
+          "target": "object",
+          "state": "written",
+          "label": "Upload as a single object",
+          "detail": "The backend supports single-attempt PUT through the adapter.",
+          "evidence": [
+            "io-merged"
+          ],
+          "from": "staging"
+        },
+        {
+          "type": "transfer",
+          "target": "client",
+          "state": "read",
+          "label": "Read and scatter ranges",
+          "detail": "Reads fetch bounded sequential ranges. A single eligible host buffer can be a direct destination.",
+          "evidence": [
+            "io-test"
+          ],
+          "from": "object"
+        },
+        {
+          "type": "release",
+          "target": "staging",
+          "state": "released",
+          "label": "Release staging reservations",
+          "detail": "RAII releases staging on success and failure. This backend does not publish replicas.",
+          "evidence": [
+            "io-merged"
+          ],
+          "from": "client",
+          "progress": 0
+        }
+      ],
+      "cameraTrack": [
+        {
+          "step": 0,
+          "target": "staging"
+        },
+        {
+          "step": 1,
+          "target": "object"
+        },
+        {
+          "step": 2,
+          "target": "client"
+        },
+        {
+          "step": 3,
+          "target": "staging"
+        }
+      ],
+      "version": "object-io",
+      "contribution": "object-io-pr"
+    }
+  ],
+  "contributions": [
+    {
+      "id": "object-sync",
+      "title": "[Store] Add synchronous object storage replicas",
+      "status": "open",
+      "repository": "kvcache-ai/Mooncake",
+      "number": 5494,
+      "role": "author",
+      "date": "2026-11-13",
+      "module": "object-replica",
+      "scenario": "object-replica-sync",
+      "problem": "A completed cache object needs to remain readable independently of its writer.",
+      "design": "Add an optional synchronous object replica with durable attempt tracking, lease-aware retirement and direct reads.",
+      "evidence": [
+        "sync-doc",
+        "sync-master",
+        "sync-test"
+      ]
+    },
+    {
+      "id": "object-records-pr",
+      "title": "[Store] Persist object upload and cleanup recovery records",
+      "status": "merged",
+      "repository": "kvcache-ai/Mooncake",
+      "number": 5310,
+      "role": "author",
+      "date": "2026-11-06",
+      "module": "object-replica",
+      "scenario": "object-records",
+      "problem": "Outstanding uploads and cleanup obligations can survive logical removal or a restart.",
+      "design": "Persist immutable attempt records through ordered replay and snapshot v3.",
+      "evidence": [
+        "persist-doc",
+        "persist-test"
+      ]
+    },
+    {
+      "id": "object-io-pr",
+      "title": "[Store] Add bounded object storage I/O",
+      "status": "merged",
+      "repository": "kvcache-ai/Mooncake",
+      "number": 4727,
+      "role": "author",
+      "date": "2026-10-16",
+      "module": "object-replica",
+      "scenario": "object-io",
+      "problem": "Object transfers need bounded staging and predictable range handling.",
+      "design": "Add single-attempt upload and staged or direct range reads over the existing adapters.",
+      "evidence": [
+        "io-merged",
+        "io-test"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+---
+title: "Synchronous object replicas in Mooncake Store"
+description: "Explore authorization, commit, read leases, and why a successful DELETE is insufficient after an uncertain PUT."
+date: 2026-11-26
+tags: [Mooncake, object storage, KV cache, leases]
+category: AI infrastructure
+---
+import Embed from '../../components/Embed.astro';
+
+## The merged foundations
+
+[PR #4727](https://github.com/kvcache-ai/Mooncake/pull/4727) merged a bounded backend. [PR #5310](https://github.com/kvcache-ai/Mooncake/pull/5310) merged ordered recovery records for physical upload and cleanup obligations. The logical key remains under Master metadata.
+
+## The integration proposal
+
+[PR #5494](https://github.com/kvcache-ai/Mooncake/pull/5494) is open. Its synchronous design durably authorizes one immutable object attempt, uploads it, then validates the attempt at commit. Publication follows the durable log acknowledgment. Read descriptors protected by a lease let another client fetch bytes directly from storage.
+
+<Embed id="object-replica-sync" />
+
+## Release the right physical object
+
+Removing or replacing a logical value retires the corresponding physical object. A reader can retain its earlier lease. If an upload is still uncertain, a late PUT can materialize after a successful DELETE, so cleanup must preserve that obligation. See the [synchronous design RFC](https://github.com/kvcache-ai/Mooncake/issues/5495).

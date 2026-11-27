@@ -1,0 +1,10 @@
+{
+  "name": "Hongzhi Gao",
+  "nameZh": "高宏志",
+  "github": "hongzhi-gao",
+  "verified": true,
+  "email": "hongzhigao@apache.org",
+  "role": "Apache Committer",
+  "education": "M.Eng. in Software Engineering, Zhejiang University",
+  "interests": ["Distributed storage", "Database kernels", "Consensus protocols", "KV cache infrastructure"]
+}

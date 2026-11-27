@@ -1,0 +1,53 @@
+---
+import Base from '../../layouts/Base.astro';
+import Explorer from '../../components/Explorer.astro';
+import {projects} from '../../architecture-ir/data';
+---
+<Base title="Architecture time machine">
+<section class="shell page-intro"><p class="eyebrow">ARCHITECTURE EVOLUTION</p><h1>Time machine</h1><p>Switch between pinned source snapshots to see which components, relationships and behaviors changed.</p></section>
+<div class="shell inner-content">{projects.map(project=><section id={project.id} class="history-block">
+<h2>{project.name}</h2>
+{project.versions.filter(item=>item.compareWith).map(version=>{
+  const before=project.versions.find(item=>item.id===version.compareWith)!;
+  const old=project.scenarios.find(item=>item.id===before.scenario)!;
+  const revised=project.scenarios.find(item=>item.id===version.scenario)!;
+  const added=revised.components.filter(component=>!old.components.some(item=>item.id===component.id));
+  const removed=old.components.filter(component=>!revised.components.some(item=>item.id===component.id));
+  const oldLinks=new Set(old.relationships.map(item=>`${item.from}:${item.to}`));
+  const addedLinks=revised.relationships.filter(item=>!oldLinks.has(`${item.from}:${item.to}`));
+  return <details class="history-comparison" data-history>
+  <summary>{version.label} <span>{before.sha.slice(0,9)} → {version.sha.slice(0,9)}</span></summary>
+  <div class="version-summary">
+    <p>{version.note}</p>
+    <p><a href={`https://github.com/${version.repo}/compare/${before.sha}...${version.sha}`}>Compare upstream files</a></p>
+    {added.length>0 && <p><span class="delta-add">Added to the exhibit</span> {added.map(item=>item.label).join(', ')}</p>}
+    {removed.length>0 && <p><span class="delta-remove">Removed from the exhibit</span> {removed.map(item=>item.label).join(', ')}</p>}
+    {addedLinks.length>0 && <p><span class="delta-add">New paths</span> {addedLinks.map(item=>`${revised.components.find(node=>node.id===item.from)?.label} to ${revised.components.find(node=>node.id===item.to)?.label}`).join(', ')}</p>}
+  </div>
+  <div class="history-controls" role="group" aria-label="Select a version">
+    <button class="button" type="button" data-history-choice="before" aria-pressed="false">Before · {before.sha.slice(0,9)}</button>
+    <button class="button primary" type="button" data-history-choice="after" aria-pressed="true">After · {version.sha.slice(0,9)}</button>
+    <a href={`/lab/${before.scenario}/`}>Before permalink</a><a href={`/lab/${version.scenario}/`}>After permalink</a>
+  </div>
+  <div data-history-version="before" hidden><Explorer project={project} scenario={old}/></div>
+  <div data-history-version="after"><Explorer project={project} scenario={revised}/></div>
+  </details>
+})}</section>)}</div>
+</Base>
+<script>
+for(const comparison of document.querySelectorAll<HTMLElement>('[data-history]')){
+  const buttons=[...comparison.querySelectorAll<HTMLButtonElement>('[data-history-choice]')];
+  const panels=[...comparison.querySelectorAll<HTMLElement>('[data-history-version]')];
+  for(const button of buttons)button.addEventListener('click',()=>{
+    for(const current of buttons){
+      current.setAttribute('aria-pressed',String(current===button));
+      current.classList.toggle('primary',current===button);
+    }
+    for(const panel of panels)panel.hidden=panel.dataset.historyVersion!==button.dataset.historyChoice;
+  });
+}
+</script>
+<style>
+.history-block+.history-block{margin-top:3rem}.history-block h2{font-size:clamp(2rem,5vw,3.6rem);margin-bottom:1rem}
+.history-comparison{border-top:1px solid var(--line);padding:1rem 0}.history-comparison summary{cursor:pointer;font:600 1.3rem var(--head)}.history-comparison summary span{font:.78rem var(--mono);color:var(--muted);margin-left:.75rem}.version-summary{color:var(--muted);margin:1rem 0}.version-summary a,.history-controls a{color:var(--mint);text-decoration:underline}.history-controls{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;margin:1rem 0}.history-controls a{font-size:.87rem;padding:.4rem}.delta-add,.delta-remove{font-weight:650;padding-right:.3rem}.delta-add{color:#9eeee0}.delta-remove{color:#ffb49a}
+</style>

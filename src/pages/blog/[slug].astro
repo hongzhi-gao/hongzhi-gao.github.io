@@ -1,0 +1,30 @@
+---
+import Base from '../../layouts/Base.astro';
+import {getCollection,render} from 'astro:content';
+import 'katex/dist/katex.min.css';
+export async function getStaticPaths(){
+  return (await getCollection('posts',({data})=>!data.draft)).map(post=>({params:{slug:post.id},props:{post}}));
+}
+const {post}=Astro.props;
+const {Content,headings}=await render(post);
+const date=post.data.date.toISOString().slice(0,10);
+---
+<Base title={post.data.title} description={post.data.description}>
+<div class="shell"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/blog/">Engineering notes</a> / <span>{post.data.category}</span></nav></div>
+<div class="shell article-layout"><article class="article" data-pagefind-body>
+<header><p class="eyebrow">{post.data.category} · <time datetime={date}>{date}</time></p><h1 data-pagefind-meta="title">{post.data.title}</h1><p>{post.data.description}</p><ul class="tags">{post.data.tags.map(tag=><li><a href={`/blog/?q=${encodeURIComponent(tag)}`}>{tag}</a></li>)}</ul></header>
+<Content />
+</article>
+{headings.length>0 && <aside class="article-toc" aria-label="Article contents"><p class="eyebrow">ON THIS PAGE</p>{headings.map(heading=><a href={`#${heading.slug}`} style={`padding-left:${Math.max(0,heading.depth-2)*.7}rem`}>{heading.text}</a>)}</aside>}</div>
+</Base>
+<script>
+const graphs=[...document.querySelectorAll<HTMLElement>('code.language-mermaid')];
+if(graphs.length)void import('mermaid').then(async({default:mermaid})=>{
+  mermaid.initialize({startOnLoad:false,securityLevel:'strict',theme:'dark'});
+  const nodes=graphs.map(graph=>{
+    const node=document.createElement('div');node.className='mermaid';node.textContent=graph.textContent;
+    graph.parentElement!.replaceWith(node);return node;
+  });
+  await mermaid.run({nodes});
+});
+</script>

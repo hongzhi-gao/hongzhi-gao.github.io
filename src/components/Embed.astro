@@ -1,0 +1,8 @@
+---
+import Explorer from './Explorer.astro';
+import {exhibits} from '../architecture-ir/data';
+const {id}=Astro.props;
+const exhibit=exhibits.find(item=>item.scenario.id===id);
+if(!exhibit)throw new Error(`Invalid embedded exhibit: ${id}`);
+---
+<div class="embedded-exhibit"><Explorer project={exhibit.project} scenario={exhibit.scenario} /><a href={`/lab/${id}/`}>Open the full exhibit</a></div>

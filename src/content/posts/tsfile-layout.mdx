@@ -1,0 +1,23 @@
+---
+title: "Reading a TsFile from footer to page"
+description: "Follow the file tail, metadata index, chunk offsets and page read path in Java TsFile."
+date: 2026-06-04
+tags: [TsFile, file format, encoding]
+category: Storage engines
+---
+import Embed from '../../components/Embed.astro';
+
+## Open the tail first
+
+[TsFileIOWriter](https://github.com/apache/tsfile/blob/405a13b868054c3d96aae64ed3c9f771f211e4a3/java/tsfile/src/main/java/org/apache/tsfile/write/writer/TsFileIOWriter.java#L640-L659) emits file metadata before the final magic. [TsFileSequenceReader](https://github.com/apache/tsfile/blob/405a13b868054c3d96aae64ed3c9f771f211e4a3/java/tsfile/src/main/java/org/apache/tsfile/read/TsFileSequenceReader.java#L669-L694) opens metadata and uses offsets when navigation reaches chunk data.
+
+<Embed id="tsfile-layout" />
+
+## Page bodies and codecs
+
+The chunk header communicates the encoding and compression used by its pages. The page reader inspects body size and compression before handing the payload to the decoder. See [readPage](https://github.com/apache/tsfile/blob/405a13b868054c3d96aae64ed3c9f771f211e4a3/java/tsfile/src/main/java/org/apache/tsfile/read/TsFileSequenceReader.java#L2748-L2781).
+
+```text
+File header → ChunkGroup → Chunk → Page
+File tail → Metadata index → Chunk offset
+```

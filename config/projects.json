@@ -1,0 +1,48 @@
+[
+  {
+    "id": "iotdb-tsfile",
+    "repositories": [
+      {
+        "repo": "apache/iotdb",
+        "paths": [
+          "iotdb-core/consensus/src/main/java/org/apache/iotdb/consensus/iot",
+          "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine"
+        ],
+        "modulePaths": {
+          "iotdb-core/consensus/src/main/java/org/apache/iotdb/consensus/iot": "iotconsensus-v1",
+          "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine": "storage-engine"
+        }
+      },
+      {
+        "repo": "apache/tsfile",
+        "paths": [
+          "java/tsfile/src/main/java/org/apache/tsfile",
+          "cpp/src"
+        ],
+        "modulePaths": {
+          "java/tsfile/src/main/java/org/apache/tsfile": "tsfile",
+          "cpp/src": "tsfile"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mooncake-store",
+    "repositories": [
+      {
+        "repo": "kvcache-ai/Mooncake",
+        "paths": [
+          "mooncake-store",
+          "mooncake-transfer-engine"
+        ],
+        "modulePaths": {
+          "mooncake-store/include/storage/distributed": "object-replica",
+          "mooncake-store/src/storage/distributed": "object-replica",
+          "mooncake-store/src/master_object_storage.cpp": "object-replica",
+          "mooncake-store": "store",
+          "mooncake-transfer-engine": "system"
+        }
+      }
+    ]
+  }
+]

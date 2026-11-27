@@ -1,0 +1,13 @@
+{
+  "enabled": true,
+  "minimumHours": 22,
+  "initialLookbackDays": 120,
+  "pageLimit": 20,
+  "candidateLimit": 12,
+  "analysisInputBytes": 36000,
+  "analysisOutputTokens": 10000,
+  "requestTimeoutSeconds": 120,
+  "model": "gpt-5.4-mini",
+  "localCodexModel": "gpt-5.6-sol",
+  "autoPublishArchitecture": false
+}

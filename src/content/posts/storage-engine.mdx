@@ -1,0 +1,18 @@
+---
+title: "When a MemTable becomes TsFile data"
+description: "Trace a time-series insert through the WAL, MemTable, flush and file finalization."
+date: 2026-11-12
+tags: [IoTDB, storage, WAL, MemTable]
+category: Storage engines
+---
+import Embed from '../../components/Embed.astro';
+
+## WAL to working memory
+
+[TsFileProcessor’s row-insert path](https://github.com/apache/iotdb/blob/dc790cca0aac847f678aaa4214fc7ac2ba1a6bf5/iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/dataregion/memtable/TsFileProcessor.java#L351-L385) waits on the configured WAL listener before applying the mutation to a working MemTable. The configured WAL mode governs what the listener guarantees.
+
+<Embed id="storage-engine" />
+
+## Flushing and sealing
+
+The [flush task](https://github.com/apache/iotdb/blob/dc790cca0aac847f678aaa4214fc7ac2ba1a6bf5/iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/dataregion/memtable/TsFileProcessor.java#L2004-L2030) writes data for a flushing MemTable. File close separately seals metadata and the tail. Compaction later selects candidate files according to storage-engine rules.

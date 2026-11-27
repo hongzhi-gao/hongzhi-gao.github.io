@@ -1,0 +1,52 @@
+---
+import {getCollection} from 'astro:content';
+import Base from '../../layouts/Base.astro';
+const posts=(await getCollection('posts',({data})=>!data.draft)).sort((a,b)=>+b.data.date-+a.data.date);
+---
+<Base title="Engineering notes">
+<section class="shell page-intro"><p class="eyebrow">TECHNICAL BLOG</p><h1>Engineering notes</h1><p>Source-guided articles with interactive exhibits.</p><div class="actions"><a class="button soft" href="/rss.xml">RSS feed</a></div></section>
+<section class="shell inner-content blog-list">
+<form id="notes-search" role="search"><label for="notes-query">Search notes</label><div><input id="notes-query" name="q" type="search" placeholder="Try WAL, snapshot, or lease" /><button class="button primary">Search</button></div></form>
+<p id="search-status" role="status"></p><ul id="search-results" hidden></ul>
+<div id="published-notes">{posts.map(post=><article data-search-item><p class="eyebrow">{post.data.category} · <time datetime={post.data.date.toISOString().slice(0,10)}>{post.data.date.toISOString().slice(0,10)}</time></p><h2><a href={`/blog/${post.id}/`}>{post.data.title}</a></h2><p>{post.data.description}</p><ul class="tags">{post.data.tags.map(tag=><li><a href={`?q=${encodeURIComponent(tag)}`}>{tag}</a></li>)}</ul></article>)}</div>
+</section>
+</Base>
+<script>
+const form=document.querySelector<HTMLFormElement>('#notes-search')!;
+const input=document.querySelector<HTMLInputElement>('#notes-query')!;
+const status=document.querySelector('#search-status')!;
+const results=document.querySelector<HTMLUListElement>('#search-results')!;
+const posts=document.querySelector<HTMLElement>('#published-notes')!;
+async function search(query:string) {
+  if(!query){results.hidden=true;posts.hidden=false;status.textContent='';return}
+  status.textContent='Searching notes…';
+  try{
+    const indexPath='/pagefind/pagefind.js';
+    const pagefind=await import(/* @vite-ignore */ indexPath);
+    const found=await pagefind.search(query);
+    const values=await Promise.all(found.results.slice(0,12).map((result:{data:()=>Promise<{url:string;meta:{title:string};excerpt:string}>})=>result.data()));
+    results.replaceChildren(...values.map(result=>{
+      const item=document.createElement('li');
+      const anchor=document.createElement('a');anchor.href=result.url;anchor.textContent=result.meta.title;
+      const excerpt=document.createElement('p');
+      const parsed=new DOMParser().parseFromString(result.excerpt,'text/html');excerpt.textContent=parsed.body.textContent;
+      item.append(anchor,excerpt);return item;
+    }));
+    results.hidden=false;posts.hidden=true;status.textContent=`${found.results.length} matching notes`;
+  }catch{
+    posts.hidden=false;results.hidden=true;status.textContent='The search index could not be loaded.';
+  }
+}
+form.addEventListener('submit',event=>{
+  event.preventDefault();
+  const query=input.value.trim();
+  history.pushState(null,'',query?`?q=${encodeURIComponent(query)}`:location.pathname);
+  void search(query);
+});
+function restore(){
+  input.value=new URLSearchParams(location.search).get('q')??'';
+  void search(input.value);
+}
+window.addEventListener('popstate',restore);
+restore();
+</script>

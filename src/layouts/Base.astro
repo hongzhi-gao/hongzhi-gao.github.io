@@ -1,0 +1,37 @@
+---
+import '@fontsource-variable/inter';
+import '@fontsource-variable/space-grotesk';
+import '../style.css';
+import profile from '../../config/profile.json';
+const {title, description = 'An interactive field guide to distributed storage systems and open-source engineering by Hongzhi Gao.'} = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{title} · Hongzhi Gao</title>
+<meta name="description" content={description} />
+<meta name="theme-color" content="#090f15" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content="website" />
+<link rel="canonical" href={canonical} />
+<link rel="alternate" type="application/rss+xml" title="Engineering notes" href="/rss.xml" />
+<link rel="icon" href="/mark.svg" type="image/svg+xml" />
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="shell header-inner">
+<a class="wordmark" href="/"><img src="/mark.svg" alt="" width="33" height="33" /><span>Hongzhi Gao<small>ENGINEERING ATLAS</small></span></a>
+<nav aria-label="Main navigation"><a href="/#projects">Projects</a><a href="/lab/">Architecture Lab</a><a href="/contributions/">Contributions</a><a href="/blog/">Notes</a></nav>
+<a class="github-link" href={profile.verified ? `https://github.com/${profile.github}` : '#about'}>GitHub</a>
+</div></header>
+<main id="main"><slot /></main>
+<footer class="site-footer"><div class="shell footer-inner">
+<div><a class="wordmark" href="/"><img src="/mark.svg" alt="" width="31" height="31" /><span>Hongzhi Gao<small>ENGINEERING ATLAS</small></span></a></div>
+<div><a href={`mailto:${profile.email}`}>Apache email</a><a href="/rss.xml">RSS</a><a href={`https://github.com/${profile.github}/${profile.github}.github.io`}>Site source</a></div>
+</div></footer>
+</body>
+</html>

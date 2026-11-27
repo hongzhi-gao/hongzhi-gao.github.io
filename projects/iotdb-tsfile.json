@@ -1,0 +1,1965 @@
+{
+  "schemaVersion": 1,
+  "id": "iotdb-tsfile",
+  "name": "Apache IoTDB & TsFile",
+  "short": "IoTDB / TsFile",
+  "domain": "TIME-SERIES DATA SYSTEMS",
+  "description": "Follow a measurement from distributed write and replication to a page inside a TsFile.",
+  "accent": "#8cebd9",
+  "repos": [
+    "apache/iotdb",
+    "apache/tsfile"
+  ],
+  "evidence": [
+    {
+      "id": "config",
+      "repo": "apache/iotdb",
+      "sha": "dc790cca0aac847f678aaa4214fc7ac2ba1a6bf5",
+      "path": "iotdb-core/confignode/src/main/java/org/apache/iotdb/confignode/service/ConfigNode.java",
+      "label": "ConfigNode.java"
+    },
+    {
+      "id": "partition",
+      "repo": "apache/iotdb",
+      "sha": "dc790cca0aac847f678aaa4214fc7ac2ba1a6bf5",
+      "path": "iotdb-core/confignode/src/main/java/org/apache/iotdb/confignode/manager/partition/PartitionManager.java",
+      "label": "PartitionManager.java"
+    },
+    {
+      "id": "node",
+      "repo": "apache/iotdb",
+      "sha": "dc790cca0aac847f678aaa4214fc7ac2ba1a6bf5",
+      "path": "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/service/DataNode.java",
+      "label": "DataNode.java"
+    },
+    {
+      "id": "query",
+      "repo": "apache/iotdb",
+      "sha": "dc790cca0aac847f678aaa4214fc7ac2ba1a6bf5",
+      "path": "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/queryengine/execution/fragment/FragmentInstanceManager.java",
+      "label": "FragmentInstanceManager.java"
+    },
+    {
+      "id": "region",
+      "repo": "apache/iotdb",
+      "sha": "dc790cca0aac847f678aaa4214fc7ac2ba1a6bf5",
+      "path": "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/dataregion/DataRegion.java",
+      "label": "DataRegion.java"
+    },
+    {
+      "id": "processor",
+      "repo": "apache/iotdb",
+      "sha": "dc790cca0aac847f678aaa4214fc7ac2ba1a6bf5",
+      "path": "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/dataregion/memtable/TsFileProcessor.java",
+      "label": "TsFileProcessor.java",
+      "lines": [
+        351,
+        385
+      ]
+    },
+    {
+      "id": "flush",
+      "repo": "apache/iotdb",
+      "sha": "dc790cca0aac847f678aaa4214fc7ac2ba1a6bf5",
+      "path": "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/dataregion/memtable/TsFileProcessor.java",
+      "label": "TsFileProcessor.java",
+      "lines": [
+        2004,
+        2030
+      ]
+    },
+    {
+      "id": "wal",
+      "repo": "apache/iotdb",
+      "sha": "dc790cca0aac847f678aaa4214fc7ac2ba1a6bf5",
+      "path": "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/dataregion/wal/node/WALNode.java",
+      "label": "WALNode.java"
+    },
+    {
+      "id": "storage",
+      "repo": "apache/iotdb",
+      "sha": "dc790cca0aac847f678aaa4214fc7ac2ba1a6bf5",
+      "path": "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/StorageEngine.java",
+      "label": "StorageEngine.java"
+    },
+    {
+      "id": "compaction",
+      "repo": "apache/iotdb",
+      "sha": "dc790cca0aac847f678aaa4214fc7ac2ba1a6bf5",
+      "path": "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/dataregion/compaction/schedule/CompactionTaskManager.java",
+      "label": "CompactionTaskManager.java"
+    },
+    {
+      "id": "tier",
+      "repo": "apache/iotdb",
+      "sha": "dc790cca0aac847f678aaa4214fc7ac2ba1a6bf5",
+      "path": "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/rescon/disk/TierManager.java",
+      "label": "TierManager.java"
+    },
+    {
+      "id": "consensus",
+      "repo": "apache/iotdb",
+      "sha": "dc790cca0aac847f678aaa4214fc7ac2ba1a6bf5",
+      "path": "iotdb-core/consensus/src/main/java/org/apache/iotdb/consensus/iot/IoTConsensusServerImpl.java",
+      "label": "IoTConsensusServerImpl.java",
+      "lines": [
+        346,
+        376
+      ]
+    },
+    {
+      "id": "dispatcher",
+      "repo": "apache/iotdb",
+      "sha": "dc790cca0aac847f678aaa4214fc7ac2ba1a6bf5",
+      "path": "iotdb-core/consensus/src/main/java/org/apache/iotdb/consensus/iot/logdispatcher/LogDispatcher.java",
+      "label": "LogDispatcher.java"
+    },
+    {
+      "id": "rpc",
+      "repo": "apache/iotdb",
+      "sha": "dc790cca0aac847f678aaa4214fc7ac2ba1a6bf5",
+      "path": "iotdb-core/consensus/src/main/java/org/apache/iotdb/consensus/iot/service/IoTConsensusRPCServiceProcessor.java",
+      "label": "IoTConsensusRPCServiceProcessor.java",
+      "lines": [
+        114,
+        142
+      ]
+    },
+    {
+      "id": "index",
+      "repo": "apache/iotdb",
+      "sha": "dc790cca0aac847f678aaa4214fc7ac2ba1a6bf5",
+      "path": "iotdb-core/consensus/src/main/java/org/apache/iotdb/consensus/iot/logdispatcher/IndexController.java",
+      "label": "IndexController.java"
+    },
+    {
+      "id": "writer",
+      "repo": "apache/tsfile",
+      "sha": "405a13b868054c3d96aae64ed3c9f771f211e4a3",
+      "path": "java/tsfile/src/main/java/org/apache/tsfile/write/writer/TsFileIOWriter.java",
+      "label": "TsFileIOWriter.java",
+      "lines": [
+        640,
+        659
+      ]
+    },
+    {
+      "id": "chunk",
+      "repo": "apache/tsfile",
+      "sha": "405a13b868054c3d96aae64ed3c9f771f211e4a3",
+      "path": "java/tsfile/src/main/java/org/apache/tsfile/write/chunk/ChunkWriterImpl.java",
+      "label": "ChunkWriterImpl.java"
+    },
+    {
+      "id": "page",
+      "repo": "apache/tsfile",
+      "sha": "405a13b868054c3d96aae64ed3c9f771f211e4a3",
+      "path": "java/tsfile/src/main/java/org/apache/tsfile/write/page/PageWriter.java",
+      "label": "PageWriter.java"
+    },
+    {
+      "id": "reader",
+      "repo": "apache/tsfile",
+      "sha": "405a13b868054c3d96aae64ed3c9f771f211e4a3",
+      "path": "java/tsfile/src/main/java/org/apache/tsfile/read/TsFileSequenceReader.java",
+      "label": "TsFileSequenceReader.java",
+      "lines": [
+        669,
+        694
+      ]
+    },
+    {
+      "id": "readpage",
+      "repo": "apache/tsfile",
+      "sha": "405a13b868054c3d96aae64ed3c9f771f211e4a3",
+      "path": "java/tsfile/src/main/java/org/apache/tsfile/read/TsFileSequenceReader.java",
+      "label": "TsFileSequenceReader.java",
+      "lines": [
+        2748,
+        2781
+      ]
+    },
+    {
+      "id": "indexnode",
+      "repo": "apache/tsfile",
+      "sha": "405a13b868054c3d96aae64ed3c9f771f211e4a3",
+      "path": "java/tsfile/src/main/java/org/apache/tsfile/file/metadata/MetadataIndexNode.java",
+      "label": "MetadataIndexNode.java"
+    },
+    {
+      "id": "old-rebuild",
+      "repo": "apache/iotdb",
+      "sha": "e78f7366134e7f3cbedb463c3f5e9ebb26ba021c",
+      "path": "iotdb-core/consensus/src/main/java/org/apache/iotdb/consensus/iot/IoTConsensusServerImpl.java",
+      "label": "IoTConsensusServerImpl.java"
+    },
+    {
+      "id": "rebuild",
+      "repo": "apache/iotdb",
+      "sha": "3f841b00f3b9bc41e92c0445596c44075b6598b5",
+      "path": "iotdb-core/consensus/src/main/java/org/apache/iotdb/consensus/iot/IoTConsensusServerImpl.java",
+      "label": "IoTConsensusServerImpl.java"
+    },
+    {
+      "id": "wal-rebuild",
+      "repo": "apache/iotdb",
+      "sha": "3f841b00f3b9bc41e92c0445596c44075b6598b5",
+      "path": "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/dataregion/wal/node/WALNode.java",
+      "label": "WALNode.java"
+    },
+    {
+      "id": "rebuild-test",
+      "repo": "apache/iotdb",
+      "sha": "3f841b00f3b9bc41e92c0445596c44075b6598b5",
+      "path": "integration-test/src/test/java/org/apache/iotdb/confignode/it/regionmigration/pass/commit/IoTDBRegionReconstructWALIT.java",
+      "label": "IoTDBRegionReconstructWALIT.java"
+    },
+    {
+      "id": "recovery-old",
+      "repo": "apache/tsfile",
+      "sha": "34833e7a59d4aea406adc2cb4809246a28e53fd9",
+      "path": "cpp/src/common/tsfile_common.h",
+      "label": "tsfile_common.h"
+    },
+    {
+      "id": "recovery-new",
+      "repo": "apache/tsfile",
+      "sha": "3de49f7fc0348964a962173cbdcd37cac598f071",
+      "path": "cpp/src/common/tsfile_common.h",
+      "label": "tsfile_common.h"
+    },
+    {
+      "id": "recovery-test",
+      "repo": "apache/tsfile",
+      "sha": "3de49f7fc0348964a962173cbdcd37cac598f071",
+      "path": "cpp/test/file/restorable_tsfile_io_writer_test.cc",
+      "label": "restorable_tsfile_io_writer_test.cc"
+    },
+    {
+      "id": "delete-fix",
+      "repo": "apache/iotdb",
+      "sha": "bffd9243d294589d144be424c056963698f1b233",
+      "path": "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/dataregion/memtable/TsFileProcessor.java",
+      "label": "TsFileProcessor.java"
+    },
+    {
+      "id": "file-header",
+      "repo": "apache/tsfile",
+      "sha": "405a13b868054c3d96aae64ed3c9f771f211e4a3",
+      "path": "java/tsfile/src/main/java/org/apache/tsfile/write/writer/TsFileIOWriter.java",
+      "label": "TsFileIOWriter.java",
+      "lines": [
+        388,
+        399
+      ]
+    },
+    {
+      "id": "group-header",
+      "repo": "apache/tsfile",
+      "sha": "405a13b868054c3d96aae64ed3c9f771f211e4a3",
+      "path": "java/tsfile/src/main/java/org/apache/tsfile/write/writer/TsFileIOWriter.java",
+      "label": "TsFileIOWriter.java",
+      "lines": [
+        408,
+        425
+      ]
+    }
+  ],
+  "versions": [
+    {
+      "id": "iotdb-overview",
+      "label": "IoTDB system overview",
+      "repo": "apache/iotdb",
+      "sha": "dc790cca0aac847f678aaa4214fc7ac2ba1a6bf5",
+      "note": "A ConfigNode coordinates partition metadata. A DataNode executes work against locally hosted regions and files.",
+      "scenario": "iotdb-overview"
+    },
+    {
+      "id": "storage-engine",
+      "label": "From memory to disk",
+      "repo": "apache/iotdb",
+      "sha": "dc790cca0aac847f678aaa4214fc7ac2ba1a6bf5",
+      "note": "A teaching example follows temperature=21.4 at t=100. Flush and close are separate operations.",
+      "scenario": "storage-engine"
+    },
+    {
+      "id": "iotconsensus-v1",
+      "label": "IoTConsensus V1 replication",
+      "repo": "apache/iotdb",
+      "sha": "dc790cca0aac847f678aaa4214fc7ac2ba1a6bf5",
+      "note": "One local write and two asynchronous outbound peer channels in one region group.",
+      "scenario": "iotconsensus-v1"
+    },
+    {
+      "id": "tsfile-layout",
+      "label": "Inside a TsFile",
+      "repo": "apache/tsfile",
+      "sha": "405a13b868054c3d96aae64ed3c9f771f211e4a3",
+      "note": "Explode a Java TsFile from the file tail to a decoded page. Positions separate the logical regions for inspection.",
+      "scenario": "tsfile-layout"
+    },
+    {
+      "id": "wal-rebuild-before",
+      "label": "Before \u00b7 WAL retention",
+      "repo": "apache/iotdb",
+      "sha": "e78f7366134e7f3cbedb463c3f5e9ebb26ba021c",
+      "note": "An already-published single-replica boundary can race new channel registration.",
+      "scenario": "wal-rebuild-before"
+    },
+    {
+      "id": "wal-rebuild-after",
+      "label": "After \u00b7 WAL retention",
+      "repo": "apache/iotdb",
+      "sha": "3f841b00f3b9bc41e92c0445596c44075b6598b5",
+      "note": "Reconstruction preserves newly required WAL and prevents dispatch from skipping an index gap.",
+      "scenario": "wal-rebuild-after",
+      "compareWith": "wal-rebuild-before"
+    },
+    {
+      "id": "tsfile-recovery-before",
+      "label": "Before \u00b7 repeated recovery",
+      "repo": "apache/tsfile",
+      "sha": "34833e7a59d4aea406adc2cb4809246a28e53fd9",
+      "note": "C++ metadata indexing when the same logical device appears in multiple recovery passes.",
+      "scenario": "tsfile-recovery-before"
+    },
+    {
+      "id": "tsfile-recovery-after",
+      "label": "After \u00b7 repeated recovery",
+      "repo": "apache/tsfile",
+      "sha": "3de49f7fc0348964a962173cbdcd37cac598f071",
+      "note": "C++ metadata indexing when the same logical device appears in multiple recovery passes.",
+      "scenario": "tsfile-recovery-after",
+      "compareWith": "tsfile-recovery-before"
+    }
+  ],
+  "modules": [
+    {
+      "id": "system",
+      "title": "System overview",
+      "description": "ConfigNode metadata, DataNode execution and the placement of persistence and replication.",
+      "scenarios": [
+        "iotdb-overview"
+      ]
+    },
+    {
+      "id": "storage-engine",
+      "title": "Storage engine",
+      "description": "Region writes, WAL and MemTable flushing, sealed files, compaction and reads.",
+      "scenarios": [
+        "storage-engine"
+      ]
+    },
+    {
+      "id": "iotconsensus-v1",
+      "title": "IoTConsensus V1",
+      "description": "Local state-machine writes, per-peer dispatch and reconstruction boundaries.",
+      "scenarios": [
+        "iotconsensus-v1",
+        "wal-rebuild-before",
+        "wal-rebuild-after"
+      ]
+    },
+    {
+      "id": "tsfile",
+      "title": "TsFile",
+      "description": "Java file layout, page reads and a C++ repeated recovery comparison.",
+      "scenarios": [
+        "tsfile-layout",
+        "tsfile-recovery-before",
+        "tsfile-recovery-after"
+      ]
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "iotdb-overview",
+      "title": "IoTDB system overview",
+      "summary": "A ConfigNode coordinates partition metadata. A DataNode executes work against locally hosted regions and files.",
+      "category": "source",
+      "status": "upstream",
+      "components": [
+        {
+          "id": "client",
+          "kind": "Client",
+          "label": "Client",
+          "description": "Submits the time-series write or query.",
+          "position": [
+            -4,
+            0,
+            1.9
+          ],
+          "level": 2,
+          "evidence": [
+            "node"
+          ]
+        },
+        {
+          "id": "config",
+          "kind": "Master",
+          "label": "ConfigNode",
+          "description": "Manages cluster metadata and partition assignments.",
+          "position": [
+            0,
+            0,
+            1.9
+          ],
+          "level": 2,
+          "evidence": [
+            "config"
+          ]
+        },
+        {
+          "id": "node",
+          "kind": "ServerNode",
+          "label": "DataNode",
+          "description": "Hosts query execution, replication and local storage.",
+          "position": [
+            4,
+            0,
+            1.9
+          ],
+          "level": 2,
+          "evidence": [
+            "node"
+          ],
+          "jump": "storage-engine"
+        },
+        {
+          "id": "partition",
+          "kind": "Metadata",
+          "label": "Partition map",
+          "description": "Maps work to region replicas.",
+          "position": [
+            -4,
+            0,
+            -2.2
+          ],
+          "level": 2,
+          "evidence": [
+            "partition"
+          ]
+        },
+        {
+          "id": "consensus",
+          "kind": "ConsensusGroup",
+          "label": "IoTConsensus V1",
+          "description": "Replicates region writes with per-peer dispatch.",
+          "position": [
+            0,
+            0,
+            -2.2
+          ],
+          "level": 2,
+          "evidence": [
+            "consensus"
+          ],
+          "jump": "iotconsensus-v1"
+        },
+        {
+          "id": "tsfile",
+          "kind": "File",
+          "label": "TsFile",
+          "description": "Columnar time-series persistence.",
+          "position": [
+            4,
+            0,
+            -2.2
+          ],
+          "level": 2,
+          "evidence": [
+            "writer"
+          ],
+          "jump": "tsfile-layout"
+        }
+      ],
+      "relationships": [
+        {
+          "to": "node",
+          "label": "rpc",
+          "from": "client"
+        },
+        {
+          "to": "partition",
+          "label": "rpc",
+          "from": "config"
+        },
+        {
+          "to": "consensus",
+          "label": "transfer",
+          "from": "node"
+        },
+        {
+          "to": "tsfile",
+          "label": "flush",
+          "from": "node"
+        },
+        {
+          "to": "node",
+          "label": "rpc",
+          "from": "tsfile"
+        }
+      ],
+      "timeline": [
+        {
+          "type": "rpc",
+          "target": "node",
+          "state": "request",
+          "label": "Submit a measurement",
+          "detail": "The client reaches a DataNode through the query or write execution path.",
+          "evidence": [
+            "node"
+          ],
+          "from": "client"
+        },
+        {
+          "type": "rpc",
+          "target": "partition",
+          "state": "assigned",
+          "label": "Resolve the data region",
+          "detail": "Cluster partition metadata connects devices and time partitions with a region group.",
+          "evidence": [
+            "partition"
+          ],
+          "from": "config"
+        },
+        {
+          "type": "transfer",
+          "target": "consensus",
+          "state": "replicating",
+          "label": "Execute on the region",
+          "detail": "The local region applies the mutation. IoTConsensus V1 can dispatch to its region peers.",
+          "evidence": [
+            "consensus"
+          ],
+          "from": "node"
+        },
+        {
+          "type": "flush",
+          "target": "tsfile",
+          "state": "appended",
+          "label": "Persist the file data",
+          "detail": "A storage-engine flush materializes buffered data as TsFile chunks.",
+          "evidence": [
+            "flush"
+          ],
+          "from": "node"
+        },
+        {
+          "type": "rpc",
+          "target": "node",
+          "state": "reading",
+          "label": "Read across files",
+          "detail": "DataNode fragment execution coordinates query work. The storage layer supplies persisted and in-memory data.",
+          "evidence": [
+            "query"
+          ],
+          "from": "tsfile"
+        }
+      ],
+      "cameraTrack": [
+        {
+          "step": 0,
+          "target": "node"
+        },
+        {
+          "step": 1,
+          "target": "partition"
+        },
+        {
+          "step": 2,
+          "target": "consensus"
+        },
+        {
+          "step": 3,
+          "target": "tsfile"
+        },
+        {
+          "step": 4,
+          "target": "node"
+        }
+      ],
+      "version": "iotdb-overview"
+    },
+    {
+      "id": "storage-engine",
+      "title": "From memory to disk",
+      "summary": "A teaching example follows temperature=21.4 at t=100. Flush and close are separate operations.",
+      "category": "teaching",
+      "status": "upstream",
+      "components": [
+        {
+          "id": "region",
+          "kind": "ServerNode",
+          "label": "DataRegion",
+          "description": "Local storage and file lifecycle within a region.",
+          "position": [
+            -4,
+            0,
+            1.9
+          ],
+          "level": 2,
+          "evidence": [
+            "region"
+          ]
+        },
+        {
+          "id": "wal",
+          "kind": "WAL",
+          "label": "WALNode",
+          "description": "Logs mutations and tracks memtable lifecycle.",
+          "position": [
+            0,
+            0,
+            1.9
+          ],
+          "level": 2,
+          "evidence": [
+            "wal"
+          ],
+          "jump": "wal-rebuild-after"
+        },
+        {
+          "id": "mem",
+          "kind": "MemTable",
+          "label": "Working MemTable",
+          "description": "Buffers inserts before flush.",
+          "position": [
+            4,
+            0,
+            1.9
+          ],
+          "level": 4,
+          "evidence": [
+            "processor"
+          ],
+          "parent": "processor",
+          "structure": [
+            {
+              "name": "memTableId",
+              "meaning": "Associates the insert with the working memtable in the WAL"
+            }
+          ]
+        },
+        {
+          "id": "processor",
+          "kind": "Worker",
+          "label": "TsFileProcessor",
+          "description": "Coordinates WAL, working and flushing memtables, and open TsFile writes.",
+          "position": [
+            -4,
+            0,
+            -2.2
+          ],
+          "level": 3,
+          "evidence": [
+            "processor"
+          ],
+          "parent": "region"
+        },
+        {
+          "id": "file",
+          "kind": "File",
+          "label": "TsFile",
+          "description": "An open file can receive flushed chunks before finalization.",
+          "position": [
+            0,
+            0,
+            -2.2
+          ],
+          "level": 2,
+          "evidence": [
+            "flush"
+          ],
+          "jump": "tsfile-layout"
+        },
+        {
+          "id": "merge",
+          "kind": "Compaction",
+          "label": "Compaction",
+          "description": "Merges selected persisted files under storage-engine rules.",
+          "position": [
+            4,
+            0,
+            -2.2
+          ],
+          "level": 2,
+          "evidence": [
+            "compaction"
+          ]
+        }
+      ],
+      "relationships": [
+        {
+          "to": "wal",
+          "label": "log",
+          "from": "processor"
+        },
+        {
+          "to": "mem",
+          "label": "allocate",
+          "from": "wal"
+        },
+        {
+          "to": "file",
+          "label": "flush",
+          "from": "mem"
+        },
+        {
+          "to": "file",
+          "label": "state",
+          "from": "processor"
+        },
+        {
+          "to": "merge",
+          "label": "compaction",
+          "from": "file"
+        },
+        {
+          "to": "region",
+          "label": "rpc",
+          "from": "file"
+        }
+      ],
+      "timeline": [
+        {
+          "type": "rpc",
+          "target": "region",
+          "state": "routed",
+          "label": "Route one insert",
+          "detail": "The region routes the measurement to a working TsFileProcessor.",
+          "evidence": [
+            "region"
+          ]
+        },
+        {
+          "type": "log",
+          "target": "wal",
+          "state": "logged",
+          "label": "Log the write",
+          "detail": "For this insert-row path, the processor resolves the WAL listener result before mutating the working memtable. Durability depends on configured WAL mode.",
+          "evidence": [
+            "processor"
+          ],
+          "from": "processor"
+        },
+        {
+          "type": "allocate",
+          "target": "mem",
+          "state": "buffered",
+          "label": "Mutate the working memtable",
+          "detail": "The insert reaches the working memtable after the WAL step.",
+          "evidence": [
+            "processor"
+          ],
+          "from": "wal",
+          "progress": 0.65
+        },
+        {
+          "type": "flush",
+          "target": "file",
+          "state": "flushed",
+          "label": "Encode and append chunks",
+          "detail": "A flushing memtable is handed to MemTableFlushTask. The flush appends data without necessarily sealing the file.",
+          "evidence": [
+            "flush"
+          ],
+          "from": "mem"
+        },
+        {
+          "type": "state",
+          "target": "file",
+          "state": "sealed",
+          "label": "Finalize the TsFile",
+          "detail": "Closing the writer finalizes metadata and the file tail.",
+          "evidence": [
+            "writer"
+          ],
+          "from": "processor"
+        },
+        {
+          "type": "compaction",
+          "target": "merge",
+          "state": "merged",
+          "label": "Compact eligible files",
+          "detail": "A later compaction can rewrite eligible files. The scheduler and query use file state managed by the region; tier management is a separate concern.",
+          "evidence": [
+            "compaction"
+          ],
+          "from": "file"
+        },
+        {
+          "type": "rpc",
+          "target": "region",
+          "state": "readable",
+          "label": "Read the requested time range",
+          "detail": "A reader uses persisted chunk/page metadata to locate and decode file data.",
+          "evidence": [
+            "reader"
+          ],
+          "from": "file"
+        }
+      ],
+      "cameraTrack": [
+        {
+          "step": 0,
+          "target": "region"
+        },
+        {
+          "step": 1,
+          "target": "wal"
+        },
+        {
+          "step": 2,
+          "target": "mem"
+        },
+        {
+          "step": 3,
+          "target": "file"
+        },
+        {
+          "step": 4,
+          "target": "file"
+        },
+        {
+          "step": 5,
+          "target": "merge"
+        },
+        {
+          "step": 6,
+          "target": "region"
+        }
+      ],
+      "version": "storage-engine"
+    },
+    {
+      "id": "iotconsensus-v1",
+      "title": "IoTConsensus V1 replication",
+      "summary": "One local write and two asynchronous outbound peer channels in one region group.",
+      "category": "teaching",
+      "status": "upstream",
+      "components": [
+        {
+          "id": "client",
+          "kind": "Client",
+          "label": "Writer",
+          "description": "Sends a local write.",
+          "position": [
+            -4,
+            0,
+            1.9
+          ],
+          "level": 2,
+          "evidence": [
+            "consensus"
+          ]
+        },
+        {
+          "id": "sender",
+          "kind": "Peer",
+          "label": "DataNode A",
+          "description": "Local state machine and source index.",
+          "position": [
+            0,
+            0,
+            1.9
+          ],
+          "level": 2,
+          "evidence": [
+            "consensus"
+          ]
+        },
+        {
+          "id": "log",
+          "kind": "WAL",
+          "label": "Local indexed WAL",
+          "description": "Fallback input for asynchronous dispatch.",
+          "position": [
+            4,
+            0,
+            1.9
+          ],
+          "level": 2,
+          "evidence": [
+            "dispatcher"
+          ]
+        },
+        {
+          "id": "batch",
+          "kind": "Queue",
+          "label": "LogDispatcher",
+          "description": "Collects indexed requests, builds batches and manages each remote peer channel.",
+          "position": [
+            -4,
+            0,
+            -2.2
+          ],
+          "level": 2,
+          "evidence": [
+            "dispatcher"
+          ]
+        },
+        {
+          "id": "peer-b",
+          "kind": "Peer",
+          "label": "DataNode B",
+          "description": "Applies requests from A through its RPC handler.",
+          "position": [
+            0,
+            0,
+            -2.2
+          ],
+          "level": 2,
+          "evidence": [
+            "rpc"
+          ]
+        },
+        {
+          "id": "peer-c",
+          "kind": "Peer",
+          "label": "DataNode C",
+          "description": "Has independent replication progress.",
+          "position": [
+            4,
+            0,
+            -2.2
+          ],
+          "level": 2,
+          "evidence": [
+            "index"
+          ],
+          "jump": "wal-rebuild-after"
+        }
+      ],
+      "relationships": [
+        {
+          "to": "sender",
+          "label": "rpc",
+          "from": "client"
+        },
+        {
+          "to": "log",
+          "label": "log",
+          "from": "sender"
+        },
+        {
+          "to": "batch",
+          "label": "transfer",
+          "from": "log"
+        },
+        {
+          "to": "peer-b",
+          "label": "progress",
+          "from": "batch"
+        },
+        {
+          "to": "peer-c",
+          "label": "failure",
+          "from": "batch"
+        }
+      ],
+      "timeline": [
+        {
+          "type": "rpc",
+          "target": "sender",
+          "state": "applied",
+          "label": "Apply locally",
+          "detail": "The state machine runs under the local write lock. Only a successful result advances the local index and enters outbound dispatch.",
+          "evidence": [
+            "consensus"
+          ],
+          "from": "client",
+          "progress": 0.75
+        },
+        {
+          "type": "log",
+          "target": "log",
+          "state": "indexed",
+          "label": "Retain an indexed write",
+          "detail": "The dispatcher can read WAL when needed, for example when its in-memory buffer does not cover a range.",
+          "evidence": [
+            "dispatcher"
+          ],
+          "from": "sender"
+        },
+        {
+          "type": "transfer",
+          "target": "batch",
+          "state": "batched",
+          "label": "Build per-peer batches",
+          "detail": "Each outbound channel tracks pending data and its own synchronization indexes.",
+          "evidence": [
+            "dispatcher"
+          ],
+          "from": "log"
+        },
+        {
+          "type": "progress",
+          "target": "peer-b",
+          "state": "synced",
+          "label": "Apply on DataNode B",
+          "detail": "The remote RPC handler decodes the batch and invokes the target group\u2019s replication path.",
+          "evidence": [
+            "rpc"
+          ],
+          "from": "batch",
+          "progress": 0.73
+        },
+        {
+          "type": "failure",
+          "target": "peer-c",
+          "state": "lagging",
+          "label": "One destination is unavailable",
+          "detail": "This illustrative peer outage stalls C\u2019s progress independently of B. Local success is not a quorum acknowledgment.",
+          "evidence": [
+            "dispatcher"
+          ],
+          "from": "batch",
+          "progress": 0.23
+        },
+        {
+          "type": "retry",
+          "target": "peer-c",
+          "state": "retrying",
+          "label": "Retry the lagging channel",
+          "detail": "The dispatcher keeps asynchronous retry and index management per peer.",
+          "evidence": [
+            "dispatcher"
+          ],
+          "from": "batch",
+          "progress": 0.43
+        },
+        {
+          "type": "progress",
+          "target": "peer-c",
+          "state": "caught-up",
+          "label": "Advance peer progress",
+          "detail": "Successful synchronization advances that channel. WAL retention must account for peers that still need the writes.",
+          "evidence": [
+            "index"
+          ],
+          "from": "batch",
+          "progress": 0.73
+        }
+      ],
+      "cameraTrack": [
+        {
+          "step": 0,
+          "target": "sender"
+        },
+        {
+          "step": 1,
+          "target": "log"
+        },
+        {
+          "step": 2,
+          "target": "batch"
+        },
+        {
+          "step": 3,
+          "target": "peer-b"
+        },
+        {
+          "step": 4,
+          "target": "peer-c"
+        },
+        {
+          "step": 5,
+          "target": "peer-c"
+        },
+        {
+          "step": 6,
+          "target": "peer-c"
+        }
+      ],
+      "version": "iotconsensus-v1"
+    },
+    {
+      "id": "tsfile-layout",
+      "title": "Inside a TsFile",
+      "summary": "Explode a Java TsFile from the file tail to a decoded page. Positions separate the logical regions for inspection.",
+      "category": "source",
+      "status": "upstream",
+      "components": [
+        {
+          "id": "file",
+          "kind": "File",
+          "label": "TsFile",
+          "description": "Magic and version frame the data and metadata sections.",
+          "position": [
+            -4,
+            0,
+            0
+          ],
+          "level": 2,
+          "evidence": [
+            "writer"
+          ],
+          "initialPosition": [
+            -2.64,
+            0,
+            0
+          ]
+        },
+        {
+          "id": "group",
+          "kind": "FileSection",
+          "label": "ChunkGroup",
+          "description": "Groups chunks under a device identity.",
+          "position": [
+            -2.3,
+            0,
+            0
+          ],
+          "level": 3,
+          "evidence": [
+            "group-header"
+          ],
+          "parent": "file",
+          "initialPosition": [
+            -1.518,
+            0,
+            0
+          ]
+        },
+        {
+          "id": "chunk",
+          "kind": "Chunk",
+          "label": "Chunk",
+          "description": "Holds pages for a measurement or aligned stream.",
+          "position": [
+            -0.3,
+            0,
+            0
+          ],
+          "level": 4,
+          "evidence": [
+            "chunk"
+          ],
+          "parent": "group",
+          "initialPosition": [
+            -0.198,
+            0,
+            0
+          ]
+        },
+        {
+          "id": "page",
+          "kind": "Page",
+          "label": "Page",
+          "description": "Encoded data and page headers. Compression is applied to the encoded page payload.",
+          "position": [
+            1.7,
+            0,
+            0
+          ],
+          "level": 5,
+          "evidence": [
+            "page"
+          ],
+          "parent": "chunk",
+          "initialPosition": [
+            1.122,
+            0,
+            0
+          ]
+        },
+        {
+          "id": "index",
+          "kind": "Index",
+          "label": "Metadata index",
+          "description": "Index entries navigate to series metadata and chunk offsets.",
+          "position": [
+            3.8,
+            0,
+            0
+          ],
+          "level": 3,
+          "evidence": [
+            "indexnode"
+          ],
+          "parent": "file",
+          "initialPosition": [
+            2.508,
+            0,
+            0
+          ]
+        },
+        {
+          "id": "reader",
+          "kind": "Client",
+          "label": "Reader",
+          "description": "Loads footer metadata and reads pages for selected chunks.",
+          "position": [
+            2.8,
+            0,
+            -3.4
+          ],
+          "level": 2,
+          "evidence": [
+            "reader"
+          ],
+          "jump": "tsfile-recovery-after",
+          "initialPosition": [
+            1.8479999999999999,
+            0,
+            -3.4
+          ]
+        }
+      ],
+      "relationships": [
+        {
+          "to": "group",
+          "label": "create",
+          "from": "file"
+        },
+        {
+          "to": "chunk",
+          "label": "state",
+          "from": "group"
+        },
+        {
+          "to": "page",
+          "label": "transfer",
+          "from": "chunk"
+        },
+        {
+          "to": "index",
+          "label": "state",
+          "from": "group"
+        },
+        {
+          "to": "reader",
+          "label": "transfer",
+          "from": "index"
+        },
+        {
+          "to": "page",
+          "label": "transfer",
+          "from": "reader"
+        }
+      ],
+      "timeline": [
+        {
+          "type": "create",
+          "target": "file",
+          "state": "opened",
+          "label": "Open the file",
+          "detail": "The writer starts a file with a format header.",
+          "evidence": [
+            "file-header"
+          ]
+        },
+        {
+          "type": "create",
+          "target": "group",
+          "state": "expanded",
+          "label": "Expand the device group",
+          "detail": "A ChunkGroup marks data for a device; multiple chunks can follow the group header.",
+          "evidence": [
+            "group-header"
+          ],
+          "from": "file"
+        },
+        {
+          "type": "state",
+          "target": "chunk",
+          "state": "expanded",
+          "label": "Inspect a chunk",
+          "detail": "Chunk headers describe the measurement or aligned stream and its data representation.",
+          "evidence": [
+            "chunk"
+          ],
+          "from": "group"
+        },
+        {
+          "type": "transfer",
+          "target": "page",
+          "state": "encoded",
+          "label": "Encode and compress the page",
+          "detail": "The writer serializes encoded bytes and may compress the page body with the configured compressor.",
+          "evidence": [
+            "page"
+          ],
+          "from": "chunk"
+        },
+        {
+          "type": "state",
+          "target": "index",
+          "state": "indexed",
+          "label": "Write the index and tail",
+          "detail": "The writer serializes metadata and ends with the metadata size and closing magic.",
+          "evidence": [
+            "writer"
+          ],
+          "from": "group"
+        },
+        {
+          "type": "transfer",
+          "target": "reader",
+          "state": "located",
+          "label": "Find the required chunks",
+          "detail": "The reader loads file metadata and uses index and series metadata to seek to chunk offsets.",
+          "evidence": [
+            "reader"
+          ],
+          "from": "index"
+        },
+        {
+          "type": "transfer",
+          "target": "page",
+          "state": "decoded",
+          "label": "Read the page body",
+          "detail": "The reader checks page sizes and materializes the body for decoding.",
+          "evidence": [
+            "readpage"
+          ],
+          "from": "reader"
+        }
+      ],
+      "cameraTrack": [
+        {
+          "step": 0,
+          "target": "file"
+        },
+        {
+          "step": 1,
+          "target": "group"
+        },
+        {
+          "step": 2,
+          "target": "chunk"
+        },
+        {
+          "step": 3,
+          "target": "page"
+        },
+        {
+          "step": 4,
+          "target": "index"
+        },
+        {
+          "step": 5,
+          "target": "reader"
+        },
+        {
+          "step": 6,
+          "target": "page"
+        }
+      ],
+      "version": "tsfile-layout"
+    },
+    {
+      "id": "wal-rebuild-before",
+      "title": "Before \u00b7 WAL retention",
+      "summary": "An already-published single-replica boundary can race new channel registration.",
+      "category": "teaching",
+      "status": "historical",
+      "components": [
+        {
+          "id": "sender",
+          "kind": "Peer",
+          "label": "Source peer",
+          "description": "Hosts the original region copy.",
+          "position": [
+            -4,
+            0,
+            1.9
+          ],
+          "level": 2,
+          "evidence": [
+            "old-rebuild"
+          ]
+        },
+        {
+          "id": "wal",
+          "kind": "WAL",
+          "label": "Incremental WAL",
+          "description": "Holds indexes newer than the snapshot frontier.",
+          "position": [
+            0,
+            0,
+            1.9
+          ],
+          "level": 2,
+          "evidence": [
+            "old-rebuild"
+          ]
+        },
+        {
+          "id": "snapshot",
+          "kind": "File",
+          "label": "Snapshot \u00b7 100",
+          "description": "Teaching example fixed at index 100.",
+          "position": [
+            4,
+            0,
+            1.9
+          ],
+          "level": 2,
+          "evidence": [
+            "old-rebuild"
+          ]
+        },
+        {
+          "id": "peer",
+          "kind": "Peer",
+          "label": "Replacement peer",
+          "description": "Needs the snapshot and later entries.",
+          "position": [
+            -4,
+            0,
+            -2.2
+          ],
+          "level": 2,
+          "evidence": [
+            "old-rebuild"
+          ]
+        }
+      ],
+      "relationships": [
+        {
+          "to": "wal",
+          "label": "state",
+          "from": "sender"
+        },
+        {
+          "to": "peer",
+          "label": "create",
+          "from": "sender"
+        },
+        {
+          "to": "snapshot",
+          "label": "transfer",
+          "from": "sender"
+        },
+        {
+          "to": "peer",
+          "label": "failure",
+          "from": "wal"
+        }
+      ],
+      "timeline": [
+        {
+          "type": "state",
+          "target": "wal",
+          "state": "unbounded",
+          "label": "Publish the single-replica boundary",
+          "detail": "An earlier cleanup pass can see a MAX_VALUE retention boundary.",
+          "evidence": [
+            "old-rebuild"
+          ],
+          "from": "sender"
+        },
+        {
+          "type": "create",
+          "target": "peer",
+          "state": "registered",
+          "label": "Register the replacement",
+          "detail": "The replacement is registered at index 100 without immediately restoring WAL retention.",
+          "evidence": [
+            "old-rebuild"
+          ],
+          "from": "sender"
+        },
+        {
+          "type": "transfer",
+          "target": "snapshot",
+          "state": "captured",
+          "label": "Capture snapshot at index 100",
+          "detail": "Subsequent writes must still be replayable from the sender.",
+          "evidence": [
+            "old-rebuild"
+          ],
+          "from": "sender"
+        },
+        {
+          "type": "failure",
+          "target": "peer",
+          "state": "gap",
+          "label": "Delete WAL above the snapshot",
+          "detail": "A stale cleanup cutoff can discard indexes required by this peer. The pre-fix dispatcher could skip gaps.",
+          "evidence": [
+            "old-rebuild"
+          ],
+          "from": "wal"
+        }
+      ],
+      "cameraTrack": [
+        {
+          "step": 0,
+          "target": "wal"
+        },
+        {
+          "step": 1,
+          "target": "peer"
+        },
+        {
+          "step": 2,
+          "target": "snapshot"
+        },
+        {
+          "step": 3,
+          "target": "peer"
+        }
+      ],
+      "version": "wal-rebuild-before",
+      "contribution": "wal-retention"
+    },
+    {
+      "id": "wal-rebuild-after",
+      "title": "After \u00b7 WAL retention",
+      "summary": "Reconstruction preserves newly required WAL and prevents dispatch from skipping an index gap.",
+      "category": "teaching",
+      "status": "upstream",
+      "components": [
+        {
+          "id": "sender",
+          "kind": "Peer",
+          "label": "Source peer",
+          "description": "Hosts the original region copy.",
+          "position": [
+            -4,
+            0,
+            1.9
+          ],
+          "level": 2,
+          "evidence": [
+            "rebuild"
+          ]
+        },
+        {
+          "id": "wal",
+          "kind": "WAL",
+          "label": "Incremental WAL",
+          "description": "Holds indexes newer than the snapshot frontier.",
+          "position": [
+            0,
+            0,
+            1.9
+          ],
+          "level": 2,
+          "evidence": [
+            "rebuild"
+          ]
+        },
+        {
+          "id": "snapshot",
+          "kind": "File",
+          "label": "Snapshot \u00b7 100",
+          "description": "Teaching example fixed at index 100.",
+          "position": [
+            4,
+            0,
+            1.9
+          ],
+          "level": 2,
+          "evidence": [
+            "rebuild"
+          ]
+        },
+        {
+          "id": "peer",
+          "kind": "Peer",
+          "label": "Replacement peer",
+          "description": "Needs the snapshot and later entries.",
+          "position": [
+            -4,
+            0,
+            -2.2
+          ],
+          "level": 2,
+          "evidence": [
+            "rebuild"
+          ]
+        }
+      ],
+      "relationships": [
+        {
+          "to": "peer",
+          "label": "lock",
+          "from": "sender"
+        },
+        {
+          "to": "wal",
+          "label": "state",
+          "from": "peer"
+        },
+        {
+          "to": "snapshot",
+          "label": "transfer",
+          "from": "sender"
+        },
+        {
+          "to": "peer",
+          "label": "progress",
+          "from": "wal"
+        }
+      ],
+      "timeline": [
+        {
+          "type": "lock",
+          "target": "peer",
+          "state": "registered",
+          "label": "Register under the write lock",
+          "detail": "Capture index 100 and register the channel while local writes cannot advance it.",
+          "evidence": [
+            "rebuild"
+          ],
+          "from": "sender"
+        },
+        {
+          "type": "state",
+          "target": "wal",
+          "state": "protected",
+          "label": "Publish the retention boundary",
+          "detail": "Retention publication is serialized. Each WAL file eligibility check and deletion is coordinated with boundary changes.",
+          "evidence": [
+            "wal-rebuild"
+          ],
+          "from": "peer"
+        },
+        {
+          "type": "transfer",
+          "target": "snapshot",
+          "state": "captured",
+          "label": "Transfer the snapshot",
+          "detail": "Snapshot transfer and replay run without holding the registration locks.",
+          "evidence": [
+            "rebuild"
+          ],
+          "from": "sender"
+        },
+        {
+          "type": "progress",
+          "target": "peer",
+          "state": "replayed",
+          "label": "Replay contiguous WAL",
+          "detail": "Catch-up waits for the coordinator\u2019s fixed outbound frontier. An unexpected gap halts that dispatch channel.",
+          "evidence": [
+            "rebuild-test"
+          ],
+          "from": "wal",
+          "progress": 1
+        }
+      ],
+      "cameraTrack": [
+        {
+          "step": 0,
+          "target": "peer"
+        },
+        {
+          "step": 1,
+          "target": "wal"
+        },
+        {
+          "step": 2,
+          "target": "snapshot"
+        },
+        {
+          "step": 3,
+          "target": "peer"
+        }
+      ],
+      "version": "wal-rebuild-after",
+      "contribution": "wal-retention"
+    },
+    {
+      "id": "tsfile-recovery-before",
+      "title": "Before \u00b7 repeated recovery",
+      "summary": "C++ metadata indexing when the same logical device appears in multiple recovery passes.",
+      "category": "source",
+      "status": "historical",
+      "components": [
+        {
+          "id": "files",
+          "kind": "File",
+          "label": "Recovered chunks",
+          "description": "Recovery reconstructs metadata for surviving data. ",
+          "position": [
+            -4,
+            0,
+            1.9
+          ],
+          "level": 2,
+          "evidence": [
+            "recovery-old"
+          ]
+        },
+        {
+          "id": "entries",
+          "kind": "Metadata",
+          "label": "Device identities",
+          "description": "Different device objects can denote the same device.",
+          "position": [
+            0,
+            0,
+            1.9
+          ],
+          "level": 2,
+          "evidence": [
+            "recovery-old"
+          ]
+        },
+        {
+          "id": "index",
+          "kind": "Index",
+          "label": "TSMIterator",
+          "description": "Groups recovered chunks by device before indexing.",
+          "position": [
+            4,
+            0,
+            1.9
+          ],
+          "level": 2,
+          "evidence": [
+            "recovery-old"
+          ]
+        }
+      ],
+      "relationships": [
+        {
+          "to": "entries",
+          "label": "recovery",
+          "from": "files"
+        },
+        {
+          "to": "index",
+          "label": "state",
+          "from": "entries"
+        },
+        {
+          "to": "files",
+          "label": "state",
+          "from": "index"
+        }
+      ],
+      "timeline": [
+        {
+          "type": "recovery",
+          "target": "entries",
+          "state": "reconstructed",
+          "label": "Recover another batch of chunks",
+          "detail": "A later recovery can materialize another object representing the same logical device.",
+          "evidence": [
+            "recovery-old"
+          ],
+          "from": "files"
+        },
+        {
+          "type": "state",
+          "target": "index",
+          "state": "split",
+          "label": "Compare pointer identities",
+          "detail": "Pointer ordering can keep equal logical device IDs in independent groups.",
+          "evidence": [
+            "recovery-old"
+          ],
+          "from": "entries"
+        },
+        {
+          "type": "state",
+          "target": "files",
+          "state": "ambiguous",
+          "label": "Emit separate device groups",
+          "detail": "The same device can occupy multiple groups in the metadata construction pass.",
+          "evidence": [
+            "recovery-old"
+          ],
+          "from": "index"
+        }
+      ],
+      "cameraTrack": [
+        {
+          "step": 0,
+          "target": "entries"
+        },
+        {
+          "step": 1,
+          "target": "index"
+        },
+        {
+          "step": 2,
+          "target": "files"
+        }
+      ],
+      "version": "tsfile-recovery-before",
+      "contribution": "multi-recovery"
+    },
+    {
+      "id": "tsfile-recovery-after",
+      "title": "After \u00b7 repeated recovery",
+      "summary": "C++ metadata indexing when the same logical device appears in multiple recovery passes.",
+      "category": "source",
+      "status": "upstream",
+      "components": [
+        {
+          "id": "files",
+          "kind": "File",
+          "label": "Recovered chunks",
+          "description": "Recovery reconstructs metadata for surviving data. ",
+          "position": [
+            -4,
+            0,
+            1.9
+          ],
+          "level": 2,
+          "evidence": [
+            "recovery-new"
+          ]
+        },
+        {
+          "id": "entries",
+          "kind": "Metadata",
+          "label": "Device identities",
+          "description": "Different device objects can denote the same device.",
+          "position": [
+            0,
+            0,
+            1.9
+          ],
+          "level": 2,
+          "evidence": [
+            "recovery-new"
+          ]
+        },
+        {
+          "id": "index",
+          "kind": "Index",
+          "label": "TSMIterator",
+          "description": "Groups recovered chunks by device before indexing.",
+          "position": [
+            4,
+            0,
+            1.9
+          ],
+          "level": 2,
+          "evidence": [
+            "recovery-new"
+          ]
+        }
+      ],
+      "relationships": [
+        {
+          "to": "entries",
+          "label": "recovery",
+          "from": "files"
+        },
+        {
+          "to": "index",
+          "label": "state",
+          "from": "entries"
+        },
+        {
+          "to": "files",
+          "label": "state",
+          "from": "index"
+        }
+      ],
+      "timeline": [
+        {
+          "type": "recovery",
+          "target": "entries",
+          "state": "reconstructed",
+          "label": "Recover another batch of chunks",
+          "detail": "A later recovery can materialize another object representing the same logical device.",
+          "evidence": [
+            "recovery-new"
+          ],
+          "from": "files"
+        },
+        {
+          "type": "state",
+          "target": "index",
+          "state": "grouped",
+          "label": "Compare device values",
+          "detail": "IDeviceIDComparator consolidates equal device identities.",
+          "evidence": [
+            "recovery-new"
+          ],
+          "from": "entries"
+        },
+        {
+          "type": "state",
+          "target": "files",
+          "state": "indexed",
+          "label": "Index the consolidated device",
+          "detail": "The paired C++ recovery regression covers repeated recovery and its metadata output.",
+          "evidence": [
+            "recovery-test"
+          ],
+          "from": "index"
+        }
+      ],
+      "cameraTrack": [
+        {
+          "step": 0,
+          "target": "entries"
+        },
+        {
+          "step": 1,
+          "target": "index"
+        },
+        {
+          "step": 2,
+          "target": "files"
+        }
+      ],
+      "version": "tsfile-recovery-after",
+      "contribution": "multi-recovery"
+    }
+  ],
+  "contributions": [
+    {
+      "id": "wal-retention",
+      "title": "[IoTConsensus] Preserve WAL needed by reconstructed peers",
+      "status": "merged",
+      "repository": "apache/iotdb",
+      "number": 19268,
+      "role": "author",
+      "date": "2026-11-13",
+      "module": "iotconsensus-v1",
+      "scenario": "wal-rebuild-after",
+      "problem": "Replica reconstruction could lose post-snapshot WAL.",
+      "design": "Publish retention during channel registration and stop dispatch at unexpected gaps.",
+      "evidence": [
+        "rebuild",
+        "wal-rebuild",
+        "rebuild-test"
+      ]
+    },
+    {
+      "id": "multi-recovery",
+      "title": "Fix multi-recovery metadata indexing and add regression coverage.",
+      "status": "merged",
+      "repository": "apache/tsfile",
+      "number": 783,
+      "role": "author",
+      "date": "2026-04-15",
+      "module": "tsfile",
+      "scenario": "tsfile-recovery-after",
+      "problem": "Repeated recovery could duplicate logical device groups.",
+      "design": "Compare device values while collecting recovered chunk metadata.",
+      "evidence": [
+        "recovery-new",
+        "recovery-test"
+      ]
+    },
+    {
+      "id": "deletion-wal",
+      "title": "[rc/2.0.12] Fix deletion WAL logging and flush completion ordering",
+      "status": "merged",
+      "repository": "apache/iotdb",
+      "number": 19246,
+      "role": "author",
+      "date": "2026-11-12",
+      "module": "storage-engine",
+      "scenario": "storage-engine",
+      "problem": "Deletion logging depended on flush phase ordering.",
+      "design": "Coordinate the WAL and flush lifecycle on the 2.0.12 release branch.",
+      "evidence": [
+        "delete-fix"
+      ]
+    }
+  ]
+}
