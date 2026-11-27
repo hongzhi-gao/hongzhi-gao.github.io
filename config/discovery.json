@@ -1,7 +1,2024 @@
 {
   "version": 1,
-  "repositories": {},
-  "records": [],
-  "pending": [],
+  "repositories": {
+    "apache/iotdb": {
+      "head": "dc790cca0aac847f678aaa4214fc7ac2ba1a6bf5",
+      "scannedAt": "2026-11-27T10:13:10.963Z"
+    },
+    "apache/tsfile": {
+      "head": "405a13b868054c3d96aae64ed3c9f771f211e4a3",
+      "scannedAt": "2026-11-27T10:13:10.963Z"
+    },
+    "kvcache-ai/Mooncake": {
+      "head": "e57be7d873799eb2f1a7eaaa59e80444a5b65f12",
+      "scannedAt": "2026-11-27T10:13:10.963Z"
+    }
+  },
+  "records": [
+    {
+      "key": "kvcache-ai/Mooncake:review:6084682393",
+      "repo": "kvcache-ai/Mooncake",
+      "title": "[Store] Introduce RAII ReplicaPin to replace manual replica refcnt",
+      "date": "2026-11-27T07:11:33Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/kvcache-ai/Mooncake/pull/5819#pullrequestreview-6084682393",
+      "module": null
+    },
+    {
+      "key": "kvcache-ai/Mooncake:review:6084053959",
+      "repo": "kvcache-ai/Mooncake",
+      "title": "[Store] Add synchronous object storage replicas",
+      "date": "2026-11-27T05:53:11Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/kvcache-ai/Mooncake/pull/5494#pullrequestreview-6084053959",
+      "module": null
+    },
+    {
+      "key": "kvcache-ai/Mooncake:review:6084053592",
+      "repo": "kvcache-ai/Mooncake",
+      "title": "[Store] Add synchronous object storage replicas",
+      "date": "2026-11-27T05:53:09Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/kvcache-ai/Mooncake/pull/5494#pullrequestreview-6084053592",
+      "module": null
+    },
+    {
+      "key": "kvcache-ai/Mooncake:review:6084053189",
+      "repo": "kvcache-ai/Mooncake",
+      "title": "[Store] Add synchronous object storage replicas",
+      "date": "2026-11-27T05:53:06Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/kvcache-ai/Mooncake/pull/5494#pullrequestreview-6084053189",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:review:6070006444",
+      "repo": "apache/iotdb",
+      "title": "implement client-session node selector",
+      "date": "2026-11-26T07:24:39Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/iotdb/pull/16281#pullrequestreview-6070006444",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:review:6070006451",
+      "repo": "apache/iotdb",
+      "title": "implement client-session node selector",
+      "date": "2026-11-26T07:24:39Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/iotdb/pull/16281#pullrequestreview-6070006451",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:review:6070006457",
+      "repo": "apache/iotdb",
+      "title": "implement client-session node selector",
+      "date": "2026-11-26T07:24:39Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/iotdb/pull/16281#pullrequestreview-6070006457",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:review:6070006465",
+      "repo": "apache/iotdb",
+      "title": "implement client-session node selector",
+      "date": "2026-11-26T07:24:39Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/iotdb/pull/16281#pullrequestreview-6070006465",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:review:6070006475",
+      "repo": "apache/iotdb",
+      "title": "implement client-session node selector",
+      "date": "2026-11-26T07:24:39Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/iotdb/pull/16281#pullrequestreview-6070006475",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:review:6070002895",
+      "repo": "apache/iotdb",
+      "title": "implement client-session node selector",
+      "date": "2026-11-26T07:24:16Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/iotdb/pull/16281#pullrequestreview-6070002895",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:pull:19382",
+      "repo": "apache/iotdb",
+      "title": "Expose the number of distinct resident MemTable series per DataRegion",
+      "date": "2026-11-24T07:14:39Z",
+      "status": "open",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/pull/19382",
+      "module": "storage-engine"
+    },
+    {
+      "key": "apache/iotdb:review:6020291068",
+      "repo": "apache/iotdb",
+      "title": "Implement Python DB-API 2.0 compliance",
+      "date": "2026-11-23T10:48:41Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/iotdb/pull/19369#pullrequestreview-6020291068",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:review:6019974039",
+      "repo": "apache/iotdb",
+      "title": "Implement Python DB-API 2.0 compliance",
+      "date": "2026-11-23T10:28:32Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/iotdb/pull/19369#pullrequestreview-6019974039",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:pull:19369",
+      "repo": "apache/iotdb",
+      "title": "Implement Python DB-API 2.0 compliance",
+      "date": "2026-11-23T09:02:46Z",
+      "status": "open",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/pull/19369",
+      "module": null
+    },
+    {
+      "key": "kvcache-ai/Mooncake:review:5987381766",
+      "repo": "kvcache-ai/Mooncake",
+      "title": "[Store] Bring SegmentPool and ReplicaAllocator to ClientSession and affinity parity",
+      "date": "2026-11-20T04:12:24Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/kvcache-ai/Mooncake/pull/5669#pullrequestreview-5987381766",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:pull:19337",
+      "repo": "apache/iotdb",
+      "title": "Support configurable insert type casting using query CAST rules",
+      "date": "2026-11-20T03:39:09Z",
+      "status": "open",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/pull/19337",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:review:5986502791",
+      "repo": "apache/iotdb",
+      "title": "Add staged test insertion APIs for Java tree and table sessions",
+      "date": "2026-11-20T02:12:08Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/iotdb/pull/19308#pullrequestreview-5986502791",
+      "module": null
+    },
+    {
+      "key": "kvcache-ai/Mooncake:review:5953123053",
+      "repo": "kvcache-ai/Mooncake",
+      "title": "[Store] Add synchronous object storage replicas",
+      "date": "2026-11-18T08:33:07Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/kvcache-ai/Mooncake/pull/5494#pullrequestreview-5953123053",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:review:5952859342",
+      "repo": "apache/iotdb",
+      "title": "Add staged test insertion APIs for Java tree and table sessions",
+      "date": "2026-11-18T08:10:30Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/iotdb/pull/19308#pullrequestreview-5952859342",
+      "module": null
+    },
+    {
+      "key": "kvcache-ai/Mooncake:review:5952453468",
+      "repo": "kvcache-ai/Mooncake",
+      "title": "[Store] Add synchronous object storage replicas",
+      "date": "2026-11-18T07:38:40Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/kvcache-ai/Mooncake/pull/5494#pullrequestreview-5952453468",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:pull:19308",
+      "repo": "apache/iotdb",
+      "title": "Add staged test insertion APIs for Java tree and table sessions",
+      "date": "2026-11-18T04:00:02Z",
+      "status": "open",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/pull/19308",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:commit:c5e5162385d2b9ab4f2aa28f6adad7608a5f24db",
+      "repo": "apache/iotdb",
+      "title": "Fix account unlock permission check for unprivileged users (#19301)",
+      "date": "2026-11-17T06:45:56Z",
+      "status": "committed",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/commit/c5e5162385d2b9ab4f2aa28f6adad7608a5f24db",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:pull:19301",
+      "repo": "apache/iotdb",
+      "title": "Fix account unlock permission check for unprivileged users",
+      "date": "2026-11-17T03:31:59Z",
+      "status": "merged",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/pull/19301",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:commit:3f841b00f3b9bc41e92c0445596c44075b6598b5",
+      "repo": "apache/iotdb",
+      "title": "[IoTConsensus] Preserve WAL needed by reconstructed peers (#19268)",
+      "date": "2026-11-17T02:57:07Z",
+      "status": "committed",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/commit/3f841b00f3b9bc41e92c0445596c44075b6598b5",
+      "module": null
+    },
+    {
+      "key": "apache/tsfile:review:5931693737",
+      "repo": "apache/tsfile",
+      "title": "Reduce allocations in aligned page reads and Tablet serialization",
+      "date": "2026-11-17T02:23:58Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/tsfile/pull/1101#pullrequestreview-5931693737",
+      "module": null
+    },
+    {
+      "key": "kvcache-ai/Mooncake:review:5917579049",
+      "repo": "kvcache-ai/Mooncake",
+      "title": "[Store] Isolate session admission from heartbeats",
+      "date": "2026-11-16T09:18:37Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/kvcache-ai/Mooncake/pull/5544#pullrequestreview-5917579049",
+      "module": null
+    },
+    {
+      "key": "kvcache-ai/Mooncake:review:5917152897",
+      "repo": "kvcache-ai/Mooncake",
+      "title": "[Store] Improve HA standby OpLog catch-up and suffix gap handling",
+      "date": "2026-11-16T08:41:48Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/kvcache-ai/Mooncake/pull/5433#pullrequestreview-5917152897",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:review:5914731732",
+      "repo": "apache/iotdb",
+      "title": "Support log payload compression in IoTConsensus V1",
+      "date": "2026-11-16T03:33:22Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/iotdb/pull/19244#pullrequestreview-5914731732",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:pull:19286",
+      "repo": "apache/iotdb",
+      "title": "Add testInsert API for Java table sessions",
+      "date": "2026-11-16T02:52:51Z",
+      "status": "closed",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/pull/19286",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:review:5914234140",
+      "repo": "apache/iotdb",
+      "title": "Support log payload compression in IoTConsensus V1",
+      "date": "2026-11-16T02:01:13Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/iotdb/pull/19244#pullrequestreview-5914234140",
+      "module": null
+    },
+    {
+      "key": "apache/tsfile:commit:4ef3102bd89a9065299354b28e2a15b1bc7a7a09",
+      "repo": "apache/tsfile",
+      "title": "Fix FMPP xml-resolver resolution with local metadata (#1103)",
+      "date": "2026-11-16T01:35:42Z",
+      "status": "committed",
+      "role": "author",
+      "url": "https://github.com/apache/tsfile/commit/4ef3102bd89a9065299354b28e2a15b1bc7a7a09",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:pull:19268",
+      "repo": "apache/iotdb",
+      "title": "[IoTConsensus] Preserve WAL needed by reconstructed peers",
+      "date": "2026-11-13T12:53:41Z",
+      "status": "merged",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/pull/19268",
+      "module": null
+    },
+    {
+      "key": "kvcache-ai/Mooncake:issue:5495",
+      "repo": "kvcache-ai/Mooncake",
+      "title": "[RFC]: [Store] Synchronous object replicas: commit, recovery, and reclamation",
+      "date": "2026-11-13T12:37:49Z",
+      "status": "open",
+      "role": "design-contributor",
+      "url": "https://github.com/kvcache-ai/Mooncake/issues/5495",
+      "module": null
+    },
+    {
+      "key": "kvcache-ai/Mooncake:pull:5494",
+      "repo": "kvcache-ai/Mooncake",
+      "title": "[Store] Add synchronous object storage replicas",
+      "date": "2026-11-13T11:56:17Z",
+      "status": "open",
+      "role": "author",
+      "url": "https://github.com/kvcache-ai/Mooncake/pull/5494",
+      "module": null
+    },
+    {
+      "key": "apache/tsfile:pull:1103",
+      "repo": "apache/tsfile",
+      "title": "Fix FMPP xml-resolver resolution with local metadata",
+      "date": "2026-11-13T10:13:22Z",
+      "status": "merged",
+      "role": "author",
+      "url": "https://github.com/apache/tsfile/pull/1103",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:review:5889186763",
+      "repo": "apache/iotdb",
+      "title": "Support log payload compression in IoTConsensus V1",
+      "date": "2026-11-13T10:05:19Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/iotdb/pull/19244#pullrequestreview-5889186763",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:review:5889185512",
+      "repo": "apache/iotdb",
+      "title": "Support log payload compression in IoTConsensus V1",
+      "date": "2026-11-13T10:05:13Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/iotdb/pull/19244#pullrequestreview-5889185512",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:review:5889184911",
+      "repo": "apache/iotdb",
+      "title": "Support log payload compression in IoTConsensus V1",
+      "date": "2026-11-13T10:05:10Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/iotdb/pull/19244#pullrequestreview-5889184911",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:review:5889184212",
+      "repo": "apache/iotdb",
+      "title": "Support log payload compression in IoTConsensus V1",
+      "date": "2026-11-13T10:05:07Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/iotdb/pull/19244#pullrequestreview-5889184212",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:review:5889183631",
+      "repo": "apache/iotdb",
+      "title": "Support log payload compression in IoTConsensus V1",
+      "date": "2026-11-13T10:05:04Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/iotdb/pull/19244#pullrequestreview-5889183631",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:commit:b92ca10c7920a35086fc138d07847580316a83c2",
+      "repo": "apache/iotdb",
+      "title": "Fix out-of-range Python timestamps with pandas 3.1 (#19248)",
+      "date": "2026-11-13T06:41:37Z",
+      "status": "committed",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/commit/b92ca10c7920a35086fc138d07847580316a83c2",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:commit:9a281f8e1c062007233a89bd18a8e22372097fc2",
+      "repo": "apache/iotdb",
+      "title": "Fix snapshot recovery when hard links are unsupported (#19236)",
+      "date": "2026-11-13T03:14:41Z",
+      "status": "committed",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/commit/9a281f8e1c062007233a89bd18a8e22372097fc2",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:review:5885381027",
+      "repo": "apache/iotdb",
+      "title": "Fix out-of-range Python timestamps with pandas 3.1",
+      "date": "2026-11-13T03:00:24Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/iotdb/pull/19248#pullrequestreview-5885381027",
+      "module": null
+    },
+    {
+      "key": "kvcache-ai/Mooncake:commit:c0e80e2b997e4cd0907355f54bd4c4180e3e190f",
+      "repo": "kvcache-ai/Mooncake",
+      "title": "[Store] Persist object upload and cleanup recovery records (#5310)",
+      "date": "2026-11-13T02:30:25Z",
+      "status": "committed",
+      "role": "author",
+      "url": "https://github.com/kvcache-ai/Mooncake/commit/c0e80e2b997e4cd0907355f54bd4c4180e3e190f",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:pull:19248",
+      "repo": "apache/iotdb",
+      "title": "Fix out-of-range Python timestamps with pandas 3.1",
+      "date": "2026-11-12T10:40:05Z",
+      "status": "merged",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/pull/19248",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:pull:19246",
+      "repo": "apache/iotdb",
+      "title": "[rc/2.0.12] Fix deletion WAL logging and flush completion ordering",
+      "date": "2026-11-12T09:40:03Z",
+      "status": "merged",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/pull/19246",
+      "module": "storage-engine"
+    },
+    {
+      "key": "apache/iotdb:pull:19244",
+      "repo": "apache/iotdb",
+      "title": "Support log payload compression in IoTConsensus V1",
+      "date": "2026-11-12T08:58:55Z",
+      "status": "open",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/pull/19244",
+      "module": "iotconsensus-v1"
+    },
+    {
+      "key": "apache/iotdb:pull:19236",
+      "repo": "apache/iotdb",
+      "title": "Fix snapshot recovery when hard links are unsupported",
+      "date": "2026-11-12T04:03:30Z",
+      "status": "merged",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/pull/19236",
+      "module": "storage-engine"
+    },
+    {
+      "key": "kvcache-ai/Mooncake:review:5856862219",
+      "repo": "kvcache-ai/Mooncake",
+      "title": "[Bugfix] Publish KV removals when storage segments become invalid",
+      "date": "2026-11-11T09:52:07Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/kvcache-ai/Mooncake/pull/5413#pullrequestreview-5856862219",
+      "module": null
+    },
+    {
+      "key": "kvcache-ai/Mooncake:review:5855987910",
+      "repo": "kvcache-ai/Mooncake",
+      "title": "[Bugfix] Publish KV removals when storage segments become invalid",
+      "date": "2026-11-11T08:38:36Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/kvcache-ai/Mooncake/pull/5413#pullrequestreview-5855987910",
+      "module": null
+    },
+    {
+      "key": "kvcache-ai/Mooncake:review:5855233122",
+      "repo": "kvcache-ai/Mooncake",
+      "title": "[Store] Add per-wait timeouts for OpLog durability",
+      "date": "2026-11-11T07:25:44Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/kvcache-ai/Mooncake/pull/5314#pullrequestreview-5855233122",
+      "module": null
+    },
+    {
+      "key": "kvcache-ai/Mooncake:review:5853129965",
+      "repo": "kvcache-ai/Mooncake",
+      "title": "[Store] Persist object upload and cleanup recovery records",
+      "date": "2026-11-11T02:58:26Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/kvcache-ai/Mooncake/pull/5310#pullrequestreview-5853129965",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:pull:19203",
+      "repo": "apache/iotdb",
+      "title": "[2.0.12] Fix Python timestamp overflow with pandas 3.1",
+      "date": "2026-11-10T09:26:05Z",
+      "status": "closed",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/pull/19203",
+      "module": null
+    },
+    {
+      "key": "kvcache-ai/Mooncake:review:5838550480",
+      "repo": "kvcache-ai/Mooncake",
+      "title": "[Store] Persist object upload and cleanup recovery records",
+      "date": "2026-11-10T08:06:54Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/kvcache-ai/Mooncake/pull/5310#pullrequestreview-5838550480",
+      "module": null
+    },
+    {
+      "key": "kvcache-ai/Mooncake:review:5838548780",
+      "repo": "kvcache-ai/Mooncake",
+      "title": "[Store] Persist object upload and cleanup recovery records",
+      "date": "2026-11-10T08:06:46Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/kvcache-ai/Mooncake/pull/5310#pullrequestreview-5838548780",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:pull:19199",
+      "repo": "apache/iotdb",
+      "title": "[2.0.12] Backport C++ TLS/mTLS support and fix CI compatibility",
+      "date": "2026-11-10T04:25:14Z",
+      "status": "merged",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/pull/19199",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:commit:08cebbd76c19c9b7df11a7ef1ac14ae5fc13c085",
+      "repo": "apache/iotdb",
+      "title": "Fix snapshots of deleted TsFile resources during DataNode removal (#19192)",
+      "date": "2026-11-10T03:06:24Z",
+      "status": "committed",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/commit/08cebbd76c19c9b7df11a7ef1ac14ae5fc13c085",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:commit:d10b69ee10ff393928af2dad9725df41b2c28dfc",
+      "repo": "apache/iotdb",
+      "title": "Fix tier folder recovery and DiskFull status after configuration reload (#19161)",
+      "date": "2026-11-10T01:40:11Z",
+      "status": "committed",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/commit/d10b69ee10ff393928af2dad9725df41b2c28dfc",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:review:5823429103",
+      "repo": "apache/iotdb",
+      "title": "Fix tier folder recovery and DiskFull status after configuration reload",
+      "date": "2026-11-09T08:40:02Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/iotdb/pull/19161#pullrequestreview-5823429103",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:review:5823427487",
+      "repo": "apache/iotdb",
+      "title": "Fix tier folder recovery and DiskFull status after configuration reload",
+      "date": "2026-11-09T08:39:52Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/iotdb/pull/19161#pullrequestreview-5823427487",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:pull:19192",
+      "repo": "apache/iotdb",
+      "title": "Fix snapshots of deleted TsFile resources during DataNode removal",
+      "date": "2026-11-09T07:17:23Z",
+      "status": "merged",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/pull/19192",
+      "module": "storage-engine"
+    },
+    {
+      "key": "kvcache-ai/Mooncake:pull:5310",
+      "repo": "kvcache-ai/Mooncake",
+      "title": "[Store] Persist object upload and cleanup recovery records",
+      "date": "2026-11-06T09:41:16Z",
+      "status": "merged",
+      "role": "author",
+      "url": "https://github.com/kvcache-ai/Mooncake/pull/5310",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:pull:19161",
+      "repo": "apache/iotdb",
+      "title": "Fix tier folder recovery and DiskFull status after configuration reload",
+      "date": "2026-11-06T04:05:41Z",
+      "status": "merged",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/pull/19161",
+      "module": "storage-engine"
+    },
+    {
+      "key": "apache/iotdb:review:5794571669",
+      "repo": "apache/iotdb",
+      "title": "Add configurable Thrift buffer reuse thresholds to Java clients",
+      "date": "2026-11-06T01:32:40Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/iotdb/pull/19148#pullrequestreview-5794571669",
+      "module": null
+    },
+    {
+      "key": "kvcache-ai/Mooncake:commit:446237a56672ce3eb7ed2e73e780eb52c6e86d3a",
+      "repo": "kvcache-ai/Mooncake",
+      "title": "[Store] Add bounded object storage I/O (#4727)",
+      "date": "2026-11-05T03:27:03Z",
+      "status": "committed",
+      "role": "author",
+      "url": "https://github.com/kvcache-ai/Mooncake/commit/446237a56672ce3eb7ed2e73e780eb52c6e86d3a",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:pull:19065",
+      "repo": "apache/iotdb",
+      "title": "[To dev/1.3] Fix duplicate DataRegion scheduling after recovery",
+      "date": "2026-10-30T08:07:02Z",
+      "status": "merged",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/pull/19065",
+      "module": "storage-engine"
+    },
+    {
+      "key": "apache/iotdb:commit:ab770467c8e2092e6bdbc5388c49d60baa21b681",
+      "repo": "apache/iotdb",
+      "title": "Fix DataRegion snapshot failures when hard links are unavailable (#19049)",
+      "date": "2026-10-29T08:37:16Z",
+      "status": "committed",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/commit/ab770467c8e2092e6bdbc5388c49d60baa21b681",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:pull:19049",
+      "repo": "apache/iotdb",
+      "title": "Fix DataRegion snapshot failures when hard links are unavailable",
+      "date": "2026-10-29T04:30:32Z",
+      "status": "merged",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/pull/19049",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:commit:8cdc9681d0141fa51cfd0dc120b67a7383270865",
+      "repo": "apache/iotdb",
+      "title": "[C++] Fix macOS OpenSSL header isolation and upgrade Thrift to 0.25.0 (#18968)",
+      "date": "2026-10-28T08:33:15Z",
+      "status": "committed",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/commit/8cdc9681d0141fa51cfd0dc120b67a7383270865",
+      "module": null
+    },
+    {
+      "key": "kvcache-ai/Mooncake:review:5650662255",
+      "repo": "kvcache-ai/Mooncake",
+      "title": "[Store] Add bounded object storage I/O",
+      "date": "2026-10-26T10:32:43Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/kvcache-ai/Mooncake/pull/4727#pullrequestreview-5650662255",
+      "module": null
+    },
+    {
+      "key": "kvcache-ai/Mooncake:review:5650661725",
+      "repo": "kvcache-ai/Mooncake",
+      "title": "[Store] Add bounded object storage I/O",
+      "date": "2026-10-26T10:32:40Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/kvcache-ai/Mooncake/pull/4727#pullrequestreview-5650661725",
+      "module": null
+    },
+    {
+      "key": "kvcache-ai/Mooncake:review:5650661280",
+      "repo": "kvcache-ai/Mooncake",
+      "title": "[Store] Add bounded object storage I/O",
+      "date": "2026-10-26T10:32:38Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/kvcache-ai/Mooncake/pull/4727#pullrequestreview-5650661280",
+      "module": null
+    },
+    {
+      "key": "kvcache-ai/Mooncake:review:5650660788",
+      "repo": "kvcache-ai/Mooncake",
+      "title": "[Store] Add bounded object storage I/O",
+      "date": "2026-10-26T10:32:36Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/kvcache-ai/Mooncake/pull/4727#pullrequestreview-5650660788",
+      "module": null
+    },
+    {
+      "key": "kvcache-ai/Mooncake:review:5650660298",
+      "repo": "kvcache-ai/Mooncake",
+      "title": "[Store] Add bounded object storage I/O",
+      "date": "2026-10-26T10:32:33Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/kvcache-ai/Mooncake/pull/4727#pullrequestreview-5650660298",
+      "module": null
+    },
+    {
+      "key": "kvcache-ai/Mooncake:review:5650659725",
+      "repo": "kvcache-ai/Mooncake",
+      "title": "[Store] Add bounded object storage I/O",
+      "date": "2026-10-26T10:32:30Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/kvcache-ai/Mooncake/pull/4727#pullrequestreview-5650659725",
+      "module": null
+    },
+    {
+      "key": "kvcache-ai/Mooncake:review:5650659170",
+      "repo": "kvcache-ai/Mooncake",
+      "title": "[Store] Add bounded object storage I/O",
+      "date": "2026-10-26T10:32:28Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/kvcache-ai/Mooncake/pull/4727#pullrequestreview-5650659170",
+      "module": null
+    },
+    {
+      "key": "kvcache-ai/Mooncake:review:5650658430",
+      "repo": "kvcache-ai/Mooncake",
+      "title": "[Store] Add bounded object storage I/O",
+      "date": "2026-10-26T10:32:24Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/kvcache-ai/Mooncake/pull/4727#pullrequestreview-5650658430",
+      "module": null
+    },
+    {
+      "key": "kvcache-ai/Mooncake:review:5650657885",
+      "repo": "kvcache-ai/Mooncake",
+      "title": "[Store] Add bounded object storage I/O",
+      "date": "2026-10-26T10:32:22Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/kvcache-ai/Mooncake/pull/4727#pullrequestreview-5650657885",
+      "module": null
+    },
+    {
+      "key": "kvcache-ai/Mooncake:review:5649974146",
+      "repo": "kvcache-ai/Mooncake",
+      "title": "[Store] Cut MasterService over to tenant namespaces, the Evictor and the tenant quota policy",
+      "date": "2026-10-26T09:38:55Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/kvcache-ai/Mooncake/pull/4887#pullrequestreview-5649974146",
+      "module": null
+    },
+    {
+      "key": "kvcache-ai/Mooncake:review:5649963575",
+      "repo": "kvcache-ai/Mooncake",
+      "title": "[Store] Cut MasterService over to tenant namespaces, the Evictor and the tenant quota policy",
+      "date": "2026-10-26T09:37:53Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/kvcache-ai/Mooncake/pull/4887#pullrequestreview-5649963575",
+      "module": null
+    },
+    {
+      "key": "kvcache-ai/Mooncake:pull:4936",
+      "repo": "kvcache-ai/Mooncake",
+      "title": "[Store] Extract object upload and cleanup catalog",
+      "date": "2026-10-26T02:53:13Z",
+      "status": "closed",
+      "role": "author",
+      "url": "https://github.com/kvcache-ai/Mooncake/pull/4936",
+      "module": null
+    },
+    {
+      "key": "kvcache-ai/Mooncake:review:5626990349",
+      "repo": "kvcache-ai/Mooncake",
+      "title": "[Conductor] Support index vLLM CPU events as local/shared precedence",
+      "date": "2026-10-23T10:27:19Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/kvcache-ai/Mooncake/pull/4885#pullrequestreview-5626990349",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:commit:e615946bab03616d8b960e5752fdf2beb52267e2",
+      "repo": "apache/iotdb",
+      "title": "Fix startup with invalid storage memory proportions (#18979)",
+      "date": "2026-10-23T03:29:35Z",
+      "status": "committed",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/commit/e615946bab03616d8b960e5752fdf2beb52267e2",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:pull:18979",
+      "repo": "apache/iotdb",
+      "title": "Fix startup with invalid storage memory proportions",
+      "date": "2026-10-22T02:28:13Z",
+      "status": "merged",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/pull/18979",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:pull:18968",
+      "repo": "apache/iotdb",
+      "title": "[C++] Fix macOS OpenSSL header isolation and upgrade Thrift to 0.25.0",
+      "date": "2026-10-21T10:28:10Z",
+      "status": "merged",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/pull/18968",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:pull:18966",
+      "repo": "apache/iotdb",
+      "title": "Fix SystemInfo tests after write memory accounting refactor",
+      "date": "2026-10-21T09:24:25Z",
+      "status": "closed",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/pull/18966",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:pull:18964",
+      "repo": "apache/iotdb",
+      "title": "Fix NPE when all table insert fields have incompatible types",
+      "date": "2026-10-21T09:19:19Z",
+      "status": "open",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/pull/18964",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:commit:8a20619f0dc904e0dacdc6aa958e289d4890e943",
+      "repo": "apache/iotdb",
+      "title": "Refactor write memory accounting into named memory blocks (#18848)",
+      "date": "2026-10-21T07:47:49Z",
+      "status": "committed",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/commit/8a20619f0dc904e0dacdc6aa958e289d4890e943",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:commit:f709ef52ff57f7084d988cd0091ef4f9d9e2d2aa",
+      "repo": "apache/iotdb",
+      "title": "Avoid eager aggregation type coverage checks on first query (#18915)",
+      "date": "2026-10-20T03:42:23Z",
+      "status": "committed",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/commit/f709ef52ff57f7084d988cd0091ef4f9d9e2d2aa",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:pull:18915",
+      "repo": "apache/iotdb",
+      "title": "Avoid eager aggregation type coverage checks on first query",
+      "date": "2026-10-19T07:55:21Z",
+      "status": "merged",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/pull/18915",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:commit:77d59829e144eedea4bb568e6e8ffc4881e42f9d",
+      "repo": "apache/iotdb",
+      "title": "[Fix] Reject table inserts when all fields fail validation (#18908)",
+      "date": "2026-10-19T06:19:19Z",
+      "status": "committed",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/commit/77d59829e144eedea4bb568e6e8ffc4881e42f9d",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:commit:e28c4ebce7c20546e6d935d793054ae682a4d880",
+      "repo": "apache/iotdb",
+      "title": "Fix ObjectWriter accepting segment offsets beyond EOF (#18907)",
+      "date": "2026-10-19T06:00:10Z",
+      "status": "committed",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/commit/e28c4ebce7c20546e6d935d793054ae682a4d880",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:pull:18908",
+      "repo": "apache/iotdb",
+      "title": "[Fix] Reject table inserts when all fields fail validation",
+      "date": "2026-10-19T03:56:19Z",
+      "status": "merged",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/pull/18908",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:pull:18907",
+      "repo": "apache/iotdb",
+      "title": "Fix ObjectWriter accepting segment offsets beyond EOF",
+      "date": "2026-10-19T03:45:41Z",
+      "status": "merged",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/pull/18907",
+      "module": null
+    },
+    {
+      "key": "kvcache-ai/Mooncake:review:5566093187",
+      "repo": "kvcache-ai/Mooncake",
+      "title": "[Store] Add session IDs to KV events for Dynamo session prefix indexer",
+      "date": "2026-10-19T01:32:47Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/kvcache-ai/Mooncake/pull/4683#pullrequestreview-5566093187",
+      "module": null
+    },
+    {
+      "key": "kvcache-ai/Mooncake:pull:4727",
+      "repo": "kvcache-ai/Mooncake",
+      "title": "[Store] Add bounded object storage I/O",
+      "date": "2026-10-16T11:49:25Z",
+      "status": "merged",
+      "role": "author",
+      "url": "https://github.com/kvcache-ai/Mooncake/pull/4727",
+      "module": null
+    },
+    {
+      "key": "apache/tsfile:review:5546975670",
+      "repo": "apache/tsfile",
+      "title": "Add bundled native release packages and installed artifact tests",
+      "date": "2026-10-16T11:10:02Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/tsfile/pull/1016#pullrequestreview-5546975670",
+      "module": null
+    },
+    {
+      "key": "kvcache-ai/Mooncake:pull:4724",
+      "repo": "kvcache-ai/Mooncake",
+      "title": "[Store] Add first-class object storage replica tier",
+      "date": "2026-10-16T09:11:32Z",
+      "status": "open",
+      "role": "author",
+      "url": "https://github.com/kvcache-ai/Mooncake/pull/4724",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:review:5542435853",
+      "repo": "apache/iotdb",
+      "title": "Refactor write memory accounting into named memory blocks",
+      "date": "2026-10-16T02:48:41Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/iotdb/pull/18848#pullrequestreview-5542435853",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:review:5542434910",
+      "repo": "apache/iotdb",
+      "title": "Refactor write memory accounting into named memory blocks",
+      "date": "2026-10-16T02:48:33Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/iotdb/pull/18848#pullrequestreview-5542434910",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:review:5542433931",
+      "repo": "apache/iotdb",
+      "title": "Refactor write memory accounting into named memory blocks",
+      "date": "2026-10-16T02:48:21Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/iotdb/pull/18848#pullrequestreview-5542433931",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:commit:e492e444a8da398d6ecf5c7f4882f8221432a929",
+      "repo": "apache/iotdb",
+      "title": "[Fix] Preserve table insert errors for rejected fields (#18880)",
+      "date": "2026-10-16T02:29:56Z",
+      "status": "committed",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/commit/e492e444a8da398d6ecf5c7f4882f8221432a929",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:commit:aa365aa53f1c429750fd15ce69ad9e1bebafb56b",
+      "repo": "apache/iotdb",
+      "title": "[Client] Add Fast Last Query API to C++ session (#18860)",
+      "date": "2026-10-16T02:22:31Z",
+      "status": "committed",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/commit/aa365aa53f1c429750fd15ce69ad9e1bebafb56b",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:review:5530278599",
+      "repo": "apache/iotdb",
+      "title": "[Test] Fix deletion regression test flush control",
+      "date": "2026-10-15T08:32:38Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/iotdb/pull/18888#pullrequestreview-5530278599",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:commit:d77a81534e3952c754acc5b833939bc338d831f6",
+      "repo": "apache/iotdb",
+      "title": "Fix deletion WAL logging and flush completion ordering (#18872)",
+      "date": "2026-10-15T06:34:11Z",
+      "status": "committed",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/commit/d77a81534e3952c754acc5b833939bc338d831f6",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:review:5529017582",
+      "repo": "apache/iotdb",
+      "title": "Add portable IoTDB ODBC driver, release packages and Windows application validation",
+      "date": "2026-10-15T06:24:25Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/iotdb/pull/18878#pullrequestreview-5529017582",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:review:5527901090",
+      "repo": "apache/iotdb",
+      "title": "Add portable IoTDB ODBC driver, release packages and Windows application validation",
+      "date": "2026-10-15T04:05:45Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/iotdb/pull/18878#pullrequestreview-5527901090",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:pull:18880",
+      "repo": "apache/iotdb",
+      "title": "[Fix] Preserve table insert errors for rejected fields",
+      "date": "2026-10-15T03:19:15Z",
+      "status": "merged",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/pull/18880",
+      "module": "storage-engine"
+    },
+    {
+      "key": "apache/iotdb:pull:18878",
+      "repo": "apache/iotdb",
+      "title": "Add portable IoTDB ODBC driver, release packages and Windows application validation",
+      "date": "2026-10-14T17:31:54Z",
+      "status": "open",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/pull/18878",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:pull:18872",
+      "repo": "apache/iotdb",
+      "title": "Fix deletion WAL logging and flush completion ordering",
+      "date": "2026-10-14T09:29:51Z",
+      "status": "merged",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/pull/18872",
+      "module": "storage-engine"
+    },
+    {
+      "key": "apache/iotdb:pull:18860",
+      "repo": "apache/iotdb",
+      "title": "[Client] Support Fast Last Query in C++ session",
+      "date": "2026-10-14T03:11:24Z",
+      "status": "merged",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/pull/18860",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:pull:18848",
+      "repo": "apache/iotdb",
+      "title": "Refactor write memory accounting into named memory blocks",
+      "date": "2026-10-13T07:14:35Z",
+      "status": "merged",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/pull/18848",
+      "module": "storage-engine"
+    },
+    {
+      "key": "apache/iotdb:commit:eb0e3f1f2080e34bf5593bfd1cf63b62ecdba2e0",
+      "repo": "apache/iotdb",
+      "title": "Fix duplicate DataRegion scheduling after recovery (#18803)",
+      "date": "2026-10-09T04:18:42Z",
+      "status": "committed",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/commit/eb0e3f1f2080e34bf5593bfd1cf63b62ecdba2e0",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:pull:18803",
+      "repo": "apache/iotdb",
+      "title": "Fix duplicate DataRegion scheduling after recovery",
+      "date": "2026-10-09T03:08:22Z",
+      "status": "merged",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/pull/18803",
+      "module": "storage-engine"
+    },
+    {
+      "key": "apache/iotdb:commit:2f9f9cab1b7e89c0eca44eb0273f9935b35bf791",
+      "repo": "apache/iotdb",
+      "title": "Fix TTL expired data ratio in settle compaction (#18777)",
+      "date": "2026-09-30T09:23:36Z",
+      "status": "committed",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/commit/2f9f9cab1b7e89c0eca44eb0273f9935b35bf791",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:pull:18777",
+      "repo": "apache/iotdb",
+      "title": "Fix TTL expired data ratio in settle compaction",
+      "date": "2026-09-30T08:14:16Z",
+      "status": "merged",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/pull/18777",
+      "module": "storage-engine"
+    },
+    {
+      "key": "apache/iotdb:commit:5a9c6b9f2934182f78185e7715df16b93626e264",
+      "repo": "apache/iotdb",
+      "title": "Fix SHOW TTL wildcard path scope (#18763)",
+      "date": "2026-09-30T04:09:35Z",
+      "status": "committed",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/commit/5a9c6b9f2934182f78185e7715df16b93626e264",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:commit:166883a1b2ecaae85e73c90cec45abe4e4715136",
+      "repo": "apache/iotdb",
+      "title": "Fix semantic error for unsupported table INSERT time expressions (#18759)",
+      "date": "2026-09-30T02:05:41Z",
+      "status": "committed",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/commit/166883a1b2ecaae85e73c90cec45abe4e4715136",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:pull:18763",
+      "repo": "apache/iotdb",
+      "title": "Fix SHOW TTL wildcard path scope",
+      "date": "2026-09-29T08:19:06Z",
+      "status": "merged",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/pull/18763",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:pull:18759",
+      "repo": "apache/iotdb",
+      "title": "Fix semantic error for unsupported table INSERT time expressions",
+      "date": "2026-09-29T06:29:54Z",
+      "status": "merged",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/pull/18759",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:commit:a6cfe257b1d257bfd42310f096e5d5cdfa5ac05c",
+      "repo": "apache/iotdb",
+      "title": "Avoid size estimation for fixed-length compaction points (#18707)",
+      "date": "2026-09-29T03:00:48Z",
+      "status": "committed",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/commit/a6cfe257b1d257bfd42310f096e5d5cdfa5ac05c",
+      "module": null
+    },
+    {
+      "key": "apache/tsfile:review:5333772308",
+      "repo": "apache/tsfile",
+      "title": "fix(cpp): propagate table read failures without silent data loss",
+      "date": "2026-09-28T03:49:22Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/tsfile/pull/970#pullrequestreview-5333772308",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:review:5298937946",
+      "repo": "apache/iotdb",
+      "title": "Recover WAL metadata from readable entries and quarantine unrecoverable files",
+      "date": "2026-09-24T02:18:46Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/iotdb/pull/18693#pullrequestreview-5298937946",
+      "module": null
+    },
+    {
+      "key": "apache/tsfile:review:5289542466",
+      "repo": "apache/tsfile",
+      "title": "fix(cpp): flush pending data on writer close",
+      "date": "2026-09-23T10:03:55Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/tsfile/pull/969#pullrequestreview-5289542466",
+      "module": null
+    },
+    {
+      "key": "apache/tsfile:review:5289540529",
+      "repo": "apache/tsfile",
+      "title": "fix(cpp): flush pending data on writer close",
+      "date": "2026-09-23T10:03:42Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/tsfile/pull/969#pullrequestreview-5289540529",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:pull:18707",
+      "repo": "apache/iotdb",
+      "title": "Avoid size estimation for fixed-length compaction points",
+      "date": "2026-09-23T07:07:42Z",
+      "status": "merged",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/pull/18707",
+      "module": "storage-engine"
+    },
+    {
+      "key": "apache/iotdb:review:5286524583",
+      "repo": "apache/iotdb",
+      "title": "Recover WAL metadata from readable entries and quarantine unrecoverable files",
+      "date": "2026-09-23T03:16:29Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/iotdb/pull/18693#pullrequestreview-5286524583",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:review:5264379045",
+      "repo": "apache/iotdb",
+      "title": "Add ImportWAL tool with WAL replay controls",
+      "date": "2026-09-21T08:15:13Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/iotdb/pull/18516#pullrequestreview-5264379045",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:review:5264350054",
+      "repo": "apache/iotdb",
+      "title": "Add ImportWAL tool with WAL replay controls",
+      "date": "2026-09-21T08:11:38Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/iotdb/pull/18516#pullrequestreview-5264350054",
+      "module": null
+    },
+    {
+      "key": "apache/tsfile:review:5264283837",
+      "repo": "apache/tsfile",
+      "title": "Move type dispatch outside batch read and write loops",
+      "date": "2026-09-21T08:03:09Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/tsfile/pull/963#pullrequestreview-5264283837",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:commit:34349e3ad8b626e4441ffb48d8786c73892fd4b0",
+      "repo": "apache/iotdb",
+      "title": "Fix snapshot omission of closing TsFiles (#18682)",
+      "date": "2026-09-21T03:53:15Z",
+      "status": "committed",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/commit/34349e3ad8b626e4441ffb48d8786c73892fd4b0",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:pull:18682",
+      "repo": "apache/iotdb",
+      "title": "Fix snapshot omission of closing TsFiles",
+      "date": "2026-09-21T01:04:55Z",
+      "status": "merged",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/pull/18682",
+      "module": "storage-engine"
+    },
+    {
+      "key": "apache/tsfile:review:5243452068",
+      "repo": "apache/tsfile",
+      "title": "perf(cpp): reduce TsFile close overhead",
+      "date": "2026-09-18T01:59:44Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/tsfile/pull/962#pullrequestreview-5243452068",
+      "module": null
+    },
+    {
+      "key": "apache/tsfile:review:5233672484",
+      "repo": "apache/tsfile",
+      "title": "Move type dispatch outside batch read and write loops",
+      "date": "2026-09-17T09:26:46Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/tsfile/pull/963#pullrequestreview-5233672484",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:review:5222147408",
+      "repo": "apache/iotdb",
+      "title": "Fix WAL roll recovery after closed channel",
+      "date": "2026-09-16T11:42:19Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/iotdb/pull/18653#pullrequestreview-5222147408",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:commit:0f64600571b838fb03435afbc8c54953284c27b7",
+      "repo": "apache/iotdb",
+      "title": "Optimize Python session result decoding (#18638)",
+      "date": "2026-09-16T02:05:15Z",
+      "status": "committed",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/commit/0f64600571b838fb03435afbc8c54953284c27b7",
+      "module": null
+    },
+    {
+      "key": "apache/tsfile:review:5208602101",
+      "repo": "apache/tsfile",
+      "title": "Complete TimeColumn accessors and fix dictionary primitive lookup",
+      "date": "2026-09-15T10:20:13Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/tsfile/pull/961#pullrequestreview-5208602101",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:review:5208467680",
+      "repo": "apache/iotdb",
+      "title": "Optimize Python session result decoding",
+      "date": "2026-09-15T10:05:30Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/iotdb/pull/18638#pullrequestreview-5208467680",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:review:5208467316",
+      "repo": "apache/iotdb",
+      "title": "Optimize Python session result decoding",
+      "date": "2026-09-15T10:05:28Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/iotdb/pull/18638#pullrequestreview-5208467316",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:review:5207423268",
+      "repo": "apache/iotdb",
+      "title": "Optimize Python session result decoding",
+      "date": "2026-09-15T08:21:30Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/iotdb/pull/18638#pullrequestreview-5207423268",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:review:5207422801",
+      "repo": "apache/iotdb",
+      "title": "Optimize Python session result decoding",
+      "date": "2026-09-15T08:21:28Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/iotdb/pull/18638#pullrequestreview-5207422801",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:review:5207340566",
+      "repo": "apache/iotdb",
+      "title": "Optimize Python session result decoding",
+      "date": "2026-09-15T08:14:17Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/iotdb/pull/18638#pullrequestreview-5207340566",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:pull:18638",
+      "repo": "apache/iotdb",
+      "title": "Optimize Python session result decoding",
+      "date": "2026-09-15T07:42:55Z",
+      "status": "merged",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/pull/18638",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:review:5204946379",
+      "repo": "apache/iotdb",
+      "title": "Fix aligned flush values after time deletion",
+      "date": "2026-09-15T02:42:00Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/iotdb/pull/18634#pullrequestreview-5204946379",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:commit:280c0189aa505e0d78967aa4c2b0da6ef4566a30",
+      "repo": "apache/iotdb",
+      "title": "Support standard TLS and mTLS in the C++ client (#18601)",
+      "date": "2026-09-15T01:43:32Z",
+      "status": "committed",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/commit/280c0189aa505e0d78967aa4c2b0da6ef4566a30",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:review:5162022617",
+      "repo": "apache/iotdb",
+      "title": "Support standard TLS and mTLS in the C++ client",
+      "date": "2026-09-10T02:29:29Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/iotdb/pull/18601#pullrequestreview-5162022617",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:review:5162022618",
+      "repo": "apache/iotdb",
+      "title": "Support standard TLS and mTLS in the C++ client",
+      "date": "2026-09-10T02:29:29Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/iotdb/pull/18601#pullrequestreview-5162022618",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:review:5162022628",
+      "repo": "apache/iotdb",
+      "title": "Support standard TLS and mTLS in the C++ client",
+      "date": "2026-09-10T02:29:29Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/iotdb/pull/18601#pullrequestreview-5162022628",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:review:5161858998",
+      "repo": "apache/iotdb",
+      "title": "Optimize aligned memtable encoding for null values",
+      "date": "2026-09-10T01:56:03Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/iotdb/pull/18610#pullrequestreview-5161858998",
+      "module": null
+    },
+    {
+      "key": "apache/tsfile:review:5139893560",
+      "repo": "apache/tsfile",
+      "title": "Add batched null and bitmap-offset writes to ValuePageWriter",
+      "date": "2026-09-08T09:29:00Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/tsfile/pull/948#pullrequestreview-5139893560",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:pull:18601",
+      "repo": "apache/iotdb",
+      "title": "Support standard TLS and mTLS in the C++ client",
+      "date": "2026-09-08T09:04:53Z",
+      "status": "merged",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/pull/18601",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:pull:18597",
+      "repo": "apache/iotdb",
+      "title": "Feature/session cpp ntls",
+      "date": "2026-09-08T04:01:02Z",
+      "status": "closed",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/pull/18597",
+      "module": null
+    },
+    {
+      "key": "apache/tsfile:review:5136740560",
+      "repo": "apache/tsfile",
+      "title": "Refactor data type handling with type interfaces",
+      "date": "2026-09-08T02:41:24Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/tsfile/pull/872#pullrequestreview-5136740560",
+      "module": null
+    },
+    {
+      "key": "apache/tsfile:review:5136739289",
+      "repo": "apache/tsfile",
+      "title": "Refactor data type handling with type interfaces",
+      "date": "2026-09-08T02:41:16Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/tsfile/pull/872#pullrequestreview-5136739289",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:commit:829837237aa80873264b96a696cda005656e2c0a",
+      "repo": "apache/iotdb",
+      "title": "Bump C++ client bundled Thrift from 0.23.0 to 0.24.0 (#18567)",
+      "date": "2026-09-02T06:36:17Z",
+      "status": "committed",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/commit/829837237aa80873264b96a696cda005656e2c0a",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:pull:18567",
+      "repo": "apache/iotdb",
+      "title": "Bump C++ client bundled Thrift from 0.23.0 to 0.24.0",
+      "date": "2026-09-02T03:36:22Z",
+      "status": "merged",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/pull/18567",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:commit:5ce27404e872ca04ae5057fe0d1dd9f1fc3e6c6a",
+      "repo": "apache/iotdb",
+      "title": "Filter all-null FIELD columns before tablet insert in Java/C++/Python… (#18533)",
+      "date": "2026-08-31T02:34:35Z",
+      "status": "committed",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/commit/5ce27404e872ca04ae5057fe0d1dd9f1fc3e6c6a",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:review:5047752012",
+      "repo": "apache/iotdb",
+      "title": "Filter all-null FIELD columns before tablet insert in Java/C++/Python…",
+      "date": "2026-08-28T03:47:21Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/iotdb/pull/18533#pullrequestreview-5047752012",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:review:5047488905",
+      "repo": "apache/iotdb",
+      "title": "Filter all-null FIELD columns before tablet insert in Java/C++/Python…",
+      "date": "2026-08-28T02:41:56Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/iotdb/pull/18533#pullrequestreview-5047488905",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:review:5047488099",
+      "repo": "apache/iotdb",
+      "title": "Filter all-null FIELD columns before tablet insert in Java/C++/Python…",
+      "date": "2026-08-28T02:41:41Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/iotdb/pull/18533#pullrequestreview-5047488099",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:review:5047477765",
+      "repo": "apache/iotdb",
+      "title": "Filter all-null FIELD columns before tablet insert in Java/C++/Python…",
+      "date": "2026-08-28T02:38:58Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/iotdb/pull/18533#pullrequestreview-5047477765",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:review:5047473868",
+      "repo": "apache/iotdb",
+      "title": "Filter all-null FIELD columns before tablet insert in Java/C++/Python…",
+      "date": "2026-08-28T02:38:10Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/iotdb/pull/18533#pullrequestreview-5047473868",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:pull:18533",
+      "repo": "apache/iotdb",
+      "title": "Filter all-null FIELD columns before tablet insert in Java/C++/Python…",
+      "date": "2026-08-27T08:50:36Z",
+      "status": "merged",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/pull/18533",
+      "module": null
+    },
+    {
+      "key": "apache/tsfile:review:5036469206",
+      "repo": "apache/tsfile",
+      "title": "fix(python): make dataframe index opt-in",
+      "date": "2026-08-27T01:27:46Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/tsfile/pull/919#pullrequestreview-5036469206",
+      "module": null
+    },
+    {
+      "key": "apache/tsfile:review:4989282741",
+      "repo": "apache/tsfile",
+      "title": "Feature/tsfile dataframe runtime",
+      "date": "2026-08-21T02:49:32Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/tsfile/pull/911#pullrequestreview-4989282741",
+      "module": null
+    },
+    {
+      "key": "apache/tsfile:review:4989240974",
+      "repo": "apache/tsfile",
+      "title": "Feature/tsfile dataframe runtime",
+      "date": "2026-08-21T02:39:12Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/tsfile/pull/911#pullrequestreview-4989240974",
+      "module": null
+    },
+    {
+      "key": "apache/tsfile:review:4950438403",
+      "repo": "apache/tsfile",
+      "title": "feat(cpp): refactor dependency sourcing and extend codec compatibility",
+      "date": "2026-08-17T09:57:19Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/tsfile/pull/905#pullrequestreview-4950438403",
+      "module": null
+    },
+    {
+      "key": "apache/tsfile:review:4950437117",
+      "repo": "apache/tsfile",
+      "title": "feat(cpp): refactor dependency sourcing and extend codec compatibility",
+      "date": "2026-08-17T09:57:09Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/tsfile/pull/905#pullrequestreview-4950437117",
+      "module": null
+    },
+    {
+      "key": "apache/tsfile:review:4950396554",
+      "repo": "apache/tsfile",
+      "title": "feat(cpp): refactor dependency sourcing and extend codec compatibility",
+      "date": "2026-08-17T09:51:41Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/tsfile/pull/905#pullrequestreview-4950396554",
+      "module": null
+    },
+    {
+      "key": "apache/tsfile:commit:7798b1035edcbcc16b7baa2287d8b487971d3e30",
+      "repo": "apache/tsfile",
+      "title": "Optimize DataSetWithoutTimeGenerator with primitive long heap/set (#906)",
+      "date": "2026-08-17T08:33:17Z",
+      "status": "committed",
+      "role": "author",
+      "url": "https://github.com/apache/tsfile/commit/7798b1035edcbcc16b7baa2287d8b487971d3e30",
+      "module": null
+    },
+    {
+      "key": "apache/tsfile:review:4949070381",
+      "repo": "apache/tsfile",
+      "title": "Optimize DataSetWithoutTimeGenerator with primitive long heap/set",
+      "date": "2026-08-17T06:50:07Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/tsfile/pull/906#pullrequestreview-4949070381",
+      "module": null
+    },
+    {
+      "key": "apache/tsfile:review:4948241793",
+      "repo": "apache/tsfile",
+      "title": "Optimize DataSetWithoutTimeGenerator with primitive long heap/set",
+      "date": "2026-08-17T03:42:29Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/tsfile/pull/906#pullrequestreview-4948241793",
+      "module": null
+    },
+    {
+      "key": "apache/tsfile:review:4948240140",
+      "repo": "apache/tsfile",
+      "title": "Optimize DataSetWithoutTimeGenerator with primitive long heap/set",
+      "date": "2026-08-17T03:41:57Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/tsfile/pull/906#pullrequestreview-4948240140",
+      "module": null
+    },
+    {
+      "key": "apache/tsfile:pull:906",
+      "repo": "apache/tsfile",
+      "title": "Optimize DataSetWithoutTimeGenerator with primitive long heap/set",
+      "date": "2026-08-17T03:17:51Z",
+      "status": "merged",
+      "role": "author",
+      "url": "https://github.com/apache/tsfile/pull/906",
+      "module": "tsfile"
+    },
+    {
+      "key": "apache/iotdb:review:4924057398",
+      "repo": "apache/iotdb",
+      "title": "feat: cache sorted WAL file lists",
+      "date": "2026-08-13T06:29:55Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/iotdb/pull/18456#pullrequestreview-4924057398",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:review:4923349534",
+      "repo": "apache/iotdb",
+      "title": "feat: cache sorted WAL file lists",
+      "date": "2026-08-13T04:16:47Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/iotdb/pull/18456#pullrequestreview-4923349534",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:review:4915196936",
+      "repo": "apache/iotdb",
+      "title": "fix: retry SyncStatus batch memory reservation",
+      "date": "2026-08-12T09:53:08Z",
+      "status": "reviewed",
+      "role": "reviewer",
+      "url": "https://github.com/apache/iotdb/pull/18453#pullrequestreview-4915196936",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:pull:18202",
+      "repo": "apache/iotdb",
+      "title": "Feature/user resource quota",
+      "date": "2026-07-14T08:37:39Z",
+      "status": "closed",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/pull/18202",
+      "module": "storage-engine"
+    },
+    {
+      "key": "apache/tsfile:pull:797",
+      "repo": "apache/tsfile",
+      "title": "Ci/py314",
+      "date": "2026-04-30T07:39:23Z",
+      "status": "open",
+      "role": "author",
+      "url": "https://github.com/apache/tsfile/pull/797",
+      "module": "tsfile"
+    },
+    {
+      "key": "apache/tsfile:pull:587",
+      "repo": "apache/tsfile",
+      "title": "Feature/cpython config interface",
+      "date": "2025-09-02T03:47:25Z",
+      "status": "open",
+      "role": "author",
+      "url": "https://github.com/apache/tsfile/pull/587",
+      "module": null
+    },
+    {
+      "key": "apache/iotdb:pull:16281",
+      "repo": "apache/iotdb",
+      "title": "implement client-session node selector",
+      "date": "2025-08-27T05:36:34Z",
+      "status": "open",
+      "role": "author",
+      "url": "https://github.com/apache/iotdb/pull/16281",
+      "module": null
+    },
+    {
+      "key": "apache/tsfile:pull:282",
+      "repo": "apache/tsfile",
+      "title": "Feature/conan",
+      "date": "2024-11-02T08:33:47Z",
+      "status": "open",
+      "role": "author",
+      "url": "https://github.com/apache/tsfile/pull/282",
+      "module": "tsfile"
+    }
+  ],
+  "pending": [
+    {
+      "id": "apache/iotdb:18682",
+      "project": "iotdb-tsfile",
+      "repo": "apache/iotdb",
+      "base": "3b47945b3ceb0c3c25c1951a7afd3b2424fde3d5",
+      "head": "34349e3ad8b626e4441ffb48d8786c73892fd4b0",
+      "number": 18682,
+      "kind": "high-risk",
+      "paths": [
+        "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/dataregion/DataRegion.java",
+        "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/dataregion/snapshot/SnapshotTaker.java"
+      ]
+    },
+    {
+      "id": "apache/iotdb:18707",
+      "project": "iotdb-tsfile",
+      "repo": "apache/iotdb",
+      "base": "ba287a9cb410ef9b41bd3be6134b39184f05e7df",
+      "head": "a6cfe257b1d257bfd42310f096e5d5cdfa5ac05c",
+      "number": 18707,
+      "kind": "architecture",
+      "paths": [
+        "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/dataregion/compaction/execute/utils/writer/AbstractCompactionWriter.java"
+      ]
+    },
+    {
+      "id": "apache/iotdb:18777",
+      "project": "iotdb-tsfile",
+      "repo": "apache/iotdb",
+      "base": "0c9a5ee09164b8cd35beb34e4dad75af54c6feae",
+      "head": "2f9f9cab1b7e89c0eca44eb0273f9935b35bf791",
+      "number": 18777,
+      "kind": "architecture",
+      "paths": [
+        "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/dataregion/compaction/selector/impl/SettleSelectorImpl.java"
+      ]
+    },
+    {
+      "id": "apache/iotdb:18803",
+      "project": "iotdb-tsfile",
+      "repo": "apache/iotdb",
+      "base": "620be2861b85f3a1b1ada29c307c2adc30b5a0cd",
+      "head": "eb0e3f1f2080e34bf5593bfd1cf63b62ecdba2e0",
+      "number": 18803,
+      "kind": "architecture",
+      "paths": [
+        "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/StorageEngine.java",
+        "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/dataregion/compaction/schedule/CompactionScheduleTaskManager.java"
+      ]
+    },
+    {
+      "id": "apache/iotdb:18848",
+      "project": "iotdb-tsfile",
+      "repo": "apache/iotdb",
+      "base": "e08a738d78b8613b47a56ff9d306315e7604b237",
+      "head": "8a20619f0dc904e0dacdc6aa958e289d4890e943",
+      "number": 18848,
+      "kind": "high-risk",
+      "paths": [
+        "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/dataregion/DataRegion.java",
+        "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/dataregion/DataRegionInfo.java",
+        "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/dataregion/flush/MemTableFlushTask.java",
+        "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/dataregion/memtable/AbstractMemTable.java",
+        "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/dataregion/memtable/IMemTable.java",
+        "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/dataregion/memtable/TsFileProcessor.java",
+        "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/dataregion/memtable/TsFileProcessorInfo.java",
+        "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/dataregion/wal/utils/MemoryControlledWALEntryQueue.java",
+        "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/rescon/memory/PrimitiveArrayManager.java",
+        "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/rescon/memory/SystemInfo.java",
+        "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/rescon/memory/WriteMemoryBlock.java",
+        "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/rescon/memory/WriteMemoryManager.java"
+      ]
+    },
+    {
+      "id": "apache/iotdb:18872",
+      "project": "iotdb-tsfile",
+      "repo": "apache/iotdb",
+      "base": "e1baa97f2dbbeffd9073b516fb88c8ef31bc6a62",
+      "head": "d77a81534e3952c754acc5b833939bc338d831f6",
+      "number": 18872,
+      "kind": "architecture",
+      "paths": [
+        "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/dataregion/memtable/TsFileProcessor.java"
+      ]
+    },
+    {
+      "id": "apache/iotdb:18880",
+      "project": "iotdb-tsfile",
+      "repo": "apache/iotdb",
+      "base": "aa365aa53f1c429750fd15ce69ad9e1bebafb56b",
+      "head": "e492e444a8da398d6ecf5c7f4882f8221432a929",
+      "number": 18880,
+      "kind": "high-risk",
+      "paths": [
+        "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/dataregion/DataRegion.java",
+        "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/dataregion/memtable/AbstractMemTable.java",
+        "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/dataregion/wal/recover/file/TsFilePlanRedoer.java"
+      ]
+    },
+    {
+      "id": "apache/iotdb:19049",
+      "project": "iotdb-tsfile",
+      "repo": "apache/iotdb",
+      "base": "a927dd6bc63af2457818a54e96fbcb4986bf7c87",
+      "head": "ab770467c8e2092e6bdbc5388c49d60baa21b681",
+      "number": 19049,
+      "kind": "high-risk",
+      "paths": [
+        "iotdb-core/consensus/src/main/java/org/apache/iotdb/consensus/iot/IoTConsensusServerImpl.java",
+        "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/dataregion/snapshot/SnapshotFileUtils.java",
+        "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/dataregion/snapshot/SnapshotLoader.java",
+        "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/dataregion/snapshot/SnapshotTaker.java"
+      ]
+    },
+    {
+      "id": "apache/iotdb:19065",
+      "project": "iotdb-tsfile",
+      "repo": "apache/iotdb",
+      "base": "552acfed78d5f3f1fcc940dc73f80b2f44a05dc4",
+      "head": "01a889cd5fd50bfe7d4eb3e6b24091c9ea634739",
+      "number": 19065,
+      "kind": "architecture",
+      "paths": [
+        "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/StorageEngine.java",
+        "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/dataregion/compaction/schedule/CompactionScheduleTaskManager.java"
+      ]
+    },
+    {
+      "id": "apache/iotdb:19161",
+      "project": "iotdb-tsfile",
+      "repo": "apache/iotdb",
+      "base": "6db3682ade5a29b1bcb500d5b1e418688d33de3a",
+      "head": "d10b69ee10ff393928af2dad9725df41b2c28dfc",
+      "number": 19161,
+      "kind": "high-risk",
+      "paths": [
+        "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/StorageEngine.java",
+        "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/dataregion/snapshot/SnapshotLoader.java",
+        "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/load/LoadStagingDirs.java",
+        "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/load/util/LoadUtil.java",
+        "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/rescon/disk/TierManager.java"
+      ]
+    },
+    {
+      "id": "apache/iotdb:19192",
+      "project": "iotdb-tsfile",
+      "repo": "apache/iotdb",
+      "base": "d10b69ee10ff393928af2dad9725df41b2c28dfc",
+      "head": "08cebbd76c19c9b7df11a7ef1ac14ae5fc13c085",
+      "number": 19192,
+      "kind": "high-risk",
+      "paths": [
+        "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/dataregion/snapshot/SnapshotTaker.java",
+        "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/dataregion/tsfile/TsFileResource.java"
+      ]
+    },
+    {
+      "id": "apache/iotdb:19236",
+      "project": "iotdb-tsfile",
+      "repo": "apache/iotdb",
+      "base": "cca1dbbde6d0dffa38495c92c92a48b2626d2f99",
+      "head": "9a281f8e1c062007233a89bd18a8e22372097fc2",
+      "number": 19236,
+      "kind": "high-risk",
+      "paths": [
+        "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/dataregion/snapshot/SnapshotLoader.java"
+      ]
+    },
+    {
+      "id": "apache/tsfile:906",
+      "project": "iotdb-tsfile",
+      "repo": "apache/tsfile",
+      "base": "5681978b84a0d9ee26e1eab94f78afaccf93607a",
+      "head": "7798b1035edcbcc16b7baa2287d8b487971d3e30",
+      "number": 906,
+      "kind": "architecture",
+      "paths": [
+        "java/tsfile/src/main/java/org/apache/tsfile/read/query/dataset/DataSetWithoutTimeGenerator.java",
+        "java/tsfile/src/main/java/org/apache/tsfile/utils/LongHeapPriorityQueue.java",
+        "java/tsfile/src/main/java/org/apache/tsfile/utils/LongOpenHashSet.java"
+      ]
+    }
+  ],
   "processed": []
 }
