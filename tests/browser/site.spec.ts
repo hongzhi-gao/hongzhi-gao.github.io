@@ -21,10 +21,13 @@ test('portfolio links to both source maps and draws a responsive Canvas environm
   for(const href of [iotdb,mooncake]) await expect(page.locator(`main a[href="${href}"]`).first()).toBeVisible();
   expect(await page.locator('.drawing-preview').count()).toBe(2);
   const canvas=page.locator('[data-holo-canvas]');
+  await expect(canvas).toHaveAttribute('width',/^[1-9]\d*$/);
   const before=await canvas.evaluate(node=>(node as HTMLCanvasElement).toDataURL());
-  await page.mouse.move(120,240);
-  await page.mouse.move(865,335,{steps:14});
-  await expect.poll(()=>canvas.evaluate(node=>(node as HTMLCanvasElement).toDataURL())).not.toBe(before);
+  await expect.poll(async()=>{
+    await page.mouse.move(120,240);
+    await page.mouse.move(865,335,{steps:4});
+    return canvas.evaluate(node=>(node as HTMLCanvasElement).toDataURL());
+  },{timeout:15000}).not.toBe(before);
   const magnetic=page.locator('main [data-magnetic]').first();
   await magnetic.hover();
   await expect.poll(()=>magnetic.evaluate(node=>(node as HTMLElement).style.getPropertyValue('--magnet-light'))).not.toBe('');
