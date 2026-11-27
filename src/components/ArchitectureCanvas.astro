@@ -22,7 +22,7 @@ const entries=[...curated,...discovered.map(item=>({
   status:item.status,role:item.role==='reviewer'?'Reviewer':item.role==='design-contributor'?'RFC author':item.url.includes('/issues/')?'Issue author':'PR author',
   nodes:graph.modules[item.module!]??[],detail:'Matched by changed source paths.',module:project.modules.find(module=>module.id===item.module)?.title,
 }))];
-const roles={control:'Control',data:'Payload',replica:'Replication',storage:'Storage',ecosystem:'Ecosystem'};
+const roles={control:'Control',data:'Payload',replica:'Replication',storage:'Storage'};
 ---
 <architecture-canvas class="architecture-workspace">
   <script type="application/json" data-structure set:html={JSON.stringify({

@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "id": "mooncake-store",
-  "name": "Mooncake",
+  "name": "Mooncake Store",
   "short": "Mooncake",
-  "domain": "DISTRIBUTED AI INFRASTRUCTURE",
-  "description": "High-speed data transfer, distributed KV cache and elastic MoE communication for large-scale inference.",
+  "domain": "DISTRIBUTED KV CACHE",
+  "description": "Follow a cache object from client allocation to transfer, replica visibility and recovery.",
   "accent": "#a9b0ff",
   "repos": [
     "kvcache-ai/Mooncake"
@@ -352,39 +352,6 @@
         65
       ],
       "label": "object-storage-catalog.md"
-    },
-    {
-      "id": "te-overview",
-      "repo": "kvcache-ai/Mooncake",
-      "sha": "e57be7d873799eb2f1a7eaaa59e80444a5b65f12",
-      "path": "README.md",
-      "label": "Transfer Engine and supported transports",
-      "lines": [
-        107,
-        127
-      ]
-    },
-    {
-      "id": "store-integrations",
-      "repo": "kvcache-ai/Mooncake",
-      "sha": "e57be7d873799eb2f1a7eaaa59e80444a5b65f12",
-      "path": "README.md",
-      "label": "Mooncake Store integrations",
-      "lines": [
-        131,
-        146
-      ]
-    },
-    {
-      "id": "elastic-moe",
-      "repo": "kvcache-ai/Mooncake",
-      "sha": "e57be7d873799eb2f1a7eaaa59e80444a5b65f12",
-      "path": "README.md",
-      "label": "Mooncake EP and Process Group",
-      "lines": [
-        150,
-        165
-      ]
     }
   ],
   "versions": [

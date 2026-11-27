@@ -2,7 +2,7 @@
   "version": 1,
   "id": "iotdb-tsfile",
   "width": 1440,
-  "height": 1112,
+  "height": 960,
   "groups": [
     {
       "id": "access",
@@ -10,7 +10,7 @@
       "note": "Applications & drivers",
       "rect": [
         20,
-        127,
+        35,
         265,
         150
       ]
@@ -21,7 +21,7 @@
       "note": "Metadata control plane",
       "rect": [
         20,
-        303,
+        211,
         265,
         258
       ]
@@ -32,7 +32,7 @@
       "note": "Separate cross-cluster replication",
       "rect": [
         20,
-        585,
+        493,
         265,
         407
       ]
@@ -43,7 +43,7 @@
       "note": "Execution and persistence",
       "rect": [
         312,
-        127,
+        35,
         1108,
         570
       ]
@@ -54,7 +54,7 @@
       "note": "Tree-model execution shown",
       "rect": [
         329,
-        254,
+        162,
         470,
         420
       ],
@@ -66,7 +66,7 @@
       "note": "DataRegion and its replica group",
       "rect": [
         820,
-        254,
+        162,
         582,
         420
       ],
@@ -78,46 +78,10 @@
       "note": "Persistent binary layout \u00b7 Java reader/writer",
       "rect": [
         312,
-        721,
+        629,
         1108,
         271
       ]
-    },
-    {
-      "id": "ingestion-ecosystem",
-      "title": "Upstream",
-      "note": "",
-      "rect": [
-        20,
-        12,
-        265,
-        91
-      ],
-      "ecosystem": true
-    },
-    {
-      "id": "visualization-ecosystem",
-      "title": "Query consumers",
-      "note": "",
-      "rect": [
-        312,
-        12,
-        380,
-        91
-      ],
-      "ecosystem": true
-    },
-    {
-      "id": "tsfile-ecosystem",
-      "title": "Standalone analytics",
-      "note": "",
-      "rect": [
-        921,
-        1010,
-        499,
-        91
-      ],
-      "ecosystem": true
     }
   ],
   "nodes": [
@@ -129,7 +93,7 @@
       "group": "access",
       "rect": [
         39,
-        176,
+        84,
         226,
         65
       ],
@@ -151,7 +115,7 @@
       "group": "config",
       "rect": [
         39,
-        347,
+        255,
         226,
         67
       ],
@@ -173,7 +137,7 @@
       "group": "config",
       "rect": [
         39,
-        438,
+        346,
         226,
         96
       ],
@@ -196,7 +160,7 @@
       "group": "pipe",
       "rect": [
         39,
-        630,
+        538,
         226,
         66
       ],
@@ -217,7 +181,7 @@
       "group": "pipe",
       "rect": [
         39,
-        717,
+        625,
         226,
         72
       ],
@@ -238,7 +202,7 @@
       "group": "pipe",
       "rect": [
         39,
-        809,
+        717,
         226,
         72
       ],
@@ -260,7 +224,7 @@
       "group": "pipe",
       "rect": [
         39,
-        899,
+        807,
         226,
         65
       ],
@@ -281,7 +245,7 @@
       "group": "data",
       "rect": [
         530,
-        176,
+        84,
         280,
         59
       ],
@@ -303,7 +267,7 @@
       "group": "data",
       "rect": [
         1054,
-        176,
+        84,
         310,
         59
       ],
@@ -325,7 +289,7 @@
       "group": "query",
       "rect": [
         352,
-        297,
+        205,
         201,
         64
       ],
@@ -347,7 +311,7 @@
       "group": "query",
       "rect": [
         578,
-        297,
+        205,
         198,
         64
       ],
@@ -368,7 +332,7 @@
       "group": "query",
       "rect": [
         352,
-        383,
+        291,
         201,
         74
       ],
@@ -390,7 +354,7 @@
       "group": "query",
       "rect": [
         578,
-        383,
+        291,
         198,
         74
       ],
@@ -413,7 +377,7 @@
       "group": "query",
       "rect": [
         352,
-        483,
+        391,
         201,
         78
       ],
@@ -437,7 +401,7 @@
       "group": "query",
       "rect": [
         578,
-        483,
+        391,
         198,
         78
       ],
@@ -458,7 +422,7 @@
       "group": "query",
       "rect": [
         352,
-        589,
+        497,
         424,
         58
       ],
@@ -480,7 +444,7 @@
       "group": "store",
       "rect": [
         846,
-        297,
+        205,
         253,
         65
       ],
@@ -503,7 +467,7 @@
       "group": "store",
       "rect": [
         1129,
-        297,
+        205,
         248,
         83
       ],
@@ -529,7 +493,7 @@
       "group": "store",
       "rect": [
         846,
-        389,
+        297,
         253,
         62
       ],
@@ -552,7 +516,7 @@
       "group": "store",
       "rect": [
         846,
-        476,
+        384,
         118,
         80
       ],
@@ -575,7 +539,7 @@
       "group": "store",
       "rect": [
         977,
-        476,
+        384,
         122,
         80
       ],
@@ -597,7 +561,7 @@
       "group": "store",
       "rect": [
         1129,
-        408,
+        316,
         248,
         58
       ],
@@ -619,7 +583,7 @@
       "group": "store",
       "rect": [
         1129,
-        489,
+        397,
         248,
         67
       ],
@@ -641,7 +605,7 @@
       "group": "store",
       "rect": [
         846,
-        589,
+        497,
         162,
         60
       ],
@@ -663,7 +627,7 @@
       "group": "store",
       "rect": [
         1024,
-        589,
+        497,
         163,
         60
       ],
@@ -685,7 +649,7 @@
       "group": "store",
       "rect": [
         1203,
-        589,
+        497,
         174,
         60
       ],
@@ -707,7 +671,7 @@
       "group": "file",
       "rect": [
         337,
-        768,
+        676,
         226,
         64
       ],
@@ -731,7 +695,7 @@
       "group": "file",
       "rect": [
         337,
-        855,
+        763,
         581,
         106
       ],
@@ -758,7 +722,7 @@
       "group": "file",
       "rect": [
         587,
-        768,
+        676,
         331,
         64
       ],
@@ -780,7 +744,7 @@
       "group": "file",
       "rect": [
         941,
-        768,
+        676,
         454,
         64
       ],
@@ -802,7 +766,7 @@
       "group": "file",
       "rect": [
         941,
-        855,
+        763,
         454,
         106
       ],
@@ -817,81 +781,6 @@
         "PageWriter",
         "PageHeader"
       ]
-    },
-    {
-      "id": "industrial-ingestion",
-      "label": "Industrial ingestion",
-      "caption": "Devices via gateways and applications",
-      "shape": "interface",
-      "group": "ingestion-ecosystem",
-      "rect": [
-        39,
-        50,
-        226,
-        40
-      ],
-      "evidence": [
-        "iiot-ecosystem",
-        "session"
-      ],
-      "detail": "Industrial gateways and applications can write device time-series data through the IoTDB client APIs.",
-      "fields": []
-    },
-    {
-      "id": "grafana",
-      "label": "Grafana",
-      "caption": "Operational dashboards",
-      "shape": "interface",
-      "group": "visualization-ecosystem",
-      "rect": [
-        333,
-        50,
-        210,
-        40
-      ],
-      "evidence": [
-        "grafana-ecosystem",
-        "grafana-rest"
-      ],
-      "detail": "Grafana consumes IoTDB query results through the REST integration.",
-      "fields": []
-    },
-    {
-      "id": "grafana-api",
-      "label": "Grafana REST API",
-      "caption": "DataNode query endpoint",
-      "shape": "interface",
-      "group": "data",
-      "rect": [
-        332,
-        176,
-        178,
-        28
-      ],
-      "evidence": [
-        "grafana-rest"
-      ],
-      "detail": "The Grafana REST handler executes IoTDB queries and formats the results for dashboards.",
-      "fields": []
-    },
-    {
-      "id": "tsfile-analytics",
-      "label": "Spark / Flink",
-      "caption": "Read time-series files",
-      "shape": "interface",
-      "group": "tsfile-ecosystem",
-      "rect": [
-        941,
-        1048,
-        454,
-        40
-      ],
-      "evidence": [
-        "tsfile-ecosystem",
-        "reader"
-      ],
-      "detail": "Spark and Flink can work with TsFile independently of an IoTDB server.",
-      "fields": []
     }
   ],
   "edges": [
@@ -904,7 +793,7 @@
       "via": [
         [
           398,
-          208
+          116
         ]
       ]
     },
@@ -925,15 +814,15 @@
       "via": [
         [
           302,
-          484
+          392
         ],
         [
           302,
-          284
+          192
         ],
         [
           452,
-          284
+          192
         ]
       ]
     },
@@ -946,11 +835,11 @@
       "via": [
         [
           668,
-          243
+          151
         ],
         [
           451,
-          243
+          151
         ]
       ]
     },
@@ -963,15 +852,15 @@
       "via": [
         [
           941,
-          205
+          113
         ],
         [
           941,
-          243
+          151
         ],
         [
           1254,
-          243
+          151
         ]
       ]
     },
@@ -1000,11 +889,11 @@
       "via": [
         [
           677,
-          371
+          279
         ],
         [
           451,
-          371
+          279
         ]
       ]
     },
@@ -1025,11 +914,11 @@
       "via": [
         [
           678,
-          471
+          379
         ],
         [
           451,
-          471
+          379
         ]
       ]
     },
@@ -1058,11 +947,11 @@
       "via": [
         [
           812,
-          332
+          240
         ],
         [
           812,
-          616
+          524
         ]
       ]
     },
@@ -1091,7 +980,7 @@
       "via": [
         [
           905,
-          462
+          370
         ]
       ]
     },
@@ -1112,15 +1001,15 @@
       "via": [
         [
           905,
-          464
+          372
         ],
         [
           1110,
-          464
+          372
         ],
         [
           1110,
-          343
+          251
         ]
       ]
     },
@@ -1133,11 +1022,11 @@
       "via": [
         [
           1114,
-          514
+          422
         ],
         [
           1114,
-          437
+          345
         ]
       ]
     },
@@ -1158,11 +1047,11 @@
       "via": [
         [
           1253,
-          570
+          478
         ],
         [
           927,
-          570
+          478
         ]
       ]
     },
@@ -1175,11 +1064,11 @@
       "via": [
         [
           1249,
-          577
+          485
         ],
         [
           1105,
-          577
+          485
         ]
       ]
     },
@@ -1192,15 +1081,15 @@
       "via": [
         [
           1288,
-          664
+          572
         ],
         [
           804,
-          664
+          572
         ],
         [
           804,
-          617
+          525
         ]
       ]
     },
@@ -1213,15 +1102,15 @@
       "via": [
         [
           1390,
-          523
+          431
         ],
         [
           1390,
-          709
+          617
         ],
         [
           449,
-          709
+          617
         ]
       ]
     },
@@ -1266,15 +1155,15 @@
       "via": [
         [
           1152,
-          747
+          655
         ],
         [
           565,
-          747
+          655
         ],
         [
           565,
-          698
+          606
         ]
       ]
     },
@@ -1311,23 +1200,23 @@
       "via": [
         [
           829,
-          512
+          420
         ],
         [
           806,
-          512
+          420
         ],
         [
           806,
-          692
+          600
         ],
         [
           302,
-          692
+          600
         ],
         [
           302,
-          754
+          662
         ]
       ]
     },
@@ -1340,48 +1229,11 @@
       "via": [
         [
           301,
-          909
+          817
         ],
         [
           301,
-          769
-        ]
-      ]
-    },
-    {
-      "id": "ingest-device-data",
-      "from": "industrial-ingestion",
-      "to": "client",
-      "kind": "ecosystem",
-      "label": "Write device time series",
-      "via": []
-    },
-    {
-      "id": "dashboard-results",
-      "from": "grafana-api",
-      "to": "grafana",
-      "kind": "ecosystem",
-      "label": "Return dashboard query results",
-      "via": []
-    },
-    {
-      "id": "tsfile-analytics-read",
-      "from": "reader",
-      "to": "tsfile-analytics",
-      "kind": "ecosystem",
-      "label": "Read TsFile data for analytics",
-      "via": [
-        [
-          1406,
-          798
-        ],
-        [
-          1406,
-          1025
-        ],
-        [
-          1168,
-          1025
+          677
         ]
       ]
     }

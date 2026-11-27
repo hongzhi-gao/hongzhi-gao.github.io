@@ -10,9 +10,6 @@ export const projects = Object.values(files)
 export const exhibits = projects.flatMap((project) =>
   project.scenarios.map((scenario) => ({ project, scenario })),
 );
-export const projectSlug = (id: string) => id === "mooncake-store" ? "mooncake" : id;
-export const projectPath = (id: string) => `/projects/${projectSlug(id)}/`;
-
 export function sourceUrl(source: Evidence) {
   const path = source.path.split("/").map(encodeURIComponent).join("/");
   const lines = source.lines ? `#L${source.lines[0]}-L${source.lines[1]}` : "";

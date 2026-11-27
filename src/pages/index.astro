@@ -4,11 +4,12 @@ import TopologyHero from '../components/TopologyHero.astro';
 import ArchitecturePreview from '../components/ArchitecturePreview.astro';
 import profile from '../../config/profile.json';
 import { featuredContributions } from '../architecture-ir/contributions';
-import { projects, projectPath } from '../architecture-ir/data';
+import { projects } from '../architecture-ir/data';
 import '../visual/landing.css';
 
 const descriptions: Record<string,string>={
-  'iotdb-tsfile':'Time-series ingestion, consensus replication and the file format that stores it.'
+  'iotdb-tsfile':'Time-series ingestion, consensus replication and the file format that stores it.',
+  'mooncake-store':'Shared object replicas for distributed KV cache, from write authorization to lease-aware cleanup.'
 };
 ---
 <Base title="Open Source Engineering" home>
@@ -34,7 +35,7 @@ const descriptions: Record<string,string>={
     </div>
     <div class="atlas-projects-grid">
       {projects.map(project=>{
-        const path=projectPath(project.id);
+        const path=`/projects/${project.id}/`;
         const contributions=featuredContributions(project);
         return <article class="atlas-entry" id={project.id} data-atlas-reveal>
           <a class="atlas-entry-visual" href={path} aria-label={`Explore ${project.name}`} style={`--atlas-transition:atlas-${project.id}`}>

@@ -1,6 +1,6 @@
 # Hongzhi Gao · Engineering Atlas
 
-The portfolio opens two source maps. The IoTDB and TsFile map follows industrial ingestion through the database and shows Grafana dashboards and standalone TsFile analytics. The Mooncake map shows Transfer Engine, Store, and EP / PG alongside their inference frameworks and transport dependencies. Store placement, replica I/O, recovery, and the pinned synchronous object-replica proposal are shown in more detail. Select a node to find source files and mapped contributions. Use the path buttons to follow illustrative traffic.
+The portfolio opens two source maps. The IoTDB and TsFile map shows client access, ConfigNode, query execution, persistence, IoTConsensus V1 and Pipe. Mooncake separates placement metadata from direct payload transfers and marks the pinned synchronous object-replica proposal. Select a node to find source files and mapped contributions. Use the path buttons to follow illustrative traffic.
 
 ## Local development
 

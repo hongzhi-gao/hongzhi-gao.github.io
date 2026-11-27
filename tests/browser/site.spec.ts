@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 
 const iotdb='/projects/iotdb-tsfile/';
-const mooncake='/projects/mooncake/';
+const mooncake='/projects/mooncake-store/';
 
 test('portfolio links to both source maps and draws a responsive Canvas environment',async({page})=>{
   const errors:string[]=[];
@@ -41,15 +41,8 @@ test('source maps render verified topology and a real nested TsFile section',asy
     await expect(page.locator('.diagram-sources a').first()).toHaveAttribute('href',/github\.com\/[^/]+\/[^/]+\/commit\/[a-f\d]{40}$/);
     await expect(page.getByRole('button',{name:'Play',exact:true})).toHaveCount(0);
   }
-  await expect(page.getByRole('heading',{name:'Mooncake',exact:true})).toBeVisible();
-  await expect(page.locator('[data-node-id=transfer-engine]')).toBeVisible();
-  await expect(page.locator('[data-node-id=elastic-execution]')).toBeVisible();
-  await expect(page.locator('[data-edge=framework-store]')).toHaveAttribute('data-kind','ecosystem');
   await expect(page.getByText('Pinned implementation proposal · PR #5494')).toBeVisible();
-  await page.goto('/projects/mooncake-store/');
-  await expect(page).toHaveURL(new RegExp(mooncake+'$'));
   await page.goto(iotdb);
-  for(const node of ['industrial-ingestion','grafana','tsfile-analytics']) await expect(page.locator(`[data-node-id=${node}]`)).toBeVisible();
   for(const name of ['CHUNKGROUP','CHUNK','PAGE','TAIL']) await expect(page.locator('.tsfile-section').getByText(name,{exact:true}).first()).toBeVisible();
 });
 

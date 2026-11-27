@@ -2,72 +2,37 @@
   "version": 1,
   "id": "mooncake-store",
   "width": 1440,
-  "height": 1170,
+  "height": 960,
   "groups": [
     {
-      "id": "serving-ecosystem",
-      "title": "Inference frameworks",
-      "note": "",
-      "rect": [
-        20,
-        16,
-        415,
-        98
-      ],
-      "ecosystem": true
-    },
-    {
-      "id": "transport-ecosystem",
-      "title": "Transport and accelerators",
-      "note": "",
-      "rect": [
-        463,
-        16,
-        957,
-        98
-      ],
-      "ecosystem": true
-    },
-    {
-      "id": "communication",
-      "title": "Mooncake communication",
-      "note": "",
-      "rect": [
-        463,
-        130,
-        957,
-        107
-      ]
-    },
-    {
       "id": "client",
-      "title": "Store client process",
+      "title": "Client process",
       "note": "Inference integration & local data plane",
       "rect": [
         20,
-        255,
+        45,
         415,
         390
       ]
     },
     {
       "id": "master",
-      "title": "Store master process",
+      "title": "Master process",
       "note": "Control plane \u00b7 allocation & visibility",
       "rect": [
         463,
-        255,
+        45,
         957,
         390
       ]
     },
     {
       "id": "storage",
-      "title": "Store storage nodes",
+      "title": "Storage nodes",
       "note": "Memory and SSD data plane",
       "rect": [
         20,
-        674,
+        464,
         680,
         450
       ]
@@ -78,7 +43,7 @@
       "note": "Ordered metadata persistence and replay",
       "rect": [
         721,
-        674,
+        464,
         699,
         167
       ]
@@ -89,88 +54,13 @@
       "note": "Pinned implementation proposal \u00b7 PR #5494",
       "rect": [
         721,
-        864,
+        654,
         699,
         260
       ]
     }
   ],
   "nodes": [
-    {
-      "id": "serving-frameworks",
-      "label": "vLLM / SGLang",
-      "caption": "KV cache sharing and prefill/decode transfer",
-      "shape": "interface",
-      "group": "serving-ecosystem",
-      "rect": [
-        43,
-        55,
-        365,
-        42
-      ],
-      "evidence": [
-        "store-integrations",
-        "te-overview",
-        "elastic-moe"
-      ],
-      "detail": "vLLM and SGLang can use Store for shared KV cache and Transfer Engine for data movement. SGLang also integrates Mooncake EP and the collective backend.",
-      "fields": []
-    },
-    {
-      "id": "transport-resources",
-      "label": "RDMA / TCP",
-      "caption": "Host and accelerator memory",
-      "shape": "interface",
-      "group": "transport-ecosystem",
-      "rect": [
-        485,
-        55,
-        410,
-        42
-      ],
-      "evidence": [
-        "te-overview"
-      ],
-      "detail": "Transfer Engine selects among transports and accelerator runtimes supported by the deployment.",
-      "fields": []
-    },
-    {
-      "id": "transfer-engine",
-      "label": "Transfer Engine",
-      "caption": "Batched transfers across hosts and accelerators",
-      "shape": "service",
-      "group": "communication",
-      "rect": [
-        485,
-        174,
-        410,
-        51
-      ],
-      "evidence": [
-        "te-overview",
-        "transfer"
-      ],
-      "detail": "Transfer Engine exposes a batched data-movement API used by Store and directly by inference frameworks.",
-      "fields": []
-    },
-    {
-      "id": "elastic-execution",
-      "label": "Mooncake EP / PG",
-      "caption": "Expert parallelism and collectives",
-      "shape": "cluster",
-      "group": "communication",
-      "rect": [
-        928,
-        174,
-        464,
-        51
-      ],
-      "evidence": [
-        "elastic-moe"
-      ],
-      "detail": "Mooncake EP dispatches and combines expert activations with rank awareness. Mooncake PG is a PyTorch process-group backend for collectives and rank recovery.",
-      "fields": []
-    },
     {
       "id": "client",
       "label": "Client / ClientService",
@@ -179,7 +69,7 @@
       "group": "client",
       "rect": [
         43,
-        305,
+        95,
         365,
         86
       ],
@@ -195,13 +85,13 @@
     },
     {
       "id": "transfer",
-      "label": "Store transfer client",
+      "label": "TransferEngine",
       "caption": "Registered memory transport",
       "shape": "service",
       "group": "client",
       "rect": [
         43,
-        420,
+        210,
         365,
         81
       ],
@@ -222,7 +112,7 @@
       "group": "client",
       "rect": [
         43,
-        532,
+        322,
         365,
         81
       ],
@@ -243,7 +133,7 @@
       "group": "master",
       "rect": [
         485,
-        305,
+        95,
         410,
         86
       ],
@@ -268,7 +158,7 @@
       "group": "master",
       "rect": [
         928,
-        305,
+        95,
         464,
         86
       ],
@@ -293,7 +183,7 @@
       "group": "master",
       "rect": [
         485,
-        422,
+        212,
         410,
         87
       ],
@@ -317,7 +207,7 @@
       "group": "master",
       "rect": [
         928,
-        422,
+        212,
         464,
         87
       ],
@@ -341,7 +231,7 @@
       "group": "master",
       "rect": [
         485,
-        539,
+        329,
         410,
         79
       ],
@@ -364,7 +254,7 @@
       "group": "master",
       "rect": [
         928,
-        539,
+        329,
         464,
         79
       ],
@@ -386,7 +276,7 @@
       "group": "storage",
       "rect": [
         43,
-        726,
+        516,
         630,
         103
       ],
@@ -409,7 +299,7 @@
       "group": "storage",
       "rect": [
         43,
-        860,
+        650,
         297,
         96
       ],
@@ -432,7 +322,7 @@
       "group": "storage",
       "rect": [
         370,
-        860,
+        650,
         303,
         96
       ],
@@ -454,7 +344,7 @@
       "group": "storage",
       "rect": [
         43,
-        986,
+        776,
         630,
         93
       ],
@@ -476,7 +366,7 @@
       "group": "ha",
       "rect": [
         747,
-        718,
+        508,
         204,
         95
       ],
@@ -498,7 +388,7 @@
       "group": "ha",
       "rect": [
         973,
-        718,
+        508,
         202,
         95
       ],
@@ -520,7 +410,7 @@
       "group": "ha",
       "rect": [
         1194,
-        718,
+        508,
         198,
         95
       ],
@@ -542,7 +432,7 @@
       "group": "proposal",
       "rect": [
         747,
-        911,
+        701,
         309,
         69
       ],
@@ -564,7 +454,7 @@
       "group": "proposal",
       "rect": [
         1080,
-        911,
+        701,
         312,
         69
       ],
@@ -587,7 +477,7 @@
       "group": "proposal",
       "rect": [
         747,
-        1011,
+        801,
         309,
         76
       ],
@@ -610,7 +500,7 @@
       "group": "proposal",
       "rect": [
         1080,
-        1011,
+        801,
         312,
         76
       ],
@@ -655,11 +545,11 @@
       "via": [
         [
           1160,
-          407
+          197
         ],
         [
           689,
-          407
+          197
         ]
       ]
     },
@@ -688,11 +578,11 @@
       "via": [
         [
           688,
-          661
+          451
         ],
         [
           359,
-          661
+          451
         ]
       ]
     },
@@ -729,23 +619,23 @@
       "via": [
         [
           447,
-          460
+          250
         ],
         [
           447,
-          652
+          442
         ],
         [
           688,
-          652
+          442
         ],
         [
           688,
-          845
+          635
         ],
         [
           525,
-          845
+          635
         ]
       ]
     },
@@ -758,11 +648,11 @@
       "via": [
         [
           28,
-          576
+          366
         ],
         [
           28,
-          1033
+          823
         ]
       ]
     },
@@ -783,19 +673,19 @@
       "via": [
         [
           911,
-          465
+          255
         ],
         [
           911,
-          662
+          452
         ],
         [
           710,
-          662
+          452
         ],
         [
           710,
-          765
+          555
         ]
       ]
     },
@@ -824,19 +714,19 @@
       "via": [
         [
           911,
-          347
+          137
         ],
         [
           911,
-          655
+          445
         ],
         [
           709,
-          655
+          445
         ],
         [
           709,
-          945
+          735
         ]
       ]
     },
@@ -849,7 +739,7 @@
       "via": [
         [
           849,
-          876
+          666
         ]
       ]
     },
@@ -862,19 +752,19 @@
       "via": [
         [
           30,
-          348
+          138
         ],
         [
           10,
-          348
+          138
         ],
         [
           10,
-          1138
+          928
         ],
         [
           903,
-          1138
+          928
         ]
       ]
     },
@@ -887,11 +777,11 @@
       "via": [
         [
           900,
-          995
+          785
         ],
         [
           1237,
-          995
+          785
         ]
       ]
     },
@@ -910,77 +800,6 @@
       "kind": "storage",
       "label": "Reclaim after lease and outcome checks",
       "via": []
-    },
-    {
-      "id": "framework-store",
-      "from": "serving-frameworks",
-      "to": "client",
-      "kind": "ecosystem",
-      "label": "Shared KV cache",
-      "via": []
-    },
-    {
-      "id": "framework-transfer",
-      "from": "serving-frameworks",
-      "to": "transfer-engine",
-      "kind": "ecosystem",
-      "label": "Direct prefill/decode transfer",
-      "via": [
-        [
-          448,
-          76
-        ],
-        [
-          448,
-          199
-        ]
-      ]
-    },
-    {
-      "id": "framework-elastic",
-      "from": "serving-frameworks",
-      "to": "elastic-execution",
-      "kind": "ecosystem",
-      "label": "SGLang elastic expert parallelism",
-      "via": [
-        [
-          427,
-          119
-        ],
-        [
-          1160,
-          119
-        ]
-      ]
-    },
-    {
-      "id": "engine-fabric",
-      "from": "transfer-engine",
-      "to": "transport-resources",
-      "kind": "ecosystem",
-      "label": "Move tensors over a supported transport",
-      "via": []
-    },
-    {
-      "id": "store-engine",
-      "from": "transfer",
-      "to": "transfer-engine",
-      "kind": "data",
-      "label": "Submit payload transfers to Transfer Engine",
-      "via": [
-        [
-          425,
-          460
-        ],
-        [
-          425,
-          231
-        ],
-        [
-          690,
-          231
-        ]
-      ]
     }
   ],
   "tracks": [
@@ -1038,13 +857,11 @@
       "object"
     ]
   },
-  "overview": "Mooncake provides high-speed data movement, distributed KV cache and elastic MoE communication for LLM serving. The Store drawing follows placement, replica I/O and recovery, including the pinned object-replica proposal.",
+  "overview": "Master placement and metadata, direct-transfer storage, and the pinned synchronous object-replica proposal.",
   "modules": {
     "system": [
       "client",
-      "transfer",
-      "transfer-engine",
-      "elastic-execution"
+      "transfer"
     ],
     "store": [
       "master",

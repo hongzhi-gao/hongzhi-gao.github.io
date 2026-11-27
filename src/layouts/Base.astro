@@ -31,7 +31,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 <nav aria-label="Main navigation" class="atlas-nav">
   <a href={home?'#projects':'/#projects'} aria-current={home?'page':undefined}>Projects</a>
   <a href="/projects/iotdb-tsfile/" aria-current={Astro.url.pathname.startsWith('/projects/iotdb-tsfile/')?'page':undefined}>IoTDB &amp; TsFile</a>
-  <a href="/projects/mooncake/" aria-current={Astro.url.pathname.startsWith('/projects/mooncake/')?'page':undefined}>Mooncake</a>
+  <a href="/projects/mooncake-store/" aria-current={Astro.url.pathname.startsWith('/projects/mooncake-store/')?'page':undefined}>Mooncake Store</a>
 </nav>
 {profile.verified&&<a class="holo-button holo-button-quiet atlas-github" data-magnetic href={`https://github.com/${profile.github}`}>GitHub</a>}
 </div></header>

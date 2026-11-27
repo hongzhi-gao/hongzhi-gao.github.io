@@ -110,16 +110,12 @@
 .architecture-drawing .drawing-proposal > rect { stroke:#767680; stroke-dasharray:6 4; }
 .architecture-drawing .drawing-group text { font: 600 18px Inter, sans-serif; fill:#f4f4f5; letter-spacing:-.24px; }
 .architecture-drawing .drawing-group .group-note { fill:#9a9aa4; font: 10.5px var(--mono,monospace); letter-spacing:.22px; }
-.architecture-drawing .drawing-ecosystem > rect { fill:#17171b70; stroke:#45454e; stroke-dasharray:3 4; }
-.architecture-drawing .drawing-ecosystem > text { fill:#a9a9b5; font-size:14px; }
 .drawing-node { cursor:pointer; outline:none; transition: opacity .18s ease; }
 .drawing-node .node-body { fill:#242427; stroke:#52525b; stroke-width:1; transition:fill .18s,stroke .18s; }
 .drawing-node .node-notch { stroke:#9696a0; stroke-width:1; fill:none; pointer-events:none; }
 .drawing-node .node-label { fill:#fafafa; font:600 14px var(--mono,monospace); pointer-events:none; }
 .drawing-node .node-caption { fill:#b2b2bd; font:11px Inter,sans-serif; pointer-events:none; }
 .drawing-node .node-fields { fill:#c3c3cc; font:10px var(--mono,monospace); opacity:0; pointer-events:none; }
-.drawing-node.node-ecosystem .node-body { fill:#19191d; stroke:#42424b; }
-.drawing-node.node-ecosystem .node-label { fill:#cdced7; }
 .drawing-node.node-proposal .node-body { stroke-dasharray:4 2; }
 .architecture-drawing[data-zoom-level=detail] .node-fields { opacity:1; }
 .architecture-drawing[data-zoom-level=overview] .node-caption,
@@ -135,8 +131,6 @@
 [data-kind=control] .base-edge { stroke-dasharray:2.5 3.5; }
 [data-kind=replica] .base-edge { stroke-dasharray:7 4; }
 [data-kind=storage] .base-edge { stroke-width:1.6; }
-[data-kind=ecosystem] .base-edge { stroke-dasharray:3 5; opacity:.53; }
-[data-kind=ecosystem].related .base-edge { opacity:.88; }
 .edge-halo, .edge-pulse { opacity:0; }
 [data-kind=control] { --flow:#ffd166; --flow-end:#ff6b35; }
 [data-kind=data] { --flow:#67e8f9; --flow-end:#a78bfa; }
@@ -185,7 +179,6 @@
 .diagram-legend i { display:block; width:16px; border-top:1px solid #9696a0; }
 .diagram-legend [data-legend=control] i { border-top-style:dotted; }
 .diagram-legend [data-legend=replica] i { border-top-style:dashed; }
-.diagram-legend [data-legend=ecosystem] i { border-top-style:dashed; opacity:.55; }
 .diagram-legend [data-legend=storage] i { border-top-width:2px; }
 .architecture-contributions { border-left:1px solid #333336; background:#111113; min-width:0; overflow:auto; }
 .contribution-heading {
