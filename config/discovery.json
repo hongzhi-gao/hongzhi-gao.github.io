@@ -2,16 +2,16 @@
   "version": 1,
   "repositories": {
     "apache/iotdb": {
-      "head": "dc790cca0aac847f678aaa4214fc7ac2ba1a6bf5",
-      "scannedAt": "2026-11-27T10:13:10.963Z"
+      "head": "96a0c6d39093b629e3478b39ba58c398c0797358",
+      "scannedAt": "2026-11-28T10:40:13.162Z"
     },
     "apache/tsfile": {
       "head": "405a13b868054c3d96aae64ed3c9f771f211e4a3",
-      "scannedAt": "2026-11-27T10:13:10.963Z"
+      "scannedAt": "2026-11-28T10:40:13.162Z"
     },
     "kvcache-ai/Mooncake": {
-      "head": "e57be7d873799eb2f1a7eaaa59e80444a5b65f12",
-      "scannedAt": "2026-11-27T10:13:10.963Z"
+      "head": "ab2595576a0b6469bea1fb7e12476937eb949dc5",
+      "scannedAt": "2026-11-28T10:40:13.162Z"
     }
   },
   "records": [
@@ -2006,6 +2006,23 @@
       ]
     },
     {
+      "id": "apache/iotdb:96a0c6d39093b629e3478b39ba58c398c0797358",
+      "project": "iotdb-tsfile",
+      "repo": "apache/iotdb",
+      "base": "dc790cca0aac847f678aaa4214fc7ac2ba1a6bf5",
+      "head": "96a0c6d39093b629e3478b39ba58c398c0797358",
+      "kind": "architecture",
+      "paths": [
+        "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/dataregion/memtable/AlignedReadOnlyMemChunk.java",
+        "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/dataregion/read/reader/common/AlignedDescPriorityMergeReader.java",
+        "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/dataregion/read/reader/common/AlignedPointReader.java",
+        "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/dataregion/read/reader/common/AlignedPriorityMergeReader.java",
+        "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/dataregion/read/reader/common/Element.java",
+        "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/dataregion/read/reader/common/PriorityMergeReader.java",
+        "iotdb-core/datanode/src/main/java/org/apache/iotdb/db/storageengine/dataregion/read/reader/common/TsBlockAlignedRowPointReader.java"
+      ]
+    },
+    {
       "id": "apache/tsfile:906",
       "project": "iotdb-tsfile",
       "repo": "apache/tsfile",
@@ -2017,6 +2034,33 @@
         "java/tsfile/src/main/java/org/apache/tsfile/read/query/dataset/DataSetWithoutTimeGenerator.java",
         "java/tsfile/src/main/java/org/apache/tsfile/utils/LongHeapPriorityQueue.java",
         "java/tsfile/src/main/java/org/apache/tsfile/utils/LongOpenHashSet.java"
+      ]
+    },
+    {
+      "id": "kvcache-ai/Mooncake:ab2595576a0b6469bea1fb7e12476937eb949dc5",
+      "project": "mooncake-store",
+      "repo": "kvcache-ai/Mooncake",
+      "base": "e57be7d873799eb2f1a7eaaa59e80444a5b65f12",
+      "head": "ab2595576a0b6469bea1fb7e12476937eb949dc5",
+      "kind": "high-risk",
+      "paths": [
+        "mooncake-store/include/common/read_singleflight.h",
+        "mooncake-store/include/file_storage.h",
+        "mooncake-store/include/storage_backend.h",
+        "mooncake-store/src/client_service.cpp",
+        "mooncake-store/src/config/file_storage_config.cpp",
+        "mooncake-store/src/file_storage.cpp",
+        "mooncake-store/src/storage_backend.cpp",
+        "mooncake-transfer-engine/include/transfer_metadata.h",
+        "mooncake-transfer-engine/include/transport/kunpeng_transport/ub_transport.h",
+        "mooncake-transfer-engine/include/transport/kunpeng_transport/urma/urma_endpoint.h",
+        "mooncake-transfer-engine/include/transport/rdma_transport/rdma_endpoint.h",
+        "mooncake-transfer-engine/src/config.cpp",
+        "mooncake-transfer-engine/src/transfer_metadata.cpp",
+        "mooncake-transfer-engine/src/transport/kunpeng_transport/ub_transport.cpp",
+        "mooncake-transfer-engine/src/transport/kunpeng_transport/urma/urma_endpoint.cpp",
+        "mooncake-transfer-engine/src/transport/rdma_transport/rdma_endpoint.cpp",
+        "mooncake-transfer-engine/src/transport/rdma_transport/worker_pool.cpp"
       ]
     }
   ],
